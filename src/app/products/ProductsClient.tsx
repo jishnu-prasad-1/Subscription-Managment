@@ -124,7 +124,7 @@ export const ProductsClient: React.FC<ProductsClientProps> = ({ initialProducts 
   };
 
   const handleExportCatalog = () => {
-    const headers = ["Product Name", "Type", "Sales Price ($)", "Cost Price ($)", "Variant Count", "Status"];
+    const headers = ["Product Name", "Type", "Sales Price (₹)", "Cost Price (₹)", "Variant Count", "Status"];
     const rows = products.map((p) => [
       p.name,
       p.productType,
@@ -229,10 +229,10 @@ export const ProductsClient: React.FC<ProductsClientProps> = ({ initialProducts 
               <div>
                 <div className="flex items-baseline justify-between mb-2">
                   <span className="font-headline text-[24px] font-black text-[#1D1E24]">
-                    ${prod.salesPrice.toLocaleString()}
+                    ₹{prod.salesPrice.toLocaleString()}
                   </span>
                   <span className="text-[11px] font-bold text-[#606275]">
-                    Cost: ${prod.costPrice.toLocaleString()}
+                    Cost: ₹{prod.costPrice.toLocaleString()}
                   </span>
                 </div>
                 <p className="text-[12px] text-[#34363F] font-medium mb-3">
@@ -255,7 +255,7 @@ export const ProductsClient: React.FC<ProductsClientProps> = ({ initialProducts 
                           v.additionalPrice > 0 ? "bg-[#FFD600] text-[#1D1E24]" : "bg-white"
                         }`}
                       >
-                        {v.additionalPrice > 0 ? `+₹${v.additionalPrice} / +$${v.additionalPrice}` : "Included"}
+                        {v.additionalPrice > 0 ? `+₹${v.additionalPrice}` : "Included"}
                       </span>
                     </div>
                   ))}
@@ -323,7 +323,7 @@ export const ProductsClient: React.FC<ProductsClientProps> = ({ initialProducts 
             </div>
             <div>
               <label className="block font-headline text-[11px] uppercase font-black text-[#1D1E24] mb-1">
-                Sales Price ($)
+                Sales Price (₹)
               </label>
               <input
                 type="number"
@@ -334,7 +334,7 @@ export const ProductsClient: React.FC<ProductsClientProps> = ({ initialProducts 
             </div>
             <div>
               <label className="block font-headline text-[11px] uppercase font-black text-[#1D1E24] mb-1">
-                Cost Price ($)
+                Cost Price (₹)
               </label>
               <input
                 type="number"
@@ -421,7 +421,7 @@ export const ProductsClient: React.FC<ProductsClientProps> = ({ initialProducts 
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="block font-headline text-[11px] uppercase font-black text-[#1D1E24] mb-1">
-                Sales Price ($)
+                Sales Price (₹)
               </label>
               <input
                 type="number"
@@ -433,7 +433,7 @@ export const ProductsClient: React.FC<ProductsClientProps> = ({ initialProducts 
             </div>
             <div>
               <label className="block font-headline text-[11px] uppercase font-black text-[#1D1E24] mb-1">
-                Cost Price ($)
+                Cost Price (₹)
               </label>
               <input
                 type="number"

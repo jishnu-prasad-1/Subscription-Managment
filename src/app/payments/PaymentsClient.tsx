@@ -61,7 +61,7 @@ export const PaymentsClient: React.FC<PaymentsClientProps> = ({ initialPayments 
             Reconciled Cash Flow
           </span>
           <span className="font-headline text-[20px] font-black text-[#006b5b]">
-            ${totalCollected.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+            ₹{totalCollected.toLocaleString(undefined, { minimumFractionDigits: 2 })}
           </span>
         </div>
       </section>
@@ -110,7 +110,7 @@ export const PaymentsClient: React.FC<PaymentsClientProps> = ({ initialPayments 
               <th className="p-3">Method</th>
               <th className="p-3">Date</th>
               <th className="p-3">Reference Notes</th>
-              <th className="p-3 text-right">Amount ($)</th>
+              <th className="p-3 text-right">Amount (₹)</th>
             </tr>
           </thead>
           <tbody className="divide-y-2 divide-[#1D1E24]">
@@ -135,7 +135,7 @@ export const PaymentsClient: React.FC<PaymentsClientProps> = ({ initialPayments 
                   {p.referenceNotes || "Direct settlement"}
                 </td>
                 <td className="p-3 text-right font-headline font-black text-[#006b5b]">
-                  +${p.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                  +₹{p.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                 </td>
               </tr>
             ))}

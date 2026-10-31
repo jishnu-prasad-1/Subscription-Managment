@@ -11,7 +11,7 @@ export const RevenueVelocityChart: React.FC = () => {
       actions={
         <div className="hidden sm:flex items-center gap-3 mr-2 font-headline text-[11px] font-bold">
           <span className="flex items-center gap-1.5 text-[#1D1E24]">
-            <span className="w-3 h-3 bg-[#25F4D2] border-2 border-[#1D1E24]"></span> New ARR ($)
+            <span className="w-3 h-3 bg-[#25F4D2] border-2 border-[#1D1E24]"></span> New ARR (₹)
           </span>
           <span className="flex items-center gap-1.5 text-[#1D1E24]">
             <span className="w-3 h-3 bg-[#FFD600] border-2 border-[#1D1E24]"></span> Expansion
@@ -28,7 +28,7 @@ export const RevenueVelocityChart: React.FC = () => {
           <span>
             Q1 AVG VELOCITY:{" "}
             <strong className="text-[#006b5b] bg-[#25F4D2] px-1 py-0.5 border border-[#1D1E24] font-black">
-              +$24,190/mo
+              +₹24,190/mo
             </strong>
           </span>
           <span>
@@ -121,7 +121,7 @@ export const RevenueVelocityChart: React.FC = () => {
             Automatic daily consolidation at 00:00 UTC
           </span>
           <span className="font-headline font-black text-[#1D1E24] uppercase bg-[#FFD600] px-1.5 py-0.5 border border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24]">
-            Peak Run Rate: APR ($148.2k)
+            Peak Run Rate: APR (₹148.2k)
           </span>
         </div>
       </div>

@@ -133,7 +133,7 @@ export const SubscriptionsClient: React.FC<SubscriptionsClientProps> = ({
       "Cadence",
       "Status",
       "Next Billing Date",
-      "Recurring Amount ($)",
+      "Recurring Amount (₹)",
     ];
     const rows = filteredSubs.map((s) => [
       s.subscriptionNumber,
@@ -248,7 +248,7 @@ export const SubscriptionsClient: React.FC<SubscriptionsClientProps> = ({
                 Net Run Rate
               </span>
               <span className="font-headline text-[16px] text-[#008F7A] font-black">
-                $184.2k <span className="text-[10px] text-[#1D1E24] font-bold">/mo</span>
+                ₹184.2k <span className="text-[10px] text-[#1D1E24] font-bold">/mo</span>
               </span>
             </div>
           </div>
@@ -334,7 +334,7 @@ export const SubscriptionsClient: React.FC<SubscriptionsClientProps> = ({
             <div className="flex items-center justify-between mt-1.5 pt-1.5 border-t border-[#1D1E24]/20">
               <span className="font-headline text-[11px] font-black text-[#B87A00]">56 Issued</span>
               <span className="font-headline text-[10px] px-1.5 py-0.2 bg-[#FFD600] text-[#1D1E24] border border-[#1D1E24] font-black">
-                $64.2k
+                ₹64.2k
               </span>
             </div>
           </button>
@@ -464,7 +464,7 @@ export const SubscriptionsClient: React.FC<SubscriptionsClientProps> = ({
               <th className="p-3">Plan Cadence</th>
               <th className="p-3">Status</th>
               <th className="p-3">Next Billing Date</th>
-              <th className="p-3 text-right">Recurring Amount</th>
+              <th className="p-3 text-right">Recurring Amount (₹)</th>
               <th className="p-3 text-center">Lifecycle Actions</th>
             </tr>
           </thead>
@@ -511,7 +511,7 @@ export const SubscriptionsClient: React.FC<SubscriptionsClientProps> = ({
                       {formatDate(sub.nextBillingDate)}
                     </td>
                     <td className="px-4 py-3.5 text-right font-headline font-black text-[#1D1E24]">
-                      ${sub.totalRecurringAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                      ₹{sub.totalRecurringAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                     </td>
                     <td className="px-4 py-3.5 text-center">
                       <div className="inline-flex items-center gap-1">
@@ -660,7 +660,7 @@ export const SubscriptionsClient: React.FC<SubscriptionsClientProps> = ({
               >
                 {products.map((p) => (
                   <option key={p.id} value={p.id}>
-                    {p.name} (${p.salesPrice})
+                    {p.name} (₹{p.salesPrice})
                   </option>
                 ))}
               </select>
@@ -678,7 +678,7 @@ export const SubscriptionsClient: React.FC<SubscriptionsClientProps> = ({
                 <option value="">Standard Edition (+0)</option>
                 {selectedProduct?.variants.map((v) => (
                   <option key={v.id} value={v.id}>
-                    {v.variantName} (+${v.additionalPrice})
+                    {v.variantName} (+₹{v.additionalPrice})
                   </option>
                 ))}
               </select>
@@ -692,7 +692,7 @@ export const SubscriptionsClient: React.FC<SubscriptionsClientProps> = ({
                 Calculated Recurring Total
               </span>
               <span className="text-[18px] text-[#003D32] font-black">
-                ${(effectivePrice * quantity).toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                ₹{(effectivePrice * quantity).toLocaleString(undefined, { minimumFractionDigits: 2 })}
               </span>
             </div>
             <span className="px-2 py-0.5 bg-[#FFD600] text-[#1D1E24] border border-[#1D1E24] text-[10px] uppercase font-black">

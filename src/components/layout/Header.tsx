@@ -176,7 +176,7 @@ export const Header: React.FC<HeaderProps> = () => {
                   onClick={() => setShowNotifications(false)}
                   className="p-1.5 bg-[#FFF2DF] border border-[#1D1E24] hover:bg-[#FFE0DC] block"
                 >
-                  <strong className="text-[#FF4D6D]">14 Accounts Overdue:</strong> Totaling $9,350 at risk. Click to review.
+                  <strong className="text-[#FF4D6D]">14 Accounts Overdue:</strong> Totaling ₹9,350 at risk. Click to review.
                 </Link>
                 <Link
                   href="/subscriptions"

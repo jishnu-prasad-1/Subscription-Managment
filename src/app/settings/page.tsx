@@ -218,7 +218,7 @@ export default function SettingsPage() {
             </div>
 
             <p className="text-[#606275]">
-              Use this reset utility to reload the full realistic portfolio dataset ($148,250 MRR, 14 overdue accounts, 1,842 subscriptions) matching the Stitch UI.
+              Use this reset utility to reload the full realistic portfolio dataset (₹1,48,250 MRR, 14 overdue accounts, 1,842 subscriptions) matching the Stitch UI.
             </p>
 
             <div className="pt-2">

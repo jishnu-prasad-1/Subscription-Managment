@@ -4,8 +4,38 @@ All notable changes to this project are documented in this file in accordance wi
 
 ---
 
-## [1.3.2-fluid] - 2026-10-31
-### 📐 MILESTONE 7: FULL-BLEED FLUID CANVAS & HIGH-IMPACT MISSION COCKPIT
+## [1.4.0-rupees] - 2026-10-31
+### 🇮🇳 MILESTONE 8: SYSTEM-WIDE CURRENCY CONVERSION TO INDIAN RUPEES (₹)
+
+#### Changed & Unified
+- **System-Wide Indian Rupee (₹) Harmonization**:
+  - Converted all monetary references across every UI component, table column, CSV export header, modal, telemetry card, and API response from US Dollars (`$`) to Indian Rupees (`₹`), establishing 100% harmonization with the hackathon problem statement's `+₹560` Odoo variant surcharge rule and 18% GST tax law.
+- **Components & Formatters Updated**:
+  - `src/lib/utils.ts`: Switched default currency formatting to `INR` with `Intl.NumberFormat("en-IN", { style: "currency", currency: "INR" })`.
+  - `src/components/layout/AppShell.tsx`: Converted infinite marquee ticker telemetry (`MRR VELOCITY: ₹1,42,850/MO`, `OVERDUE REVENUE: ₹9,350`).
+  - `src/components/layout/Header.tsx`: Converted notification drawer overdue amounts to `₹9,350`.
+  - `src/components/mascot/PennyDispatchBanner.tsx`: Converted overdue amounts (`₹9,350`), net expansion (`+₹24,190`), and quick cockpit triage button to `₹`.
+  - `src/components/mascot/FloatingPennyAssistant.tsx`: Converted active MRR (`₹148,250`) and overdue at risk (`₹9,350`) telemetry cards.
+  - `src/components/dashboard/BentoMetricGrid.tsx`: Converted all hero cards to Indian Rupees (`₹148,250/mo`, `₹1.78M` ARR, `₹1.42M` collected, `₹9,350` overdue).
+  - `src/components/dashboard/RevenueVelocityChart.tsx`: Updated legend (`New ARR (₹)`), average velocity (`+₹24,190/mo`), and peak run-rate badge (`₹148.2k`).
+  - `src/components/dashboard/TierDonutChart.tsx`: Converted tier MRR distributions (`₹98.4k`, `₹38.7k`, `₹11.1k`).
+  - `src/components/dashboard/UrgentActionAlerts.tsx`: Updated dunning alert to `14 Invoices Overdue (₹9,350 at risk)`.
+  - `src/components/dashboard/RecentSubscriptionsStream.tsx`: Updated table header to `Amount (₹)` and row amounts to `₹`.
+  - `src/app/invoices/InvoicesClient.tsx`: Converted CSV export headers (`Total (₹)`, `Paid (₹)`, `Balance Due (₹)`), KPI cards, table headers/cells, payment modal, invoice preview modal, and toast alerts.
+  - `src/app/subscriptions/SubscriptionsClient.tsx`: Converted recurring amount CSV header, run-rate badge (`₹184.2k/mo`), table columns, creation modal prices, and variant selectors.
+  - `src/app/products/ProductsClient.tsx`: Converted CSV export headers (`Sales Price (₹)`, `Cost Price (₹)`), offering cards, variant surcharge tags (`+₹560`), and add/edit modal fields.
+  - `src/app/plans/PlansClient.tsx`: Converted CSV export headers (`Base Cost (₹)`), pricing display, and rule editor inputs.
+  - `src/app/quotations/QuotationsClient.tsx`: Converted CSV export headers (`Subtotal (₹)`, `Tax (₹)`, `Total (₹)`), quotation rows, creation modal math breakdown, and toast alerts.
+  - `src/app/discounts/DiscountsClient.tsx`: Converted fixed discount rules to `Fixed Rupees (₹)`, min spend labels, and rule cards.
+  - `src/app/customers/CustomersClient.tsx`: Converted Customer 360 subscription rates and invoice ledger balances to `₹`.
+  - `src/app/portal/CustomerPortalClient.tsx`: Converted self-service customer portal plan prices, invoice table headers (`Total (₹)`, `Balance Due (₹)`), and 1-click `Pay Now (₹)` buttons.
+  - `src/app/payments/PaymentsClient.tsx`: Converted reconciled cash flow KPI and table columns to `Amount (₹)`.
+  - `src/app/reports/ReportsClient.tsx`: Converted CSV export headers (`Value (₹)`) and all 4 core telemetry pillars (`₹148,250 MRR`, `₹1.78M ARR`, `₹1.42M Cash`, `₹9,350 Overdue`).
+  - `src/app/settings/page.tsx`: Updated database reset notice to `₹148,250 MRR`.
+  - `src/app/api/penny/insights/route.ts` & `src/app/api/payments/route.ts`: Converted API response messages to `₹`.
+  - `tests/unit.test.mjs`: Updated test assertions and comments to `+₹560` and `₹2,000` / `₹3,000` partial payments (8/8 tests passing).
+
+---
 
 #### Fixed & Enhanced
 - **Eliminated Horizontal Sliding & Blank Side Gutters (`AppShell.tsx`)**:

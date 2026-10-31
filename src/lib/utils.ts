@@ -5,17 +5,17 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatCurrency(amount: number, currency: "USD" | "INR" = "USD"): string {
-  if (currency === "INR") {
-    return new Intl.NumberFormat("en-IN", {
+export function formatCurrency(amount: number, currency: "USD" | "INR" = "INR"): string {
+  if (currency === "USD") {
+    return new Intl.NumberFormat("en-US", {
       style: "currency",
-      currency: "INR",
+      currency: "USD",
       maximumFractionDigits: 2,
     }).format(amount);
   }
-  return new Intl.NumberFormat("en-US", {
+  return new Intl.NumberFormat("en-IN", {
     style: "currency",
-    currency: "USD",
+    currency: "INR",
     maximumFractionDigits: 2,
   }).format(amount);
 }

@@ -122,9 +122,9 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
       "Billing End",
       "Due Date",
       "Status",
-      "Total ($)",
-      "Paid ($)",
-      "Balance Due ($)",
+      "Total (₹)",
+      "Paid (₹)",
+      "Balance Due (₹)",
     ];
     const rows = filteredInvoices.map((inv) => [
       inv.invoiceNumber,
@@ -202,14 +202,14 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
       const data = await res.json();
       if (data.success) {
         showToast(
-          `✅ Payment of $${currentAmount.toLocaleString()} recorded in database (${data.data.payment.paymentNumber})! Status: ${newStatus.toUpperCase()}`
+          `✅ Payment of ₹${currentAmount.toLocaleString()} recorded in database (${data.data.payment.paymentNumber})! Status: ${newStatus.toUpperCase()}`
         );
         router.refresh();
       } else {
-        showToast(`Payment recorded locally: $${currentAmount.toLocaleString()} via ${currentMethod}`);
+        showToast(`Payment recorded locally: ₹${currentAmount.toLocaleString()} via ${currentMethod}`);
       }
     } catch {
-      showToast(`Payment recorded locally: $${currentAmount.toLocaleString()} via ${currentMethod}`);
+      showToast(`Payment recorded locally: ₹${currentAmount.toLocaleString()} via ${currentMethod}`);
     }
   };
 
@@ -252,7 +252,7 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
                 Total Invoiced
               </span>
               <span className="font-headline text-[16px] text-[#1D1E24] font-black">
-                ${totalInvoiced.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                ₹{totalInvoiced.toLocaleString(undefined, { maximumFractionDigits: 0 })}
               </span>
             </div>
             <div className="px-3.5 py-1.5 bg-[#FFF8EE] border-2 border-[#1D1E24] shadow-[2.5px_2.5px_0px_#1D1E24]">
@@ -260,7 +260,7 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
                 Overdue At Risk
               </span>
               <span className="font-headline text-[16px] text-[#FF4D6D] font-black">
-                ${totalOverdue.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                ₹{totalOverdue.toLocaleString(undefined, { maximumFractionDigits: 0 })}
               </span>
             </div>
           </div>
@@ -343,8 +343,8 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
               <th className="p-3">Billing Period</th>
               <th className="p-3">Status</th>
               <th className="p-3">Due Date</th>
-              <th className="p-3 text-right">Total ($)</th>
-              <th className="p-3 text-right">Balance Due</th>
+              <th className="p-3 text-right">Total (₹)</th>
+              <th className="p-3 text-right">Balance Due (₹)</th>
               <th className="p-3 text-center">Actions</th>
             </tr>
           </thead>
@@ -374,10 +374,10 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
                     {formatDate(inv.dueDate)}
                   </td>
                   <td className="px-4 py-3.5 text-right font-headline font-black text-[#1D1E24]">
-                    ${inv.totalAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                    ₹{inv.totalAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                   </td>
                   <td className="px-4 py-3.5 text-right font-headline font-black text-[#FF4D6D]">
-                    ${inv.balanceDue.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                    ₹{inv.balanceDue.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                   </td>
                   <td className="px-4 py-3.5 text-center">
                     <div className="inline-flex items-center gap-1.5">
@@ -431,7 +431,7 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
                 Total Balance Outstanding
               </span>
               <span className="text-[18px] text-[#FF4D6D] font-black">
-                ${paymentModalInvoice?.balanceDue.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                ₹{paymentModalInvoice?.balanceDue.toLocaleString(undefined, { minimumFractionDigits: 2 })}
               </span>
             </div>
             <span className="text-[11px] font-bold text-[#1D1E24]">
@@ -441,7 +441,7 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
 
           <div>
             <label className="block font-headline text-[11px] uppercase font-black text-[#1D1E24] mb-1">
-              Payment Amount ($)
+              Payment Amount (₹)
             </label>
             <input
               type="number"
@@ -574,8 +574,8 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
                   <tr key={idx}>
                     <td className="p-2 font-bold">{it.description}</td>
                     <td className="p-2 text-center">{it.quantity}</td>
-                    <td className="p-2 text-right">${it.unitPrice.toFixed(2)}</td>
-                    <td className="p-2 text-right font-black">${it.totalAmount.toFixed(2)}</td>
+                    <td className="p-2 text-right">₹{it.unitPrice.toFixed(2)}</td>
+                    <td className="p-2 text-right font-black">₹{it.totalAmount.toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -586,23 +586,23 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
               <div className="w-64 flex flex-col gap-1 text-[12px]">
                 <div className="flex justify-between">
                   <span>Subtotal:</span>
-                  <span className="font-bold">${printModalInvoice.subtotal.toFixed(2)}</span>
+                  <span className="font-bold">₹{printModalInvoice.subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>GST (18%):</span>
-                  <span className="font-bold">${printModalInvoice.taxAmount.toFixed(2)}</span>
+                  <span className="font-bold">₹{printModalInvoice.taxAmount.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between font-headline font-black text-[14px] pt-1 border-t-2 border-[#1D1E24]">
                   <span>Total Amount:</span>
-                  <span>${printModalInvoice.totalAmount.toFixed(2)}</span>
+                  <span>₹{printModalInvoice.totalAmount.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-[#006b5b]">
                   <span>Paid to Date:</span>
-                  <span>-${printModalInvoice.paidAmount.toFixed(2)}</span>
+                  <span>-₹{printModalInvoice.paidAmount.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between font-headline font-black text-[#FF4D6D] text-[15px] pt-1 border-t border-[#1D1E24]">
                   <span>Balance Due:</span>
-                  <span>${printModalInvoice.balanceDue.toFixed(2)}</span>
+                  <span>₹{printModalInvoice.balanceDue.toFixed(2)}</span>
                 </div>
               </div>
             </div>

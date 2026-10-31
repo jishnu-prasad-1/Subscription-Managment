@@ -78,7 +78,7 @@ export const CustomerPortalClient: React.FC<CustomerPortalClientProps> = ({ cust
           : inv
       )
     );
-    showToast(`🎉 Payment Confirmed ($${dueAmount.toFixed(2)})! Invoice marked PAID.`);
+    showToast(`🎉 Payment Confirmed (₹${dueAmount.toFixed(2)})! Invoice marked PAID.`);
 
     try {
       await fetch("/api/payments", {
@@ -178,7 +178,7 @@ export const CustomerPortalClient: React.FC<CustomerPortalClientProps> = ({ cust
               <div className="flex flex-col gap-3">
                 <div className="flex justify-between items-baseline">
                   <span className="font-headline text-[22px] font-black text-[#1D1E24]">
-                    ${sub.recurringAmount.toFixed(2)}
+                    ₹{sub.recurringAmount.toFixed(2)}
                   </span>
                   <span className="font-headline text-[11px] text-[#006b5b] font-black uppercase">
                     / {sub.planName}
@@ -216,8 +216,8 @@ export const CustomerPortalClient: React.FC<CustomerPortalClientProps> = ({ cust
                 <th className="p-3">Period</th>
                 <th className="p-3">Due Date</th>
                 <th className="p-3">Status</th>
-                <th className="p-3 text-right">Total</th>
-                <th className="p-3 text-right">Balance Due</th>
+                <th className="p-3 text-right">Total (₹)</th>
+                <th className="p-3 text-right">Balance Due (₹)</th>
                 <th className="p-3 text-center">Action</th>
               </tr>
             </thead>
@@ -245,10 +245,10 @@ export const CustomerPortalClient: React.FC<CustomerPortalClientProps> = ({ cust
                     </span>
                   </td>
                   <td className="p-3 text-right font-headline font-black text-[#1D1E24]">
-                    ${inv.totalAmount.toFixed(2)}
+                    ₹{inv.totalAmount.toFixed(2)}
                   </td>
                   <td className="p-3 text-right font-headline font-black text-[#FF4D6D]">
-                    ${inv.balanceDue.toFixed(2)}
+                    ₹{inv.balanceDue.toFixed(2)}
                   </td>
                   <td className="p-3 text-center">
                     {inv.balanceDue > 0 ? (
@@ -257,7 +257,7 @@ export const CustomerPortalClient: React.FC<CustomerPortalClientProps> = ({ cust
                         size="sm"
                         onClick={() => handlePayInvoice(inv.id)}
                       >
-                        Pay Now ($ {inv.balanceDue.toFixed(2)})
+                        Pay Now (₹{inv.balanceDue.toFixed(2)})
                       </NeoButton>
                     ) : (
                       <button

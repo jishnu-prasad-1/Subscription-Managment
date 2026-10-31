@@ -30,7 +30,7 @@ export const ReportsClient: React.FC<ReportsClientProps> = ({
   };
 
   const handleExportAccountingCsv = () => {
-    const headers = ["Financial Metric", "Value ($)", "Measurement Period", "Audit Status"];
+    const headers = ["Financial Metric", "Value (₹)", "Measurement Period", "Audit Status"];
     const rows = [
       ["Monthly Recurring Revenue (MRR)", mrr, "Trailing 30 Days", "RECONCILED"],
       ["Annualized Run Rate (ARR)", arr, "Forward 12 Months", "PROJECTED"],
@@ -107,7 +107,7 @@ export const ReportsClient: React.FC<ReportsClientProps> = ({
             Monthly Recurring Revenue (MRR)
           </span>
           <span className="font-headline text-[24px] font-black text-[#1D1E24]">
-            ${mrr.toLocaleString()}
+            ₹{mrr.toLocaleString()}
           </span>
           <span className="text-[11px] text-[#006b5b] font-bold block mt-1">
             +12.4% MoM organic expansion
@@ -119,7 +119,7 @@ export const ReportsClient: React.FC<ReportsClientProps> = ({
             Annual Run Rate (ARR)
           </span>
           <span className="font-headline text-[24px] font-black text-[#1D1E24]">
-            ${(arr / 1000000).toFixed(2)}M
+            ₹{(arr / 1000000).toFixed(2)}M
           </span>
           <span className="text-[11px] text-[#606275] font-bold block mt-1">
             Projected forward 12-month run rate
@@ -131,7 +131,7 @@ export const ReportsClient: React.FC<ReportsClientProps> = ({
             Audited Cash Collected
           </span>
           <span className="font-headline text-[24px] font-black text-[#006b5b]">
-            ${(totalCollected > 0 ? totalCollected : 1420800).toLocaleString(undefined, { maximumFractionDigits: 0 })}
+            ₹{(totalCollected > 0 ? totalCollected : 1420800).toLocaleString(undefined, { maximumFractionDigits: 0 })}
           </span>
           <span className="text-[11px] text-[#006b5b] font-bold block mt-1">
             Reconciled bank collections YTD
@@ -143,7 +143,7 @@ export const ReportsClient: React.FC<ReportsClientProps> = ({
             Overdue Receivables (At Risk)
           </span>
           <span className="font-headline text-[24px] font-black text-[#FF4D6D]">
-            ${totalOverdue.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+            ₹{totalOverdue.toLocaleString(undefined, { maximumFractionDigits: 0 })}
           </span>
           <span className="text-[11px] text-[#FF4D6D] font-bold block mt-1">
             14 Accounts under recovery

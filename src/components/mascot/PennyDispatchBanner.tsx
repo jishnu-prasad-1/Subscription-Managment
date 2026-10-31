@@ -105,7 +105,7 @@ export const PennyDispatchBanner: React.FC<PennyDispatchBannerProps> = ({
                         href="/invoices?status=overdue"
                         className="font-black text-white bg-[#FF4D6D] px-1 border border-[#1D1E24] underline hover:bg-[#FF3355]"
                       >
-                        {overdueCount} overdue accounts (${overdueAmount.toLocaleString()})
+                        {overdueCount} overdue accounts (₹{overdueAmount.toLocaleString()})
                       </Link>
                       !&rdquo;
                     </>
@@ -121,7 +121,7 @@ export const PennyDispatchBanner: React.FC<PennyDispatchBannerProps> = ({
                   NET EXPANSION
                 </span>
                 <span className="font-headline text-[16px] sm:text-[18px] text-[#006b5b] font-black">
-                  +${netExpansion.toLocaleString()}
+                  +₹{netExpansion.toLocaleString()}
                 </span>
               </div>
               <div className="flex flex-col pr-3 border-r-2 border-[#1D1E24]">
@@ -157,7 +157,7 @@ export const PennyDispatchBanner: React.FC<PennyDispatchBannerProps> = ({
               href="/invoices?status=overdue"
               className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#FF4D6D] text-white border-2 border-[#1D1E24] font-headline text-[10.5px] font-black uppercase shadow-[2px_2px_0px_#1D1E24] hover:bg-[#FF6584] active:translate-x-0.5 active:translate-y-0.5 transition-all"
             >
-              <span>🚨 Chase 14 Overdue ($9,350)</span>
+              <span>🚨 Chase 14 Overdue (₹9,350)</span>
             </Link>
             <Link
               href="/quotations"

@@ -188,7 +188,7 @@ export const FloatingPennyAssistant: React.FC = () => {
                     Active MRR
                   </span>
                   <span className="font-headline text-[16px] font-black text-[#006b5b]">
-                    ${(data?.mrr || 0).toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                    ₹{(data?.mrr || 0).toLocaleString(undefined, { maximumFractionDigits: 0 })}
                   </span>
                 </div>
                 <div className="bg-white border-2 border-[#1D1E24] p-2 shadow-[2px_2px_0px_#1D1E24]">
@@ -204,7 +204,7 @@ export const FloatingPennyAssistant: React.FC = () => {
                     Overdue at Risk
                   </span>
                   <span className="font-headline text-[16px] font-black text-[#EA777E]">
-                    ${(data?.overdueAmount || 0).toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                    ₹{(data?.overdueAmount || 0).toLocaleString(undefined, { maximumFractionDigits: 0 })}
                   </span>
                   <span className="text-[9px] text-[#606275] font-bold block">
                     ({data?.overdueCount || 0} accounts)

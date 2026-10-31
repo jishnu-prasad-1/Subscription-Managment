@@ -42,7 +42,7 @@ export const BentoMetricGrid: React.FC<BentoMetricGridProps> = ({
 
         <div className="my-3">
           <div className="font-headline text-[28px] sm:text-[32px] text-[#1D1E24] font-black tracking-tight leading-none">
-            ${mrr.toLocaleString()}
+            ₹{mrr.toLocaleString()}
             <span className="text-[13px] text-[#5B5D68] font-bold ml-1">/mo</span>
           </div>
           <div className="flex items-center gap-2 mt-2">
@@ -51,7 +51,7 @@ export const BentoMetricGrid: React.FC<BentoMetricGridProps> = ({
               +12.4% MoM
             </span>
             <span className="font-headline text-[11px] text-[#006b5b] font-bold">
-              ARR: ${(arr / 1000000).toFixed(2)}M run-rate
+              ARR: ₹{(arr / 1000000).toFixed(2)}M run-rate
             </span>
           </div>
         </div>
@@ -80,7 +80,7 @@ export const BentoMetricGrid: React.FC<BentoMetricGridProps> = ({
 
         <div className="my-3">
           <div className="font-headline text-[28px] sm:text-[32px] text-[#1D1E24] font-black tracking-tight leading-none">
-            ${(totalRevYtd / 1000000).toFixed(2)}M
+            ₹{(totalRevYtd / 1000000).toFixed(2)}M
             <span className="text-[13px] text-[#5B5D68] font-bold ml-1">audited</span>
           </div>
           <div className="flex items-center gap-2 mt-2">
@@ -88,7 +88,7 @@ export const BentoMetricGrid: React.FC<BentoMetricGridProps> = ({
               99.8% EFFICIENCY
             </span>
             <span className="font-headline text-[11px] text-[#34363F] font-bold">
-              ${totalRevYtd.toLocaleString()} collected
+              ₹{totalRevYtd.toLocaleString()} collected
             </span>
           </div>
         </div>
@@ -120,7 +120,7 @@ export const BentoMetricGrid: React.FC<BentoMetricGridProps> = ({
 
         <div className="my-3">
           <div className="font-headline text-[28px] sm:text-[32px] text-[#FF4D6D] font-black tracking-tight leading-none">
-            ${overdueAmount.toLocaleString()}
+            ₹{overdueAmount.toLocaleString()}
             <span className="text-[13px] text-[#5B5D68] font-bold ml-1">past due</span>
           </div>
           <div className="flex items-center gap-2 mt-2">

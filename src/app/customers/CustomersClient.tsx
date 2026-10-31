@@ -233,7 +233,7 @@ export const CustomersClient: React.FC<CustomersClientProps> = ({ initialCustome
                       <span className="text-[10px] font-headline uppercase font-black px-1.5 py-0.2 bg-[#25F4D2] text-[#003D32] border border-[#1D1E24]">
                         {s.status}
                       </span>
-                      <span className="font-headline font-black">${s.amount.toFixed(2)}/cycle</span>
+                      <span className="font-headline font-black">₹{s.amount.toFixed(2)}/cycle</span>
                     </div>
                   ))
                 )}
@@ -256,7 +256,7 @@ export const CustomersClient: React.FC<CustomersClientProps> = ({ initialCustome
                       <span className="text-[10px] font-headline uppercase font-black px-1.5 py-0.2 bg-[#FFF0DC] border border-[#1D1E24]">
                         {inv.status}
                       </span>
-                      <span className="font-headline font-black">Total: ${inv.total.toFixed(2)} (Due: ${inv.balance.toFixed(2)})</span>
+                      <span className="font-headline font-black">Total: ₹{inv.total.toFixed(2)} (Due: ₹{inv.balance.toFixed(2)})</span>
                     </div>
                   ))
                 )}

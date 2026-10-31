@@ -73,7 +73,7 @@ export const TierDonutChart: React.FC<TierDonutChartProps> = ({ totalSubs = 1842
             <div className="flex items-center gap-2">
               <span className="font-bold text-[#1D1E24]">829 (45%)</span>
               <span className="text-[#006b5b] font-black bg-[#25F4D2]/70 px-1 border border-[#1D1E24]">
-                $98.4k
+                ₹98.4k
               </span>
             </div>
           </div>
@@ -86,7 +86,7 @@ export const TierDonutChart: React.FC<TierDonutChartProps> = ({ totalSubs = 1842
             <div className="flex items-center gap-2">
               <span className="font-bold text-[#1D1E24]">645 (35%)</span>
               <span className="text-[#1D1E24] font-black bg-[#FFD600]/80 px-1 border border-[#1D1E24]">
-                $38.7k
+                ₹38.7k
               </span>
             </div>
           </div>
@@ -99,7 +99,7 @@ export const TierDonutChart: React.FC<TierDonutChartProps> = ({ totalSubs = 1842
             <div className="flex items-center gap-2">
               <span className="font-bold text-[#1D1E24]">368 (20%)</span>
               <span className="text-[#FF4D6D] font-black bg-[#FFCCD5] px-1 border border-[#1D1E24]">
-                $11.1k
+                ₹11.1k
               </span>
             </div>
           </div>

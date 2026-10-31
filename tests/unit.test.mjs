@@ -21,7 +21,7 @@ function test(description, fn) {
 }
 
 // 1. Brand Variant Surcharge Calculation
-test("Product Variant Surcharge - Odoo Brand adds +$560 to base price", () => {
+test("Product Variant Surcharge - Odoo Brand adds +₹560 to base price", () => {
   const baseSalesPrice = 1200.0;
   const odooBrandSurcharge = 560.0;
   const effectiveUnitPrice = baseSalesPrice + odooBrandSurcharge;
@@ -135,7 +135,7 @@ test("Payment Engine - Correctly balances partial and full settlement", () => {
   let balanceDue = invoiceTotal;
   let status = "confirmed";
 
-  // First partial payment of $2,000
+  // First partial payment of ₹2,000
   const payment1 = 2000.0;
   paidAmount += payment1;
   balanceDue = invoiceTotal - paidAmount;
@@ -145,7 +145,7 @@ test("Payment Engine - Correctly balances partial and full settlement", () => {
   assert.strictEqual(balanceDue, 3000.0);
   assert.strictEqual(status, "partially_paid");
 
-  // Second settlement payment of $3,000
+  // Second settlement payment of ₹3,000
   const payment2 = 3000.0;
   paidAmount += payment2;
   balanceDue = Math.max(0, invoiceTotal - paidAmount);

@@ -73,7 +73,7 @@ export const UrgentActionAlerts: React.FC<UrgentActionAlertsProps> = ({
             </span>
             <div>
               <div className="font-headline text-[13px] uppercase font-black text-[#1D1E24]">
-                14 Invoices Overdue ($9,350 at risk)
+                14 Invoices Overdue (₹9,350 at risk)
               </div>
               <p className="text-[11.5px] text-[#5B5D68] font-medium mt-0.5">
                 Accounts past Net 15 terms requiring collection follow-up.

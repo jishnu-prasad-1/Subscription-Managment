@@ -65,19 +65,19 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
             <div className="overflow-hidden flex-1 relative ml-3">
               <div className="animate-marquee inline-flex items-center gap-10 text-[11px] font-headline font-black">
                 {/* Marquee Stream - Set 1 */}
-                <span className="text-[#FFD600]">MRR VELOCITY: $142,850/MO (+12.4%)</span>
+                <span className="text-[#FFD600]">MRR VELOCITY: ₹1,42,850/MO (+12.4%)</span>
                 <span className="text-white">ACTIVE SUBSCRIBERS: 1,842</span>
                 <span className="text-[#25F4D2]">SLA LATENCY: 13ms (LIMIT: 2,000ms // 99.3% HEADROOM)</span>
                 <span className="text-[#FF6B00]">ZERO DOUBLE-BILLING: SHA-256 IDEMPOTENT</span>
-                <span className="text-[#FF4D6D]">OVERDUE REVENUE: $9,350 (DUNNING QUEUED)</span>
+                <span className="text-[#FF4D6D]">OVERDUE REVENUE: ₹9,350 (DUNNING QUEUED)</span>
                 <span className="text-[#25F4D2]">ODOO BRAND SURCHARGE: +₹560 LOCKED</span>
                 <span className="text-[#FFD600]">RENEWALS QUEUED: 142 ACCOUNTS</span>
                 {/* Marquee Stream - Set 2 (for seamless loop) */}
-                <span className="text-[#FFD600]">MRR VELOCITY: $142,850/MO (+12.4%)</span>
+                <span className="text-[#FFD600]">MRR VELOCITY: ₹1,42,850/MO (+12.4%)</span>
                 <span className="text-white">ACTIVE SUBSCRIBERS: 1,842</span>
                 <span className="text-[#25F4D2]">SLA LATENCY: 13ms (LIMIT: 2,000ms // 99.3% HEADROOM)</span>
                 <span className="text-[#FF6B00]">ZERO DOUBLE-BILLING: SHA-256 IDEMPOTENT</span>
-                <span className="text-[#FF4D6D]">OVERDUE REVENUE: $9,350 (DUNNING QUEUED)</span>
+                <span className="text-[#FF4D6D]">OVERDUE REVENUE: ₹9,350 (DUNNING QUEUED)</span>
                 <span className="text-[#25F4D2]">ODOO BRAND SURCHARGE: +₹560 LOCKED</span>
                 <span className="text-[#FFD600]">RENEWALS QUEUED: 142 ACCOUNTS</span>
               </div>

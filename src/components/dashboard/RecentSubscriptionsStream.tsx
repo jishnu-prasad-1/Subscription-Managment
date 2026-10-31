@@ -80,7 +80,7 @@ export const RecentSubscriptionsStream: React.FC<RecentSubscriptionsStreamProps>
               <th className="px-4 py-3">Plan / SKU</th>
               <th className="px-4 py-3">Status</th>
               <th className="px-4 py-3">Next Billing</th>
-              <th className="px-4 py-3 text-right">Amount</th>
+              <th className="px-4 py-3 text-right">Amount (₹)</th>
             </tr>
           </thead>
           <tbody className="divide-y-2 divide-[#1D1E24]">
@@ -112,7 +112,7 @@ export const RecentSubscriptionsStream: React.FC<RecentSubscriptionsStreamProps>
                     {sub.nextBillingDate}
                   </td>
                   <td className="px-4 py-3.5 text-right font-headline font-black text-[#1D1E24]">
-                    ${sub.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                    ₹{sub.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                   </td>
                 </tr>
               );

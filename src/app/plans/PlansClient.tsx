@@ -116,7 +116,7 @@ export const PlansClient: React.FC<PlansClientProps> = ({ initialPlans }) => {
     const headers = [
       "Plan Name",
       "Cadence",
-      "Base Cost ($)",
+      "Base Cost (₹)",
       "Min Seats",
       "Auto-Close",
       "Pause Allowed",
@@ -229,7 +229,7 @@ export const PlansClient: React.FC<PlansClientProps> = ({ initialPlans }) => {
               <div>
                 <div className="flex items-baseline justify-between mb-2">
                   <span className="font-headline text-[26px] font-black text-[#1D1E24]">
-                    ${pl.baseCost.toLocaleString()}
+                    ₹{pl.baseCost.toLocaleString()}
                   </span>
                   <span className="font-headline text-[11px] text-[#606275] uppercase font-black">
                     / {pl.billingInterval}
@@ -332,7 +332,7 @@ export const PlansClient: React.FC<PlansClientProps> = ({ initialPlans }) => {
             </div>
             <div>
               <label className="block font-headline text-[11px] uppercase font-black text-[#1D1E24] mb-1">
-                Base Cost ($)
+                Base Cost (₹)
               </label>
               <input
                 type="number"
@@ -444,7 +444,7 @@ export const PlansClient: React.FC<PlansClientProps> = ({ initialPlans }) => {
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="block font-headline text-[11px] uppercase font-black text-[#1D1E24] mb-1">
-                Base Cost ($)
+                Base Cost (₹)
               </label>
               <input
                 type="number"

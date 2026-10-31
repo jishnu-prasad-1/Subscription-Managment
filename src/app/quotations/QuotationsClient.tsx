@@ -137,7 +137,7 @@ export const QuotationsClient: React.FC<QuotationsClientProps> = ({
 
     setQuotations([newQuote, ...quotations]);
     setIsModalOpen(false);
-    showToast(`Drafted Quotation ${newQuote.quoteNumber} (Total: $${totalAmount.toFixed(2)})!`);
+    showToast(`Drafted Quotation ${newQuote.quoteNumber} (Total: ₹${totalAmount.toFixed(2)})!`);
   };
 
   // 1-Click Convert to Subscription!
@@ -168,7 +168,7 @@ export const QuotationsClient: React.FC<QuotationsClientProps> = ({
   };
 
   const handleExportQuotations = () => {
-    const headers = ["Quote Number", "Customer", "Offer Line", "Valid Until", "Status", "Subtotal ($)", "Tax ($)", "Total ($)"];
+    const headers = ["Quote Number", "Customer", "Offer Line", "Valid Until", "Status", "Subtotal (₹)", "Tax (₹)", "Total (₹)"];
     const rows = quotations.map((q) => [
       q.quoteNumber,
       q.customerName,
@@ -240,7 +240,7 @@ export const QuotationsClient: React.FC<QuotationsClientProps> = ({
               <th className="px-4 py-3">Offer Lines</th>
               <th className="px-4 py-3">Valid Until</th>
               <th className="px-4 py-3">Status</th>
-              <th className="px-4 py-3 text-right">Total ($)</th>
+              <th className="px-4 py-3 text-right">Total (₹)</th>
               <th className="px-4 py-3 text-center">Conversion Action</th>
             </tr>
           </thead>
@@ -273,7 +273,7 @@ export const QuotationsClient: React.FC<QuotationsClientProps> = ({
                   </span>
                 </td>
                 <td className="px-4 py-3.5 text-right font-headline font-black text-[#1D1E24]">
-                  ${q.totalAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                  ₹{q.totalAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                 </td>
                 <td className="px-4 py-3.5 text-center">
                   {q.status === "accepted" ? (
@@ -342,7 +342,7 @@ export const QuotationsClient: React.FC<QuotationsClientProps> = ({
               >
                 {products.map((p) => (
                   <option key={p.id} value={p.id}>
-                    {p.name} (${p.salesPrice})
+                    {p.name} (₹{p.salesPrice})
                   </option>
                 ))}
               </select>
@@ -360,7 +360,7 @@ export const QuotationsClient: React.FC<QuotationsClientProps> = ({
                 <option value="">Standard Edition (+0)</option>
                 {selectedProduct?.variants.map((v) => (
                   <option key={v.id} value={v.id}>
-                    {v.variantName} (+${v.additionalPrice})
+                    {v.variantName} (+₹{v.additionalPrice})
                   </option>
                 ))}
               </select>
@@ -416,11 +416,11 @@ export const QuotationsClient: React.FC<QuotationsClientProps> = ({
           {/* Pricing Math Breakdown */}
           <div className="p-3 bg-[#FFE170]/40 border-2 border-[#1D1E24] flex items-center justify-between text-[12px]">
             <div>
-              <span>Subtotal: ${subtotal.toFixed(2)}</span> |{" "}
-              <span>GST (18%): ${taxAmount.toFixed(2)}</span>
+              <span>Subtotal: ₹{subtotal.toFixed(2)}</span> |{" "}
+              <span>GST (18%): ₹{taxAmount.toFixed(2)}</span>
             </div>
             <div className="font-headline font-black text-[16px] text-[#1D1E24]">
-              Total: ${totalAmount.toFixed(2)}
+              Total: ₹{totalAmount.toFixed(2)}
             </div>
           </div>
 

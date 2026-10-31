@@ -115,7 +115,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({
       success: true,
-      message: `Payment ${paymentNumber} of $${payAmount.toFixed(2)} recorded successfully. Invoice status: ${newStatus.toUpperCase()}`,
+      message: `Payment ${paymentNumber} of ₹${payAmount.toFixed(2)} recorded successfully. Invoice status: ${newStatus.toUpperCase()}`,
       data: result,
     });
   } catch (error: unknown) {

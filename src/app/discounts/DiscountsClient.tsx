@@ -122,7 +122,7 @@ export const DiscountsClient: React.FC<DiscountsClientProps> = ({ initialDiscoun
               <div>
                 <div className="flex items-baseline justify-between mb-2">
                   <span className="font-headline text-[28px] font-black text-[#1D1E24]">
-                    {d.discountType === "percentage" ? `${d.value}% OFF` : `$${d.value} OFF`}
+                    {d.discountType === "percentage" ? `${d.value}% OFF` : `₹${d.value} OFF`}
                   </span>
                   <span className="font-headline text-[10px] uppercase font-bold text-[#606275]">
                     {d.appliesTo}
@@ -132,7 +132,7 @@ export const DiscountsClient: React.FC<DiscountsClientProps> = ({ initialDiscoun
                 {/* Eligibility Requirements */}
                 <div className="p-2.5 bg-[#FFF0DC] border border-[#1D1E24] text-[11px] font-bold flex flex-col gap-1 mb-3">
                   <div>
-                    Min Purchase: <strong className="text-[#1D1E24]">${d.minPurchaseAmount}</strong>
+                    Min Purchase: <strong className="text-[#1D1E24]">₹{d.minPurchaseAmount}</strong>
                   </div>
                   <div>
                     Min Volume: <strong className="text-[#1D1E24]">{d.minQuantity} Seats</strong>
@@ -233,12 +233,12 @@ export const DiscountsClient: React.FC<DiscountsClientProps> = ({ initialDiscoun
                 className="w-full p-2 bg-white border-2 border-[#1D1E24] font-bold text-[12px] shadow-[2px_2px_0px_#1D1E24] focus:outline-none"
               >
                 <option value="percentage">Percentage (%)</option>
-                <option value="fixed">Fixed Dollar ($)</option>
+                <option value="fixed">Fixed Rupees (₹)</option>
               </select>
             </div>
             <div>
               <label className="block font-headline text-[11px] uppercase font-black text-[#1D1E24] mb-1">
-                Value ({discountType === "percentage" ? "%" : "$"})
+                Value ({discountType === "percentage" ? "%" : "₹"})
               </label>
               <input
                 type="number"
@@ -252,7 +252,7 @@ export const DiscountsClient: React.FC<DiscountsClientProps> = ({ initialDiscoun
           <div className="grid grid-cols-3 gap-3">
             <div>
               <label className="block font-headline text-[11px] uppercase font-black text-[#1D1E24] mb-1">
-                Min Spend ($)
+                Min Spend (₹)
               </label>
               <input
                 type="number"

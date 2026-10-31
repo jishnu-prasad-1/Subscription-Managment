@@ -46,7 +46,7 @@ export async function GET() {
 
     if (overdueCount > 0 && overdueAmount > 5000) {
       mascotMood = "alert";
-      message = `Golly! We have ${overdueCount} overdue invoices risking $${overdueAmount.toLocaleString()} in uncollected cash. Head over to the Invoices ledger to trigger dunning sweeps!`;
+      message = `Golly! We have ${overdueCount} overdue invoices risking ₹${overdueAmount.toLocaleString()} in uncollected cash. Head over to the Invoices ledger to trigger dunning sweeps!`;
     } else if (upcomingRenewalsCount > 0) {
       mascotMood = "dispatch";
       message = `Heads up! ${upcomingRenewalsCount} subscription renewals are slated for billing in the next 7 days. Our zero double-billing engine is ready.`;
@@ -55,7 +55,7 @@ export async function GET() {
       message = `You have ${pendingQuotesCount} open sales quotations ready for 1-click conversion into confirmed recurring subscriptions.`;
     } else {
       mascotMood = "celebrate";
-      message = `All systems nominal! Current MRR is running smooth at $${mrr.toLocaleString()} across ${activeCount} active subscriptions.`;
+      message = `All systems nominal! Current MRR is running smooth at ₹${mrr.toLocaleString()} across ${activeCount} active subscriptions.`;
     }
 
     return NextResponse.json({
