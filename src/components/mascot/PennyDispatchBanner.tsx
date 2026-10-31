@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import { PennyMascot, PennyMood } from "./PennyMascot";
 import Link from "next/link";
+import { sounds } from "@/lib/soundEffects";
 
 interface PennyDispatchBannerProps {
   renewalsCount?: number;
@@ -45,100 +48,140 @@ export const PennyDispatchBanner: React.FC<PennyDispatchBannerProps> = ({
         </div>
       </div>
 
-      {/* Banner Body - Generous Spacing */}
-      <div className="p-6 sm:p-7 bg-[linear-gradient(to_right,#FFCCD5_1px,transparent_1px),linear-gradient(to_bottom,#FFCCD5_1px,transparent_1px)] [background-size:24px_24px] bg-[#FFF8EE] flex flex-col xl:flex-row items-start xl:items-center justify-between gap-6">
-        {/* Left: Telemetry Headline */}
-        <div className="flex flex-col gap-1.5 max-w-xl z-10">
-          <div className="inline-flex items-center gap-2">
-            <span className="w-2.5 h-2.5 bg-[#00BFA0] border-2 border-[#1D1E24] animate-pulse"></span>
-            <span className="font-headline text-[10px] uppercase font-black text-[#1D1E24] bg-[#FFD600] px-2 py-0.5 border border-[#1D1E24] tracking-widest shadow-[1.5px_1.5px_0px_#1D1E24]">
-              REAL-TIME TELEMETRY SYSTEM v2.4
-            </span>
-          </div>
-          <h1 className="font-headline text-[22px] sm:text-[26px] text-[#1D1E24] font-black tracking-tight leading-snug mt-1">
-            Welcome back! Here&apos;s your recurring revenue velocity today.
-          </h1>
-          <p className="text-[13px] sm:text-[14px] text-[#34363F] font-semibold mt-1">
-            System processed{" "}
-            <span className="font-black text-[#1D1E24] bg-[#FFD600] px-2 py-0.5 border-2 border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24]">
-              {renewalsCount} renewal events
-            </span>{" "}
-            with{" "}
-            <span className="font-black bg-[#25F4D2] px-2 py-0.5 border-2 border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24]">
-              99.8% capture efficiency
-            </span>{" "}
-            across active clusters.
-          </p>
-        </div>
-
-        {/* Right: Penny Mascot Speech Box & Key Indicators */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 z-10 w-full xl:w-auto">
-          {/* Penny Speech Box */}
-          <div className="flex items-center gap-4 bg-[#FFE170]/60 border-[2.5px] border-[#1D1E24] p-3.5 sm:p-4 shadow-[4px_4px_0px_#1D1E24]">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 shrink-0 flex items-center justify-center bg-white border-2 border-[#1D1E24] p-1 shadow-[2px_2px_0px_#1D1E24]">
-              <PennyMascot mood={mood} size="lg" />
+      {/* Banner Body - Generous Spacing with Dot Pattern */}
+      <div className="p-5 sm:p-6 lg:p-7 bg-[radial-gradient(#1D1E24_0.75px,transparent_0.75px)] [background-size:16px_16px] bg-[#FFF8EE] flex flex-col gap-5">
+        <div className="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-6">
+          {/* Left: Telemetry Headline */}
+          <div className="flex flex-col gap-1.5 max-w-xl z-10">
+            <div className="inline-flex items-center gap-2">
+              <span className="w-2.5 h-2.5 bg-[#00BFA0] border-2 border-[#1D1E24] animate-pulse"></span>
+              <span className="font-headline text-[10px] uppercase font-black text-[#1D1E24] bg-[#FFD600] px-2 py-0.5 border border-[#1D1E24] tracking-widest shadow-[1.5px_1.5px_0px_#1D1E24]">
+                REAL-TIME TELEMETRY SYSTEM v2.4
+              </span>
             </div>
-            <div className="relative bg-[#FFF8EE] border-2 border-[#1D1E24] p-3 sm:p-3.5 shadow-[3px_3px_0px_#1D1E24] max-w-sm">
-              <div className="font-headline text-[10px] uppercase tracking-wider text-[#1D1E24] font-black flex items-center gap-1 bg-[#FFD600] px-1.5 py-0.5 border border-[#1D1E24] w-fit mb-1.5">
-                <span className="material-symbols-outlined text-[14px] font-bold">
-                  support_agent
-                </span>{" "}
-                PENNY&apos;S DISPATCH
+            <h1 className="font-headline text-[22px] sm:text-[26px] text-[#1D1E24] font-black tracking-tight leading-snug mt-1">
+              Welcome back! Here&apos;s your recurring revenue velocity today.
+            </h1>
+            <p className="text-[13px] sm:text-[14px] text-[#34363F] font-semibold mt-1">
+              System processed{" "}
+              <span className="font-black text-[#1D1E24] bg-[#FFD600] px-2 py-0.5 border-2 border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24]">
+                {renewalsCount} renewal events
+              </span>{" "}
+              with{" "}
+              <span className="font-black bg-[#25F4D2] px-2 py-0.5 border-2 border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24]">
+                99.8% capture efficiency
+              </span>{" "}
+              across active clusters.
+            </p>
+          </div>
+
+          {/* Right: Penny Mascot Speech Box & Key Indicators */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 z-10 w-full xl:w-auto">
+            {/* Penny Speech Box */}
+            <div className="flex items-center gap-4 bg-[#FFE170]/60 border-[2.5px] border-[#1D1E24] p-3.5 sm:p-4 shadow-[4px_4px_0px_#1D1E24]">
+              <div
+                onClick={() => sounds.playCoin()}
+                className="w-20 h-20 sm:w-24 sm:h-24 shrink-0 flex items-center justify-center bg-white border-2 border-[#1D1E24] p-1 shadow-[2px_2px_0px_#1D1E24] cursor-pointer hover:rotate-3 transition-transform"
+                title="Click Penny for 8-bit ka-ching!"
+              >
+                <PennyMascot mood={mood} size="lg" />
               </div>
-              <p className="text-[12.5px] text-[#1D1E24] font-bold leading-relaxed">
-                {customMessage || (
-                  <>
-                    &ldquo;Hey y&apos;all! Penny here! You&apos;ve got{" "}
-                    <span className="font-black text-[#006b5b] bg-[#25F4D2]/70 px-1 border border-[#1D1E24]">
-                      {renewalsCount} renewals
-                    </span>{" "}
-                    running smooth, but keep an eye on those{" "}
-                    <Link
-                      href="/invoices?status=overdue"
-                      className="font-black text-white bg-[#FF4D6D] px-1 border border-[#1D1E24] underline hover:bg-[#FF3355]"
-                    >
-                      {overdueCount} overdue accounts (${overdueAmount.toLocaleString()})
-                    </Link>
-                    !&rdquo;
-                  </>
-                )}
-              </p>
+              <div className="relative bg-[#FFF8EE] border-2 border-[#1D1E24] p-3 sm:p-3.5 shadow-[3px_3px_0px_#1D1E24] max-w-sm">
+                <div className="font-headline text-[10px] uppercase tracking-wider text-[#1D1E24] font-black flex items-center gap-1 bg-[#FFD600] px-1.5 py-0.5 border border-[#1D1E24] w-fit mb-1.5">
+                  <span className="material-symbols-outlined text-[14px] font-bold">
+                    support_agent
+                  </span>{" "}
+                  PENNY&apos;S DISPATCH
+                </div>
+                <p className="text-[12.5px] text-[#1D1E24] font-bold leading-relaxed">
+                  {customMessage || (
+                    <>
+                      &ldquo;Hey y&apos;all! Penny here! You&apos;ve got{" "}
+                      <span className="font-black text-[#006b5b] bg-[#25F4D2]/70 px-1 border border-[#1D1E24]">
+                        {renewalsCount} renewals
+                      </span>{" "}
+                      running smooth, but keep an eye on those{" "}
+                      <Link
+                        href="/invoices?status=overdue"
+                        className="font-black text-white bg-[#FF4D6D] px-1 border border-[#1D1E24] underline hover:bg-[#FF3355]"
+                      >
+                        {overdueCount} overdue accounts (${overdueAmount.toLocaleString()})
+                      </Link>
+                      !&rdquo;
+                    </>
+                  )}
+                </p>
+              </div>
             </div>
-          </div>
 
-          {/* Quick Metrics */}
-          <div className="flex items-center justify-between sm:justify-start gap-4 bg-[#FFF2DF] border-[2.5px] border-[#1D1E24] p-3.5 sm:p-4 shadow-[4px_4px_0px_#1D1E24]">
-            <div className="flex flex-col pr-3 border-r-2 border-[#1D1E24]">
-              <span className="font-headline text-[10px] text-[#1D1E24] font-extrabold uppercase">
-                NET EXPANSION
-              </span>
-              <span className="font-headline text-[16px] sm:text-[18px] text-[#006b5b] font-black">
-                +${netExpansion.toLocaleString()}
-              </span>
-            </div>
-            <div className="flex flex-col pr-3 border-r-2 border-[#1D1E24]">
-              <span className="font-headline text-[10px] text-[#1D1E24] font-extrabold uppercase">
-                CHURN RESCUE
-              </span>
-              <span className="font-headline text-[16px] sm:text-[18px] text-[#FF4D6D] font-black">
-                {churnRescue}%
-              </span>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-headline text-[10px] text-[#1D1E24] font-extrabold uppercase">
-                GATEWAY
-              </span>
-              <div className="flex items-center gap-1.5 mt-0.5">
-                <span className="w-2.5 h-2.5 bg-[#00BFA0] border border-[#1D1E24]"></span>
-                <span className="font-headline text-[11px] text-[#1D1E24] font-black uppercase bg-[#25F4D2] px-1 border border-[#1D1E24]">
-                  ONLINE
+            {/* Quick Metrics */}
+            <div className="flex items-center justify-between sm:justify-start gap-4 bg-[#FFF2DF] border-[2.5px] border-[#1D1E24] p-3.5 sm:p-4 shadow-[4px_4px_0px_#1D1E24]">
+              <div className="flex flex-col pr-3 border-r-2 border-[#1D1E24]">
+                <span className="font-headline text-[10px] text-[#1D1E24] font-extrabold uppercase">
+                  NET EXPANSION
+                </span>
+                <span className="font-headline text-[16px] sm:text-[18px] text-[#006b5b] font-black">
+                  +${netExpansion.toLocaleString()}
                 </span>
               </div>
+              <div className="flex flex-col pr-3 border-r-2 border-[#1D1E24]">
+                <span className="font-headline text-[10px] text-[#1D1E24] font-extrabold uppercase">
+                  CHURN RESCUE
+                </span>
+                <span className="font-headline text-[16px] sm:text-[18px] text-[#FF4D6D] font-black">
+                  {churnRescue}%
+                </span>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-headline text-[10px] text-[#1D1E24] font-extrabold uppercase">
+                  GATEWAY
+                </span>
+                <div className="flex items-center gap-1.5 mt-0.5">
+                  <span className="w-2.5 h-2.5 bg-[#00BFA0] border border-[#1D1E24]"></span>
+                  <span className="font-headline text-[11px] text-[#1D1E24] font-black uppercase bg-[#25F4D2] px-1 border border-[#1D1E24]">
+                    ONLINE
+                  </span>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+
+        {/* Interactive Mission Control Quick Cockpit Bar */}
+        <div className="pt-3 border-t-2 border-[#1D1E24] flex flex-wrap items-center justify-between gap-3 w-full z-10">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-headline text-[10px] font-black uppercase text-[#1D1E24] bg-[#FFD600] px-2 py-0.5 border border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24]">
+              ⚡ QUICK COCKPIT:
+            </span>
+            <Link
+              href="/invoices?status=overdue"
+              className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#FF4D6D] text-white border-2 border-[#1D1E24] font-headline text-[10.5px] font-black uppercase shadow-[2px_2px_0px_#1D1E24] hover:bg-[#FF6584] active:translate-x-0.5 active:translate-y-0.5 transition-all"
+            >
+              <span>🚨 Chase 14 Overdue ($9,350)</span>
+            </Link>
+            <Link
+              href="/quotations"
+              className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#25F4D2] text-[#003D32] border-2 border-[#1D1E24] font-headline text-[10.5px] font-black uppercase shadow-[2px_2px_0px_#1D1E24] hover:bg-[#38EFD0] active:translate-x-0.5 active:translate-y-0.5 transition-all"
+            >
+              <span>📑 Proposals &amp; 1-Click Convert</span>
+            </Link>
+            <Link
+              href="/settings"
+              className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#FFF8EE] text-[#1D1E24] border-2 border-[#1D1E24] font-headline text-[10.5px] font-black uppercase shadow-[2px_2px_0px_#1D1E24] hover:bg-[#FFD600] active:translate-x-0.5 active:translate-y-0.5 transition-all"
+            >
+              <span>🚀 Test Database SLA (13ms)</span>
+            </Link>
+          </div>
+          <div className="hidden sm:flex items-center gap-2 text-[10px] font-headline font-black text-[#5B5D68]">
+            <span className="bg-[#FFF8EE] px-2 py-0.5 border border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24]">
+              IDEMPOTENCY: SHA-256 LOCKED
+            </span>
+            <span className="bg-[#FFF8EE] px-2 py-0.5 border border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24]">
+              SURCHARGE: +₹560 COMPLIANT
+            </span>
           </div>
         </div>
       </div>
     </div>
   );
 };
-

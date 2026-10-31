@@ -22,180 +22,220 @@ export const BentoMetricGrid: React.FC<BentoMetricGridProps> = ({
   overdueCount = 14,
   overdueAmount = 9350,
 }) => {
+  const arr = mrr * 12;
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4 lg:gap-5">
-      {/* 1: MRR */}
-      <div className="bg-[#FFF8EE] border-[2.5px] border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24] p-4 sm:p-5 flex flex-col justify-between hover:-translate-y-0.5 transition-transform">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-5 w-full">
+      {/* 1: Hero Card - MRR Velocity (4 Columns) */}
+      <div className="lg:col-span-4 bg-[#EAFBF7] border-[3px] border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24] p-5 flex flex-col justify-between hover:-translate-y-0.5 transition-transform">
         <div className="flex items-center justify-between pb-2 border-b-2 border-[#1D1E24]">
-          <span className="font-headline text-[11px] text-[#1D1E24] font-black uppercase">
-            MRR
-          </span>
-          <span className="material-symbols-outlined text-[#006b5b] bg-[#25F4D2] border border-[#1D1E24] p-1 text-[17px]">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#00BFA0] border border-[#1D1E24]"></span>
+            <span className="font-headline text-[12px] text-[#003D32] font-black uppercase tracking-wider">
+              MONTHLY RECURRING REVENUE (MRR)
+            </span>
+          </div>
+          <span className="material-symbols-outlined text-[#003D32] bg-[#25F4D2] border border-[#1D1E24] p-1 text-[18px]">
             payments
           </span>
         </div>
+
         <div className="my-3">
-          <div className="font-headline text-[20px] sm:text-[22px] text-[#1D1E24] font-black tracking-tight">
+          <div className="font-headline text-[28px] sm:text-[32px] text-[#1D1E24] font-black tracking-tight leading-none">
             ${mrr.toLocaleString()}
+            <span className="text-[13px] text-[#5B5D68] font-bold ml-1">/mo</span>
           </div>
-          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#25F4D2] text-[#003D32] border-2 border-[#1D1E24] font-headline text-[9.5px] mt-1.5 font-black shadow-[1px_1px_0px_#1D1E24]">
-            <span className="material-symbols-outlined text-[12px] font-bold">trending_up</span>{" "}
-            +12.4% MoM
+          <div className="flex items-center gap-2 mt-2">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#25F4D2] text-[#003D32] border-2 border-[#1D1E24] font-headline text-[10px] font-black shadow-[1px_1px_0px_#1D1E24]">
+              <span className="material-symbols-outlined text-[13px] font-bold">trending_up</span>{" "}
+              +12.4% MoM
+            </span>
+            <span className="font-headline text-[11px] text-[#006b5b] font-bold">
+              ARR: ${(arr / 1000000).toFixed(2)}M run-rate
+            </span>
           </div>
         </div>
-        {/* Retro Sparkline SVG */}
-        <svg
-          className="w-full h-7 text-[#00BFA0] bg-[#FFF2DF] border border-[#1D1E24] p-0.5"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          viewBox="0 0 100 24"
-        >
-          <path d="M0 18 L18 14 L36 17 L52 9 L70 12 L85 4 L100 2" strokeLinecap="square" />
-        </svg>
+
+        {/* Dynamic Sparkline */}
+        <div className="bg-white border-2 border-[#1D1E24] p-1.5 shadow-[2px_2px_0px_#1D1E24]">
+          <svg className="w-full h-8 text-[#00BFA0]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 100 24">
+            <path d="M0 19 L15 15 L32 17 L48 10 L65 12 L82 5 L100 2" strokeLinecap="round" />
+          </svg>
+        </div>
       </div>
 
-      {/* 2: Total Rev YTD */}
-      <div className="bg-[#FFF8EE] border-[2.5px] border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24] p-4 sm:p-5 flex flex-col justify-between hover:-translate-y-0.5 transition-transform">
+      {/* 2: Hero Card - Audited Cash Collections (4 Columns) */}
+      <div className="lg:col-span-4 bg-[#FFF9E6] border-[3px] border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24] p-5 flex flex-col justify-between hover:-translate-y-0.5 transition-transform">
         <div className="flex items-center justify-between pb-2 border-b-2 border-[#1D1E24]">
-          <span className="font-headline text-[11px] text-[#1D1E24] font-black uppercase">
-            REV (YTD)
-          </span>
-          <span className="material-symbols-outlined text-[#1D1E24] bg-[#FFD600] border border-[#1D1E24] p-1 text-[17px]">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#FFD600] border border-[#1D1E24]"></span>
+            <span className="font-headline text-[12px] text-[#1D1E24] font-black uppercase tracking-wider">
+              AUDITED CASH REVENUE (YTD)
+            </span>
+          </div>
+          <span className="material-symbols-outlined text-[#1D1E24] bg-[#FFD600] border border-[#1D1E24] p-1 text-[18px]">
             account_balance
           </span>
         </div>
+
         <div className="my-3">
-          <div className="font-headline text-[20px] sm:text-[22px] text-[#1D1E24] font-black tracking-tight">
+          <div className="font-headline text-[28px] sm:text-[32px] text-[#1D1E24] font-black tracking-tight leading-none">
             ${(totalRevYtd / 1000000).toFixed(2)}M
+            <span className="text-[13px] text-[#5B5D68] font-bold ml-1">audited</span>
           </div>
-          <div className="font-headline text-[10.5px] text-[#34363F] mt-1.5 font-bold">
-            ${totalRevYtd.toLocaleString()} Audited
+          <div className="flex items-center gap-2 mt-2">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#FFD600] text-[#1D1E24] border-2 border-[#1D1E24] font-headline text-[10px] font-black shadow-[1px_1px_0px_#1D1E24]">
+              99.8% EFFICIENCY
+            </span>
+            <span className="font-headline text-[11px] text-[#34363F] font-bold">
+              ${totalRevYtd.toLocaleString()} collected
+            </span>
           </div>
         </div>
-        <div className="w-full bg-[#FCE9D0] border-2 border-[#1D1E24] h-3 p-0.5">
-          <div className="bg-[#25F4D2] h-full w-[84%] border-r border-[#1D1E24]"></div>
+
+        {/* Dual Progress Meter */}
+        <div className="bg-[#FFF0DC] border-2 border-[#1D1E24] h-6 p-0.5 flex items-center shadow-[2px_2px_0px_#1D1E24]">
+          <div className="bg-[#25F4D2] h-full w-[84%] flex items-center justify-center font-headline text-[9px] font-black text-[#003D32] border-r border-[#1D1E24]">
+            84% COLLECTED
+          </div>
+          <div className="bg-[#FFD600] h-full w-[16%] flex items-center justify-center font-headline text-[9px] font-black text-[#1D1E24]">
+            16% DUE
+          </div>
         </div>
       </div>
 
-      {/* 3: Active Subscriptions */}
-      <div className="bg-[#FFF8EE] border-[2.5px] border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24] p-4 sm:p-5 flex flex-col justify-between hover:-translate-y-0.5 transition-transform">
+      {/* 3: Urgent Triage Card - Overdue Receivables (4 Columns) */}
+      <div className="lg:col-span-4 bg-[#FFE8EC] border-[3px] border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24] p-5 flex flex-col justify-between hover:-translate-y-0.5 transition-transform">
         <div className="flex items-center justify-between pb-2 border-b-2 border-[#1D1E24]">
-          <span className="font-headline text-[11px] text-[#1D1E24] font-black uppercase">
-            ACTIVE SUBS
-          </span>
-          <span className="material-symbols-outlined text-[#1D1E24] bg-[#25F4D2] border border-[#1D1E24] p-1 text-[17px]">
-            autorenew
-          </span>
-        </div>
-        <div className="my-3">
-          <div className="font-headline text-[20px] sm:text-[22px] text-[#1D1E24] font-black tracking-tight">
-            {activeSubs.toLocaleString()}
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#FF4D6D] border border-[#1D1E24] animate-ping"></span>
+            <span className="font-headline text-[12px] text-[#FF4D6D] font-black uppercase tracking-wider">
+              OVERDUE RECEIVABLES AT RISK
+            </span>
           </div>
-          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#FFD600] text-[#1D1E24] border-2 border-[#1D1E24] font-headline text-[9.5px] mt-1.5 font-black shadow-[1px_1px_0px_#1D1E24]">
-            38 PENDING
-          </div>
-        </div>
-        <div className="text-[11px] text-[#34363F] flex items-center justify-between font-bold">
-          <span>Target: 2,000</span>
-          <span className="font-black bg-[#25F4D2] px-1.5 border border-[#1D1E24]">92%</span>
-        </div>
-      </div>
-
-      {/* 4: Total Customers */}
-      <div className="bg-[#FFF8EE] border-[2.5px] border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24] p-4 sm:p-5 flex flex-col justify-between hover:-translate-y-0.5 transition-transform">
-        <div className="flex items-center justify-between pb-2 border-b-2 border-[#1D1E24]">
-          <span className="font-headline text-[11px] text-[#1D1E24] font-black uppercase">
-            CUSTOMERS
-          </span>
-          <span className="material-symbols-outlined text-[#1D1E24] bg-[#FFE170] border border-[#1D1E24] p-1 text-[17px]">
-            group
-          </span>
-        </div>
-        <div className="my-3">
-          <div className="font-headline text-[20px] sm:text-[22px] text-[#1D1E24] font-black tracking-tight">
-            {customersCount.toLocaleString()}
-          </div>
-          <div className="font-headline text-[10.5px] text-[#006b5b] font-black mt-1.5">
-            +85 this month
-          </div>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 bg-[#00BFA0] border border-[#1D1E24]"></span>
-          <span className="font-headline text-[9.5px] text-[#1D1E24] font-black uppercase">
-            99.1% Retention
-          </span>
-        </div>
-      </div>
-
-      {/* 5: Plans / SKUs */}
-      <div className="bg-[#FFF8EE] border-[2.5px] border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24] p-4 sm:p-5 flex flex-col justify-between hover:-translate-y-0.5 transition-transform">
-        <div className="flex items-center justify-between pb-2 border-b-2 border-[#1D1E24]">
-          <span className="font-headline text-[11px] text-[#1D1E24] font-black uppercase">
-            PLANS / SKUS
-          </span>
-          <span className="material-symbols-outlined text-[#1D1E24] bg-[#FFCCD5] border border-[#1D1E24] p-1 text-[17px]">
-            inventory_2
-          </span>
-        </div>
-        <div className="my-3">
-          <div className="font-headline text-[20px] sm:text-[22px] text-[#1D1E24] font-black tracking-tight">
-            {plansCount}
-          </div>
-          <div className="font-headline text-[10.5px] text-[#34363F] mt-1.5 font-bold">
-            3 Tier Families
-          </div>
-        </div>
-        <div className="font-headline text-[9.5px] text-[#1D1E24] font-black uppercase bg-[#FFD600] px-1.5 py-0.5 border-2 border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24] w-fit">
-          4 ADD-ONS
-        </div>
-      </div>
-
-      {/* 6: Outstanding Payments */}
-      <div className="bg-[#FFF8EE] border-[2.5px] border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24] p-4 sm:p-5 flex flex-col justify-between hover:-translate-y-0.5 transition-transform">
-        <div className="flex items-center justify-between pb-2 border-b-2 border-[#1D1E24]">
-          <span className="font-headline text-[11px] text-[#1D1E24] font-black uppercase">
-            OUTSTANDING
-          </span>
-          <span className="material-symbols-outlined text-[#1D1E24] bg-[#FFD600] border border-[#1D1E24] p-1 text-[17px]">
-            pending_actions
-          </span>
-        </div>
-        <div className="my-3">
-          <div className="font-headline text-[20px] sm:text-[22px] text-[#1D1E24] font-black tracking-tight truncate">
-            ${outstandingAmount.toLocaleString()}
-          </div>
-          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#FFD600] text-[#1D1E24] border-2 border-[#1D1E24] font-headline text-[9.5px] mt-1.5 font-black shadow-[1px_1px_0px_#1D1E24]">
-            ATTENTION REQ.
-          </div>
-        </div>
-        <div className="text-[10.5px] text-[#34363F] font-bold">6 Autopay Retries</div>
-      </div>
-
-      {/* 7: Overdue Invoices */}
-      <div className="bg-[#FFF8EE] border-[2.5px] border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24] p-4 sm:p-5 flex flex-col justify-between hover:-translate-y-0.5 transition-transform">
-        <div className="flex items-center justify-between pb-2 border-b-2 border-[#1D1E24]">
-          <span className="font-headline text-[11px] text-[#1D1E24] font-black uppercase">
-            OVERDUE
-          </span>
-          <span className="material-symbols-outlined text-white bg-[#FF4D6D] border border-[#1D1E24] p-1 text-[17px]">
+          <span className="material-symbols-outlined text-white bg-[#FF4D6D] border border-[#1D1E24] p-1 text-[18px]">
             warning
           </span>
         </div>
+
         <div className="my-3">
-          <div className="font-headline text-[20px] sm:text-[22px] text-[#FF4D6D] font-black tracking-tight">
-            {overdueCount}
+          <div className="font-headline text-[28px] sm:text-[32px] text-[#FF4D6D] font-black tracking-tight leading-none">
+            ${overdueAmount.toLocaleString()}
+            <span className="text-[13px] text-[#5B5D68] font-bold ml-1">past due</span>
           </div>
-          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#FF4D6D] text-white border-2 border-[#1D1E24] font-headline text-[9.5px] mt-1.5 font-black shadow-[1px_1px_0px_#1D1E24]">
-            ${overdueAmount.toLocaleString()} AT RISK
+          <div className="flex items-center gap-2 mt-2">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#FF4D6D] text-white border-2 border-[#1D1E24] font-headline text-[10px] font-black shadow-[1px_1px_0px_#1D1E24]">
+              {overdueCount} ACCOUNTS
+            </span>
+            <span className="font-headline text-[11px] text-[#FF4D6D] font-bold">
+              Net 15 terms breached
+            </span>
           </div>
         </div>
+
         <Link
           href="/invoices?status=overdue"
-          className="w-full text-center py-1.5 bg-[#FFCCD5] text-[#1D1E24] border-2 border-[#1D1E24] font-headline text-[10px] uppercase font-black hover:bg-[#FF4D6D] hover:text-white shadow-[1.5px_1.5px_0px_#1D1E24] transition-all"
+          className="w-full text-center py-2 bg-[#FF4D6D] text-white border-2 border-[#1D1E24] font-headline text-[11px] uppercase font-black hover:bg-[#FF6584] shadow-[2px_2px_0px_#1D1E24] active:translate-x-0.5 active:translate-y-0.5 transition-all flex items-center justify-center gap-1.5"
         >
-          Review ({overdueCount}) &rarr;
+          <span>Open Dunning Ledger ({overdueCount})</span>
+          <span className="material-symbols-outlined text-[15px]">arrow_forward</span>
         </Link>
+      </div>
+
+      {/* 4: Active Subscribers (3 Columns) */}
+      <div className="lg:col-span-3 bg-[#FFF8EE] border-[2.5px] border-[#1D1E24] shadow-[3.5px_3.5px_0px_#1D1E24] p-4 flex flex-col justify-between hover:-translate-y-0.5 transition-transform">
+        <div className="flex items-center justify-between pb-1.5 border-b-2 border-[#1D1E24]">
+          <span className="font-headline text-[11px] text-[#1D1E24] font-black uppercase">
+            ACTIVE SUBSCRIBERS
+          </span>
+          <span className="material-symbols-outlined text-[#1D1E24] bg-[#25F4D2] border border-[#1D1E24] p-0.5 text-[16px]">
+            autorenew
+          </span>
+        </div>
+        <div className="my-2.5">
+          <div className="font-headline text-[22px] sm:text-[24px] text-[#1D1E24] font-black tracking-tight">
+            {activeSubs.toLocaleString()}
+          </div>
+          <span className="inline-block mt-1 px-1.5 py-0.2 bg-[#FFD600] text-[#1D1E24] border border-[#1D1E24] font-headline text-[9.5px] font-black">
+            38 RENEWALS PENDING
+          </span>
+        </div>
+        <div className="text-[11px] text-[#34363F] flex items-center justify-between font-bold pt-1 border-t border-[#1D1E24]/20">
+          <span>Target: 2,000 Subs</span>
+          <span className="font-black bg-[#25F4D2] px-1 border border-[#1D1E24]">92.1%</span>
+        </div>
+      </div>
+
+      {/* 5: Commercial CRM Profiles (3 Columns) */}
+      <div className="lg:col-span-3 bg-[#FFF8EE] border-[2.5px] border-[#1D1E24] shadow-[3.5px_3.5px_0px_#1D1E24] p-4 flex flex-col justify-between hover:-translate-y-0.5 transition-transform">
+        <div className="flex items-center justify-between pb-1.5 border-b-2 border-[#1D1E24]">
+          <span className="font-headline text-[11px] text-[#1D1E24] font-black uppercase">
+            CLIENT DIRECTORY
+          </span>
+          <span className="material-symbols-outlined text-[#1D1E24] bg-[#FFE170] border border-[#1D1E24] p-0.5 text-[16px]">
+            group
+          </span>
+        </div>
+        <div className="my-2.5">
+          <div className="font-headline text-[22px] sm:text-[24px] text-[#1D1E24] font-black tracking-tight">
+            {customersCount.toLocaleString()}
+          </div>
+          <span className="inline-block mt-1 px-1.5 py-0.2 bg-[#25F4D2] text-[#003D32] border border-[#1D1E24] font-headline text-[9.5px] font-black">
+            +85 THIS MONTH
+          </span>
+        </div>
+        <div className="text-[11px] text-[#34363F] flex items-center justify-between font-bold pt-1 border-t border-[#1D1E24]/20">
+          <span>Retention: 99.1%</span>
+          <span className="font-black bg-[#FFE170] px-1 border border-[#1D1E24]">HEALTHY</span>
+        </div>
+      </div>
+
+      {/* 6: Cryptographic Zero Double-Billing (3 Columns) */}
+      <div className="lg:col-span-3 bg-[#EAFBF7] border-[2.5px] border-[#1D1E24] shadow-[3.5px_3.5px_0px_#1D1E24] p-4 flex flex-col justify-between hover:-translate-y-0.5 transition-transform">
+        <div className="flex items-center justify-between pb-1.5 border-b-2 border-[#1D1E24]">
+          <span className="font-headline text-[11px] text-[#003D32] font-black uppercase">
+            ZERO DOUBLE-BILLING
+          </span>
+          <span className="material-symbols-outlined text-[#003D32] bg-[#25F4D2] border border-[#1D1E24] p-0.5 text-[16px]">
+            verified_user
+          </span>
+        </div>
+        <div className="my-2.5">
+          <div className="font-headline text-[20px] text-[#003D32] font-black tracking-tight">
+            100% IDEMPOTENT
+          </div>
+          <span className="inline-block mt-1 px-1.5 py-0.2 bg-[#003D32] text-[#25F4D2] border border-[#1D1E24] font-mono text-[9px] font-black">
+            SHA-256 HASH VERIFIED
+          </span>
+        </div>
+        <div className="text-[11px] text-[#006b5b] flex items-center justify-between font-bold pt-1 border-t border-[#1D1E24]/20">
+          <span>Duplicate Risk: 0.00%</span>
+          <span className="font-black bg-[#25F4D2] px-1 border border-[#1D1E24]">LOCKED</span>
+        </div>
+      </div>
+
+      {/* 7: Odoo Brand Variant Surcharge (3 Columns) */}
+      <div className="lg:col-span-3 bg-[#FFF8EE] border-[2.5px] border-[#1D1E24] shadow-[3.5px_3.5px_0px_#1D1E24] p-4 flex flex-col justify-between hover:-translate-y-0.5 transition-transform">
+        <div className="flex items-center justify-between pb-1.5 border-b-2 border-[#1D1E24]">
+          <span className="font-headline text-[11px] text-[#1D1E24] font-black uppercase">
+            ODOO BRAND SURCHARGE
+          </span>
+          <span className="material-symbols-outlined text-[#1D1E24] bg-[#FFD600] border border-[#1D1E24] p-0.5 text-[16px]">
+            sell
+          </span>
+        </div>
+        <div className="my-2.5">
+          <div className="font-headline text-[22px] sm:text-[24px] text-[#1D1E24] font-black tracking-tight">
+            +₹560 / seat
+          </div>
+          <span className="inline-block mt-1 px-1.5 py-0.2 bg-[#FFD600] text-[#1D1E24] border border-[#1D1E24] font-headline text-[9.5px] font-black">
+            AUTO-SURCHARGE ENGINE
+          </span>
+        </div>
+        <div className="text-[11px] text-[#34363F] flex items-center justify-between font-bold pt-1 border-t border-[#1D1E24]/20">
+          <span>Catalog Rules: Active</span>
+          <span className="font-black bg-[#FFD600] px-1 border border-[#1D1E24]">COMPLIANT</span>
+        </div>
       </div>
     </div>
   );
