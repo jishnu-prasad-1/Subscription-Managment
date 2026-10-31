@@ -50,3 +50,4 @@ The following matrix guarantees that 100% of the functional and non-functional r
 | **NFR-SEC-01** | Brief 12 | Zero plaintext passwords & SQL injection | Security Layer | Prepared Statements | Auth Pipeline | Global API Handlers | `TC-SEC-01: Penetration & Query Sanity Check` |
 | **NFR-REL-01** | Brief 12 | ACID transactions on billing operations | Transaction Eng| Prisma/Drizzle transactions | Billing & Invoicing | Global Services | `TC-REL-01: Transaction Rollback on Failure` |
 | **NFR-UX-01**  | Brief 1.1, 4 | Stitch Neo-Brutalist 90s OS styling | Presentation | Tailwind Config | CSS Tokens | All Views | `TC-UX-01: Visual Regression & Tokens Check` |
+

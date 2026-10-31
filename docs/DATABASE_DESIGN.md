@@ -357,3 +357,4 @@ To guarantee $<2.0\text{s}$ response times with over $10,000$ active subscriptio
 1. **Targeted Composite Index `idx_subs_billing_sweep`**: Indexes `(status, next_billing_date)`. The daily billing runner scans only indexed records meeting `status = 'active' AND next_billing_date <= CURRENT_DATE` in $<5\text{ms}$.
 2. **Composite Overdue Index `idx_invoices_status_due`**: Indexes `(status, due_date)`. Instantly identifies overdue cash risks without a full table scan.
 3. **Idempotency Index**: Unique constraint on `invoices(idempotency_key)` executes at B-Tree lookup speed ($O(\log N)$) during insertion.
+

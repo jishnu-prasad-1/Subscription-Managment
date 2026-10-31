@@ -107,3 +107,4 @@ flowchart TD
      - Server Action response time $\le 350\text{ms}$.
      - Frontend DOM Content Loaded & interactive $\le 1.2\text{s}$.
      - Overall response comfortably below the $2.0\text{s}$ ceiling.
+

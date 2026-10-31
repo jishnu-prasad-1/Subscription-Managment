@@ -132,3 +132,4 @@ export const PennyMascot: React.FC<PennyMascotProps> = ({
   );
 };
 ```
+

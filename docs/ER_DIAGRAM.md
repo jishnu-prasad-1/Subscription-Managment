@@ -245,3 +245,4 @@ erDiagram
    - Deleting a draft quotation cascades and removes its quotation line items.
    - Deleting an invoice cascades and removes its invoice line items.
    - Core commercial entities (`customers`, `products`, `subscriptions`) use `ON DELETE RESTRICT` to prevent accidental deletion of historical accounting records.
+

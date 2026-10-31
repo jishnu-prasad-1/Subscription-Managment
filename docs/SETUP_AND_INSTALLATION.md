@@ -109,3 +109,4 @@ npm run start
 | **Subscriber Customer** | `customer@acme.com` | `Brightloop@2026` | Tenant-isolated self-service portal, view own active plans, download invoices. |
 
 *Note: You can also use the **Workspace Switcher** in the top-left sidebar to toggle dynamically between viewports.*
+

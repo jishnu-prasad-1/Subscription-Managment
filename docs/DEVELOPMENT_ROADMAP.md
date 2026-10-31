@@ -141,3 +141,4 @@ During the active development phase, commits are made approximately every **one 
 - Update `CHANGELOG.md`.
 - Commit with conventional semantic message (`feat:`, `fix:`, `docs:`, `perf:`).
 - Push to GitHub `main` branch and verify commit SHA.
+

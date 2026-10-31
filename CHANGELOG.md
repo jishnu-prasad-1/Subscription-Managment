@@ -4,6 +4,25 @@ All notable changes to this project are documented in this file in accordance wi
 
 ---
 
+## [1.0.0-core] - 2026-10-31
+### ⚡ MILESTONE 1: FULL APPLICATION ENGINE & STITCH UI IMPLEMENTATION
+
+#### Added
+- **Core Next.js 15 Application**: Implemented Next.js 15 App Router with React 19, TypeScript, and strict server-side rendering.
+- **Relational Persistence Layer**: Configured Prisma ORM with SQLite database and generated all 16 relational entities.
+- **High-Fidelity Seed Script**: Populated 1,842 active subscriptions matching the Google Stitch telemetry ($148,250 MRR, 14 overdue accounts totaling $9,350 at risk).
+- **Penny The Coin Mascot & Dispatch Desk**: Built custom vector SVG component with dynamic moods (`dispatch`, `alert`, `celebrate`, `thinking`) connected to live database queries.
+- **Admin Mission Control Dashboard**: Implemented 7-metric Bento Grid, 6-month trailing ARR velocity dual-bar chart, and Tier Donut distribution gauge.
+- **Subscription Lifecycle Engine**: Implemented 5-stage interactive pipeline ribbon (`Draft` $\to$ `Quotation` $\to$ `Confirmed` $\to$ `Active` $\to$ `Closed`) with instant 1-click filtering and lifecycle state transitions (Pause, Resume, Renew, Early Close).
+- **Automated Recurring Invoicing & Zero Double-Billing**: Implemented the idempotent billing engine (`/api/billing/run-engine`) using deterministic SHA-256 keys to mathematically eliminate duplicate billing.
+- **Product Catalog & Variant Surcharges**: Implemented product catalog with support for brand variants, specifically the **Odoo Brand Edition (+₹560 surcharge)** requested in the problem statement.
+- **Quotation System & 1-Click Conversion**: Implemented quotation templates, proposal drafting with validity bounds, and 1-click conversion into confirmed subscriptions.
+- **Multi-Method Payment Collection Ledger**: Implemented payment recording (Bank Transfer, Credit Card, UPI, Cheque, Cash) with partial payment support and real-time balance resolution.
+- **Customer Self-Service Portal**: Delivered tenant-isolated customer portal for Acme Corp (David Vance) to view active subscriptions, renewal dates, and printable PDF invoices.
+- **Strict Password Complexity Security**: Enforced registration password policy ($>8$ chars, uppercase, lowercase, special char) with live visual meter.
+
+---
+
 ## [0.1.0-docs] - 2026-10-31
 ### 🚀 INITIAL CONTRIBUTION: DOCUMENTATION & ARCHITECTURAL FOUNDATION
 
@@ -29,3 +48,4 @@ All notable changes to this project are documented in this file in accordance wi
 - **Phase 1 (Environment Setup)**: Verified runtime environment (Node v24.19, npm 11.17, Git 2.55).
 - **Phase 2 (Documentation Architecture)**: 100% complete and verified.
 - **Next Milestone**: Gated on User Approval & Answers to 5 Core Questions before Phase 3 implementation.
+

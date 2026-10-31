@@ -63,3 +63,4 @@ As specified in the hackathon challenge brief:
 - **Zero Double-Billing Guarantee**: Under no circumstance should a billing job create overlapping invoices for the same subscription period.
 - **Zero Plaintext Credentials**: Cryptographic hashing (bcrypt) and server-side RBAC token verification across all API routes and data mutations.
 - **Responsive Retro-Modern Ergonomics**: Uncompromising adherence to the Neo-Brutalist 90s visual language across desktop, tablet, and mobile displays.
+

@@ -165,3 +165,4 @@
 - **NFR-SEC-01 (Authentication & Authorization)**: Passwords hashed with bcrypt; role verification on every mutation; tenant isolation verified on every query.
 - **NFR-REL-01 (Data Integrity & ACID)**: Financial transactions (subscription confirmation, invoice creation, payment recording) must execute within database transactions.
 - **NFR-UX-01 (Responsive Neo-Brutalism)**: Uncompromising adherence to the 90s Retro-Modern SaaS design system across desktop ($1360\text{px}$ container), tablet, and mobile.
+

@@ -142,3 +142,4 @@ To comfortably meet the performance requirement of rendering dashboards under tw
    - `idx_customer_subs`: `(customer_id, status)` for customer portal queries.
 3. **Cursor-Based Pagination**: Tables stream 25 rows per page, keeping payload sizes below $50\text{KB}$.
 4. **SVG Vector Visualizations**: Dashboard charts are rendered using native inline SVGs, requiring zero heavy chart libraries and eliminating browser re-paint stutter.
+
