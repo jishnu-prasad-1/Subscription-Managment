@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+
+<html lang="en" style=""><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>
+@layer base{
+  html,body{margin:0;padding:0;}
+  body{overscroll-behavior:none;}
+  main>:first-child{margin-top:0!important;}
+  main>:last-child{margin-bottom:0!important;}
+}
+::-webkit-scrollbar{display:none;}
+.bg-retro-grid {
+  background-color: #FFF8EE;
+  background-image: 
+    linear-gradient(to right, rgba(29, 30, 36, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(29, 30, 36, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.neo-box {
+  border: 2.5px solid #1D1E24;
+  box-shadow: 3px 3px 0px #1D1E24;
+}
+.neo-box-sm {
+  border: 2px solid #1D1E24;
+  box-shadow: 2px 2px 0px #1D1E24;
+}
+.neo-box-lg {
+  border: 3px solid #1D1E24;
+  box-shadow: 4px 4px 0px #1D1E24;
+}
+.neo-btn {
+  border: 2.5px solid #1D1E24;
+  box-shadow: 3px 3px 0px #1D1E24;
+  transition: all 0.12s ease;
+}
+.neo-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #1D1E24;
+}
+.neo-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #1D1E24;
+}
+.perforated-edge {
+  background-image: radial-gradient(#FFF8EE 4px, transparent 4.5px);
+  background-size: 16px 16px;
+  background-position: -8px -8px;
+}
+</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { 
+  darkMode: "class", 
+  theme: { 
+    extend: { 
+      "colors": { 
+        "surface": "#FFF8EE", 
+        "on-secondary-fixed": "#1D1E24", 
+        "tertiary-fixed": "#FFCCD6", 
+        "tertiary-fixed-dim": "#FFA3B3", 
+        "on-error": "#ffffff", 
+        "surface-variant": "#F3ECD9", 
+        "on-tertiary-fixed-variant": "#940826", 
+        "on-surface-variant": "#4E4F57", 
+        "outline-variant": "#D0C9B6", 
+        "secondary-fixed": "#FFD600", 
+        "on-secondary-fixed-variant": "#544300", 
+        "on-surface": "#1D1E24", 
+        "surface-dim": "#EDE4D3", 
+        "tertiary-container": "#FFE4E8", 
+        "background": "#FFF8EE", 
+        "primary-fixed-dim": "#00E5C9", 
+        "surface-tint": "#008775", 
+        "inverse-surface": "#1D1E24", 
+        "secondary-fixed-dim": "#FFDC2E", 
+        "surface-container-highest": "#E9E0CE", 
+        "error-container": "#FFDCE2", 
+        "on-tertiary": "#ffffff", 
+        "on-primary-container": "#003831", 
+        "on-secondary": "#1D1E24", 
+        "surface-container": "#F5EEDF", 
+        "on-tertiary-fixed": "#4E0010", 
+        "primary-fixed": "#70FFE9", 
+        "on-background": "#1D1E24", 
+        "on-error-container": "#7D0A1E", 
+        "on-secondary-container": "#1D1E24", 
+        "surface-container-lowest": "#ffffff", 
+        "outline": "#686973", 
+        "secondary-container": "#FFD600", 
+        "tertiary": "#FF4D6D", 
+        "surface-container-low": "#FAF3E6", 
+        "secondary": "#FFD600", 
+        "inverse-primary": "#00E5C9", 
+        "on-primary": "#ffffff", 
+        "surface-bright": "#FFFBF4", 
+        "on-tertiary-container": "#A00B29", 
+        "inverse-on-surface": "#FAF3E6", 
+        "on-primary-fixed-variant": "#00473E", 
+        "primary-container": "#00E5C9", 
+        "surface-container-high": "#EDE5D6", 
+        "on-primary-fixed": "#00241F", 
+        "error": "#FF4D6D", 
+        "primary": "#008775",
+        "mint-electric": "#00E5C9",
+        "sun-yellow": "#FFD600",
+        "hot-coral": "#FF4D6D",
+        "ink-charcoal": "#1D1E24"
+      }, 
+      "borderRadius": { 
+        "DEFAULT": "0.25rem", 
+        "lg": "0.375rem", 
+        "xl": "0.625rem", 
+        "full": "0.75rem" 
+      }, 
+      "spacing": { 
+        "gutter": "1.25rem", 
+        "gutter-mobile": "0.75rem", 
+        "space-lg": "1.5rem", 
+        "space-xs": "0.25rem", 
+        "margin": "2rem", 
+        "space-xl": "2.25rem", 
+        "space-md": "1rem", 
+        "space-sm": "0.5rem", 
+        "margin-mobile": "1rem" 
+      }, 
+      "fontFamily": { 
+        "label-md": ["Space Grotesk", "sans-serif"], 
+        "body-sm": ["Plus Jakarta Sans", "sans-serif"], 
+        "headline-xl": ["Space Grotesk", "sans-serif"], 
+        "label-sm": ["Space Grotesk", "sans-serif"], 
+        "headline-lg": ["Space Grotesk", "sans-serif"], 
+        "headline-md": ["Space Grotesk", "sans-serif"], 
+        "body-md": ["Plus Jakarta Sans", "sans-serif"], 
+        "headline-xl-mobile": ["Space Grotesk", "sans-serif"], 
+        "headline-lg-mobile": ["Space Grotesk", "sans-serif"], 
+        "body-lg": ["Plus Jakarta Sans", "sans-serif"], 
+        "headline-sm": ["Space Grotesk", "sans-serif"], 
+        "label-lg": ["Space Grotesk", "sans-serif"] 
+      }, 
+      "fontSize": { 
+        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "700" }], 
+        "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], 
+        "headline-xl": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "800" }], 
+        "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "700" }], 
+        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800" }], 
+        "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "700" }], 
+        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], 
+        "headline-xl-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }], 
+        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "800" }], 
+        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "500" }], 
+        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "700" }], 
+        "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "700" }] 
+      } 
+    } 
+  } 
+}</script></head><body class="bg-retro-grid font-body-md text-ink-charcoal antialiased min-h-screen"><aside class="fixed left-0 top-0 h-screen w-72 bg-[#FFFDF9] border-r-[2.5px] border-ink-charcoal z-50 flex flex-col justify-between select-none shadow-[3px_0px_0px_#1D1E24]"><div class="flex flex-col h-full overflow-hidden"><div class="p-space-md border-b-[2.5px] border-ink-charcoal bg-[#FFF2B2] flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="Brightloop Retro SaaS Logo" class="h-8 w-auto object-contain border-2 border-ink-charcoal bg-white p-0.5 rounded shadow-[2px_2px_0px_#1D1E24]" src="https://lh3.googleusercontent.com/aida/AEtjO1Xsivtj-tPOaHXD5dIu7yCQVnMF6jOpeiXMH_1PdXnsikV8oT4F3jEiPdN0oc944gng0j6Zt2vyusNWasNN48aD-jZy0i7HKLwodoUotRrVhl_YMezAG0dP1F6T0vSunykCTUXjaehHYJhb3Tj2o3QqbmdQ83RyKdW8R_hyXwlaHKchtaQ3W3wJxwWfM-ld1I5GEXTM0usDwIcCXubUfAPZNI6Ljv2bVL-KXrnxwtXc"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm uppercase text-ink-charcoal font-black tracking-tight leading-none">Brightloop</span><span class="font-label-sm text-[10px] text-ink-charcoal/80 font-bold tracking-wider mt-0.5">SUB.SYS_v2.4 // 90s</span></div></div><div class="flex items-center gap-1.5"><div class="w-4 h-4 border-2 border-ink-charcoal bg-white flex items-center justify-center font-label-sm text-[9px] font-black leading-none cursor-pointer shadow-[1px_1px_0px_#1D1E24]">_</div><div class="w-4 h-4 border-2 border-ink-charcoal bg-white flex items-center justify-center font-label-sm text-[9px] font-black leading-none cursor-pointer shadow-[1px_1px_0px_#1D1E24]">□</div><div class="w-4 h-4 border-2 border-ink-charcoal bg-hot-coral text-white flex items-center justify-center font-label-sm text-[9px] font-black leading-none cursor-pointer shadow-[1px_1px_0px_#1D1E24]">×</div></div></div><div class="p-space-sm border-b-[2.5px] border-ink-charcoal bg-[#FAF3E6]"><div class="text-[10px] font-label-sm uppercase font-bold text-ink-charcoal/70 mb-1 tracking-wider">Workspace Mode</div><div class="grid grid-cols-3 gap-1.5 bg-white p-1 border-2 border-ink-charcoal rounded shadow-[2px_2px_0px_#1D1E24]"><button class="py-1 font-label-sm text-label-sm text-center uppercase bg-sun-yellow text-ink-charcoal font-black border-2 border-ink-charcoal shadow-[1px_1px_0px_#1D1E24]">Admin</button><button class="py-1 font-label-sm text-label-sm text-center uppercase font-bold text-ink-charcoal/70 hover:text-ink-charcoal hover:bg-surface-container transition-colors">Staff</button><button class="py-1 font-label-sm text-label-sm text-center uppercase font-bold text-ink-charcoal/70 hover:text-ink-charcoal hover:bg-surface-container transition-colors">Portal</button></div></div><nav class="flex-1 overflow-y-auto p-space-sm flex flex-col gap-1.5" data-active-classes="bg-mint-electric text-ink-charcoal font-black border-2 border-ink-charcoal shadow-[3px_3px_0px_#1D1E24] translate-x-1"><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-ink-charcoal/80 hover:text-ink-charcoal hover:bg-[#FFF2B2] transition-all border border-transparent rounded font-bold" data-path="overview" href="#"><span class="material-symbols-outlined text-[18px]">dashboard</span><span>Overview</span></a><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-ink-charcoal/80 hover:text-ink-charcoal hover:bg-[#FFF2B2] transition-all border border-transparent rounded font-bold" data-path="products" href="#"><span class="material-symbols-outlined text-[18px]">inventory_2</span><span>Products</span></a><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-ink-charcoal/80 hover:text-ink-charcoal hover:bg-[#FFF2B2] transition-all border border-transparent rounded font-bold" data-path="plans" href="#"><span class="material-symbols-outlined text-[18px]">layers</span><span>Plans</span></a><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-ink-charcoal/80 hover:text-ink-charcoal hover:bg-[#FFF2B2] transition-all border border-transparent rounded font-bold" data-path="customers" href="#"><span class="material-symbols-outlined text-[18px]">group</span><span>Customers</span></a><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-ink-charcoal/80 hover:text-ink-charcoal hover:bg-[#FFF2B2] transition-all border border-transparent rounded font-bold" data-path="quotations" href="#"><span class="material-symbols-outlined text-[18px]">request_quote</span><span>Quotations</span></a><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-ink-charcoal/80 hover:text-ink-charcoal hover:bg-[#FFF2B2] transition-all border border-transparent rounded font-bold" data-path="subscriptions" href="#"><span class="material-symbols-outlined text-[18px]">autorenew</span><span>Subscriptions</span></a><a aria-current="page" class="flex items-center gap-2.5 px-3 py-1.5 transition-all rounded bg-mint-electric text-ink-charcoal font-black border-2 border-ink-charcoal shadow-[3px_3px_0px_#1D1E24] translate-x-1" data-path="invoices" href="#"><span class="material-symbols-outlined text-[18px]">receipt_long</span><span>Invoices</span></a><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-ink-charcoal/80 hover:text-ink-charcoal hover:bg-[#FFF2B2] transition-all border border-transparent rounded font-bold" data-path="discounts" href="#"><span class="material-symbols-outlined text-[18px]">loyalty</span><span>Discounts</span></a><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-ink-charcoal/80 hover:text-ink-charcoal hover:bg-[#FFF2B2] transition-all border border-transparent rounded font-bold" data-path="payments" href="#"><span class="material-symbols-outlined text-[18px]">payments</span><span>Payments</span></a><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-ink-charcoal/80 hover:text-ink-charcoal hover:bg-[#FFF2B2] transition-all border border-transparent rounded font-bold" data-path="reports-and-analytics" href="#"><span class="material-symbols-outlined text-[18px]">analytics</span><span>Reports &amp; Analytics</span></a><div class="my-2 border-t-2 border-ink-charcoal"></div><a class="flex items-center justify-between px-3 py-1.5 font-label-md text-label-md text-ink-charcoal/80 hover:text-ink-charcoal hover:bg-[#FFF2B2] transition-all border border-transparent rounded font-bold" data-path="staff-management" href="#"><div class="flex items-center gap-2.5"><span class="material-symbols-outlined text-[18px]">badge</span><span>Staff Mgmt</span></div><span class="px-1.5 py-0.5 bg-sun-yellow text-ink-charcoal border-2 border-ink-charcoal rounded font-label-sm text-[9px] font-black shadow-[1px_1px_0px_#1D1E24]">ADMIN</span></a><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-ink-charcoal/80 hover:text-ink-charcoal hover:bg-[#FFF2B2] transition-all border border-transparent rounded font-bold" data-path="settings" href="#"><span class="material-symbols-outlined text-[18px]">settings</span><span>Settings</span></a></nav><div class="p-space-sm border-t-[2.5px] border-ink-charcoal bg-[#FAF3E6] flex flex-col gap-2"><div class="flex items-center justify-between px-2.5 py-1.5 bg-white border-2 border-ink-charcoal shadow-[2px_2px_0px_#1D1E24] rounded"><div class="flex items-center gap-2"><span class="relative flex h-2.5 w-2.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-mint-electric opacity-75"></span><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-mint-electric border border-ink-charcoal"></span></span><span class="font-label-sm text-label-sm text-ink-charcoal uppercase font-black">v2.4 Online</span></div><span class="font-label-sm text-label-sm font-bold text-ink-charcoal/70 bg-[#FFF2B2] px-1.5 py-0.5 border border-ink-charcoal rounded">99.98%</span></div><a class="neo-btn flex items-center justify-center gap-2 px-3 py-1.5 font-label-md text-label-md uppercase bg-white hover:bg-hot-coral hover:text-white text-ink-charcoal font-black rounded active:translate-x-0.5 active:translate-y-0.5 transition-all" data-path="logout" href="#"><span class="material-symbols-outlined text-[16px]">logout</span><span>Log Out</span></a></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-[#FFFDF9] border-b-[2.5px] border-ink-charcoal z-40 px-gutter flex items-center justify-between shadow-[0_3px_0px_#1D1E24]"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-2 text-ink-charcoal font-label-md text-label-md"><span class="text-ink-charcoal/60 font-black">SYSTEM</span><span class="material-symbols-outlined text-ink-charcoal/60 text-[14px]">chevron_right</span><span class="px-2.5 py-0.5 bg-sun-yellow border-2 border-ink-charcoal uppercase font-black shadow-[1.5px_1.5px_0px_#1D1E24] rounded">Workspace</span></div><div class="relative flex items-center w-72"><span class="material-symbols-outlined absolute left-2.5 text-ink-charcoal/60 text-[18px]">search</span><input class="w-full pl-9 pr-12 py-1.5 bg-white border-2 border-ink-charcoal text-ink-charcoal font-body-sm text-body-sm rounded shadow-[2px_2px_0px_#1D1E24] focus:bg-[#FFFBF4] focus:outline-none placeholder:text-ink-charcoal/50 font-medium" placeholder="Search subscriptions, plans, users..." type="text"/><span class="absolute right-2 px-1.5 py-0.5 bg-[#FAF3E6] border border-ink-charcoal font-label-sm text-[10px] text-ink-charcoal font-bold rounded">⌘K</span></div></div><div class="flex items-center gap-3"><div class="flex items-center gap-2"><button class="neo-btn flex items-center gap-1.5 px-3 py-1.5 font-label-md text-label-md uppercase bg-mint-electric text-ink-charcoal font-black rounded"><span class="material-symbols-outlined text-[16px]">add</span><span>Quotation</span></button><button class="neo-btn flex items-center gap-1.5 px-3 py-1.5 font-label-md text-label-md uppercase bg-sun-yellow text-ink-charcoal font-black rounded"><span class="material-symbols-outlined text-[16px]">person_add</span><span>Customer</span></button></div><div class="h-6 w-[2px] bg-ink-charcoal mx-1"></div><div class="flex items-center gap-2"><button class="neo-btn relative p-1.5 bg-white text-ink-charcoal rounded flex items-center justify-center"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute -top-1.5 -right-1.5 px-1.5 py-0.2 bg-hot-coral text-white font-label-sm text-[9px] rounded-full border border-ink-charcoal font-black leading-tight">4</span></button><button class="neo-btn p-1.5 bg-white text-ink-charcoal rounded flex items-center justify-center"><span class="material-symbols-outlined text-[20px]">help</span></button></div><div class="h-6 w-[2px] bg-ink-charcoal mx-1"></div><div class="neo-btn flex items-center gap-2 pl-1.5 py-1 pr-2.5 bg-white rounded cursor-pointer"><img alt="Profile" class="w-8 h-8 rounded-full object-cover border-2 border-ink-charcoal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoRG5fzgoj76JWJQ3KJJeO0DGYETUiGuNlf-2xkt1Hsb6xzRT7aEiLn9AWu8f_qinFTb73K5BFCrrD2oz9T_rSERgmmrZllrNw_5qnR8h-8GwsrI71KpkGKBA5MWsai0ClAisdF5SuZWM0RXWRLjxQzC6YXcRan4Z821MnLZbkxnN5BqBkBBegJsWQ5rPrYollyAbCc8vuhWJknrOMG2Ct4jBMT4rebDX2bwRgDEs"/><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-ink-charcoal font-bold leading-tight">Samira Jenkins</span><span class="font-label-sm text-[9px] uppercase px-1 py-0.2 bg-sun-yellow border border-ink-charcoal text-ink-charcoal font-black leading-tight inline-block w-max rounded-sm">Super Admin</span></div><span class="material-symbols-outlined text-[16px] text-ink-charcoal ml-1">expand_more</span></div></div></header><main class="w-full pt-16 bg-retro-grid min-h-[calc(100vh-4rem)]"><div class="flex flex-col w-full">
+<div class="p-gutter flex flex-col gap-6 max-w-[1360px] mx-auto w-full">
+<!-- Top Status Bar & Cron Notification -->
+<div class="neo-box bg-[#FFFDF9] rounded-lg p-space-md flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded border-2 border-ink-charcoal bg-sun-yellow text-ink-charcoal flex items-center justify-center font-label-md shadow-[2px_2px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[22px]">schedule</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm uppercase tracking-tight text-ink-charcoal font-black">Auto-Billing Engine</span>
+<span class="px-2 py-0.5 rounded border-2 border-ink-charcoal bg-mint-electric text-ink-charcoal font-label-sm text-[11px] font-black uppercase flex items-center gap-1 shadow-[1.5px_1.5px_0px_#1D1E24]">
+<span class="w-2 h-2 rounded-full bg-ink-charcoal animate-pulse"></span>
+              Active Daemon
+            </span>
+</div>
+<span class="font-body-sm text-body-sm text-ink-charcoal/80 font-medium">Scheduled sweep for recurring subscriptions • Next batch execution in <strong class="text-ink-charcoal font-black bg-[#FFF2B2] px-1 border border-ink-charcoal rounded">2h 14m (02:00 UTC)</strong></span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="neo-btn flex items-center gap-2 px-3.5 py-1.5 rounded bg-white text-ink-charcoal font-label-md text-label-md uppercase font-black" id="runSweepBtn">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+<span>Trigger Batch Now</span>
+</button>
+<div class="px-3 py-1.5 rounded border-2 border-ink-charcoal bg-[#FAF3E6] text-ink-charcoal font-label-sm text-label-sm uppercase tracking-wider font-bold shadow-[2px_2px_0px_#1D1E24]">
+          CRON_ID: #SYS-BL-992
+        </div>
+</div>
+</div>
+<!-- Penny's Dispatch Desk Mascot Banner -->
+<div class="neo-box-lg bg-[#FFFBEA] rounded-lg p-space-md flex flex-col md:flex-row items-center justify-between gap-4 relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-32 h-32 bg-sun-yellow/20 rounded-full pointer-events-none"></div>
+<div class="flex items-center gap-4 z-10">
+<div class="relative flex-shrink-0 w-20 h-20 flex items-center justify-center p-1 bg-white border-2 border-ink-charcoal rounded-lg shadow-[3px_3px_0px_#1D1E24]">
+<img alt="Penny the Coin" class="w-18 h-18 object-contain inline-block" src="https://lh3.googleusercontent.com/aida/AEtjO1WOrm_Q-zqM3grhKyuYY_oSukxGVZ5G8dSPBON2PCzKKRYozDcbc-OqUOVNXO89kdckz5T2A0lNpKzV8qZzvM-4HdJqzKJx98C5RSFp2IrGhzKslcV5CgyOkzCPseZIF6vu57npRhlVm8bHVC1gsS-yyr5OjcC94dY_m3yhNPvu9sJzOwDA0wACcnMaSK3XzhaowaJBqI-1LZEJvFesWQ94a-ScS7MYDn0DUTTizbwz"/>
+<span class="absolute -bottom-2 -right-1 px-1.5 py-0.2 bg-sun-yellow text-ink-charcoal border-2 border-ink-charcoal font-label-sm text-[9px] font-black rounded shadow-[1.5px_1.5px_0px_#1D1E24]">PENNY</span>
+</div>
+<div class="flex flex-col gap-1 relative bg-white border-2 border-ink-charcoal rounded-lg p-3.5 shadow-[3px_3px_0px_#1D1E24] max-w-2xl">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md uppercase font-black text-ink-charcoal flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-sun-yellow bg-ink-charcoal rounded-full p-0.5">chat_bubble</span>Penny's Dispatch Desk
+    </span>
+<span class="px-2 py-0.5 rounded border border-ink-charcoal bg-mint-electric text-ink-charcoal font-label-sm text-[10px] font-black uppercase shadow-[1px_1px_0px_#1D1E24]">Audited &amp; Ready</span>
+</div>
+<p class="font-body-md text-body-md text-ink-charcoal leading-snug font-medium">"Bzzzt! All automated recurring sweeps are locked in for <strong class="text-ink-charcoal font-black bg-sun-yellow px-1 border border-ink-charcoal rounded">02:00 UTC</strong>. Want me to trigger a batch sweep right now?"</p>
+</div>
+</div>
+<div class="flex items-center gap-2 z-10 w-full md:w-auto justify-end">
+<button class="neo-btn flex items-center gap-2 px-4 py-2.5 font-label-md text-label-md uppercase bg-mint-electric text-ink-charcoal font-black rounded" onclick="document.getElementById('runSweepBtn')?.click()">
+<span class="material-symbols-outlined text-[20px]">electric_bolt</span>
+<span>Yes, Run Sweep Now!</span>
+</button>
+</div>
+</div>
+<!-- Metric Counters (Stat Strip with 90s vibrant palette) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Metric 1: Total Invoiced -->
+<div class="neo-box bg-white p-space-md rounded-lg flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-4 -bottom-4 w-16 h-16 bg-[#FFF2B2] rounded-full pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-ink-charcoal uppercase font-bold tracking-wider">Total Invoiced</span>
+<span class="p-1.5 rounded border-2 border-ink-charcoal bg-[#FAF3E6] text-ink-charcoal material-symbols-outlined text-[18px] shadow-[2px_2px_0px_#1D1E24]">receipt_long</span>
+</div>
+<div class="mt-3">
+<div class="font-headline-lg text-headline-lg text-ink-charcoal tracking-tight font-black">$248,500.00</div>
+<div class="flex items-center gap-1.5 mt-1 font-body-sm text-body-sm text-ink-charcoal/80">
+<span class="px-1.5 py-0.2 rounded border border-ink-charcoal bg-mint-electric text-ink-charcoal font-label-sm text-label-sm font-black flex items-center shadow-[1px_1px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +14.8%
+            </span>
+<span class="font-medium">vs previous cycle</span>
+</div>
+</div>
+<div class="mt-3 pt-2 bg-[#FAF3E6] border border-ink-charcoal rounded p-1.5 flex items-center justify-between font-label-sm text-label-sm text-ink-charcoal">
+<span>Total count: 284 issued</span>
+<span class="font-black bg-sun-yellow px-1 border border-ink-charcoal rounded">Oct 2024</span>
+</div>
+</div>
+<!-- Metric 2: Settled / Paid (Electric Mint) -->
+<div class="neo-box bg-[#E6FFF9] p-space-md rounded-lg flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-4 -bottom-4 w-20 h-20 bg-mint-electric/30 rounded-full pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-ink-charcoal uppercase font-bold tracking-wider">Paid &amp; Settled</span>
+<span class="p-1.5 rounded border-2 border-ink-charcoal bg-mint-electric text-ink-charcoal material-symbols-outlined text-[18px] shadow-[2px_2px_0px_#1D1E24]">verified</span>
+</div>
+<div class="mt-3">
+<div class="font-headline-lg text-headline-lg text-ink-charcoal tracking-tight font-black">$210,000.00</div>
+<div class="flex items-center gap-1.5 mt-1 font-body-sm text-body-sm text-ink-charcoal">
+<div class="w-24 h-2.5 bg-white border border-ink-charcoal rounded-full overflow-hidden flex">
+<div class="bg-mint-electric h-full w-[84.5%] border-r border-ink-charcoal"></div>
+</div>
+<span class="font-label-sm text-label-sm font-black text-ink-charcoal bg-mint-electric px-1.5 py-0.2 border border-ink-charcoal rounded">84.5% cleared</span>
+</div>
+</div>
+<div class="mt-3 pt-2 bg-white border border-ink-charcoal rounded p-1.5 flex items-center justify-between font-label-sm text-label-sm text-ink-charcoal">
+<span class="font-medium">Realized revenue</span>
+<span class="font-black text-ink-charcoal bg-mint-electric px-1.5 border border-ink-charcoal rounded">242 Settled</span>
+</div>
+</div>
+<!-- Metric 3: Overdue / Urgent (Vivid Hot Coral) -->
+<div class="neo-box bg-[#FFEBF0] p-space-md rounded-lg flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-4 -bottom-4 w-20 h-20 bg-hot-coral/25 rounded-full pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-hot-coral uppercase font-black tracking-wider">Overdue Amount</span>
+<span class="p-1.5 rounded border-2 border-ink-charcoal bg-hot-coral text-white material-symbols-outlined text-[18px] shadow-[2px_2px_0px_#1D1E24]">warning</span>
+</div>
+<div class="mt-3">
+<div class="font-headline-lg text-headline-lg text-hot-coral tracking-tight font-black">$9,350.00</div>
+<div class="flex items-center gap-1.5 mt-1 font-body-sm text-body-sm text-ink-charcoal">
+<span class="px-1.5 py-0.5 rounded border border-ink-charcoal bg-hot-coral text-white font-label-sm text-label-sm font-black shadow-[1px_1px_0px_#1D1E24]">14 Invoices</span>
+<span class="font-bold text-hot-coral">need dunning</span>
+</div>
+</div>
+<div class="mt-3 pt-2 bg-white border border-ink-charcoal rounded p-1.5 flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-ink-charcoal font-medium">Avg age: 6.4 days</span>
+<span class="text-hot-coral font-black bg-[#FFCCD6] px-1.5 border border-ink-charcoal rounded">Action Needed</span>
+</div>
+</div>
+<!-- Metric 4: Drafts & Pending (Sunburst Yellow) -->
+<div class="neo-box bg-[#FFFCE6] p-space-md rounded-lg flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-4 -bottom-4 w-20 h-20 bg-sun-yellow/30 rounded-full pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-ink-charcoal uppercase font-bold tracking-wider">Unsent Drafts</span>
+<span class="p-1.5 rounded border-2 border-ink-charcoal bg-sun-yellow text-ink-charcoal material-symbols-outlined text-[18px] shadow-[2px_2px_0px_#1D1E24]">edit_note</span>
+</div>
+<div class="mt-3">
+<div class="font-headline-lg text-headline-lg text-ink-charcoal tracking-tight font-black">$29,150.00</div>
+<div class="flex items-center gap-1.5 mt-1 font-body-sm text-body-sm text-ink-charcoal">
+<span class="text-ink-charcoal font-label-sm text-label-sm font-black bg-sun-yellow px-1.5 py-0.2 border border-ink-charcoal rounded shadow-[1px_1px_0px_#1D1E24]">28 pending approvals</span>
+</div>
+</div>
+<div class="mt-3 pt-2 bg-white border border-ink-charcoal rounded p-1.5 flex items-center justify-between text-ink-charcoal font-label-sm text-label-sm">
+<span class="font-medium">Queued via CRM &amp; renewals</span>
+<span class="font-black bg-[#FAF3E6] px-1.5 border border-ink-charcoal rounded">Auto-sync on</span>
+</div>
+</div>
+</div>
+<!-- Filter Bar & Primary Actions -->
+<div class="neo-box bg-[#FFFDF9] rounded-lg p-space-sm flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+<!-- Tabs -->
+<div class="flex flex-wrap items-center gap-1.5 bg-[#FAF3E6] p-1 border-2 border-ink-charcoal rounded">
+<button class="filter-tab px-3 py-1.5 rounded font-label-md text-label-md uppercase bg-sun-yellow text-ink-charcoal border-2 border-ink-charcoal shadow-[2px_2px_0px_#1D1E24] font-black" data-filter="all">
+  All (284)
+</button>
+<button class="filter-tab px-3 py-1.5 rounded font-label-md text-label-md uppercase text-ink-charcoal font-bold hover:bg-white transition-colors" data-filter="paid">
+  Paid (242)
+</button>
+<button class="filter-tab px-3 py-1.5 rounded font-label-md text-label-md uppercase text-ink-charcoal font-bold hover:bg-white transition-colors" data-filter="confirmed">
+  Confirmed (14)
+</button>
+<button class="filter-tab px-3 py-1.5 rounded font-label-md text-label-md uppercase text-ink-charcoal font-bold hover:bg-white transition-colors" data-filter="draft">
+  Draft (28)
+</button>
+<button class="filter-tab px-3 py-1.5 rounded font-label-md text-label-md uppercase text-hot-coral font-black hover:bg-white transition-colors flex items-center gap-1" data-filter="overdue">
+<span class="material-symbols-outlined text-[14px]">error</span>
+  Overdue (14)
+</button>
+</div>
+<!-- Search & Generation CTA -->
+<div class="flex items-center gap-2">
+<div class="relative flex-1 md:w-64">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-charcoal/60 text-[18px]">search</span>
+<input class="w-full pl-9 pr-3 py-1.5 bg-white border-2 border-ink-charcoal rounded text-ink-charcoal font-body-sm text-body-sm focus:outline-none placeholder:text-ink-charcoal/50 font-medium shadow-[2px_2px_0px_#1D1E24]" id="tableSearch" placeholder="Search invoice, customer, sub..." type="text"/>
+</div>
+<button class="neo-btn flex items-center gap-2 px-3.5 py-1.5 rounded bg-sun-yellow text-ink-charcoal font-label-md text-label-md uppercase font-black whitespace-nowrap" id="genSubBtn">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span>Generate Invoices Due</span>
+</button>
+</div>
+</div>
+<!-- Main Workspace Two-Column Grid -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
+<!-- LEFT COLUMN: Invoice Register Table (approx 60% = 7 cols on XL) -->
+<div class="xl:col-span-7 flex flex-col gap-4">
+<!-- Retro Table Container -->
+<div class="neo-box bg-white rounded-lg overflow-hidden flex flex-col">
+<!-- Table Window Title Bar -->
+<div class="bg-[#FFF2B2] border-b-2 border-ink-charcoal px-space-md py-2.5 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-mint-electric border border-ink-charcoal"></span>
+<span class="font-headline-sm text-headline-sm uppercase text-ink-charcoal font-black tracking-tight">Ledger Registry</span>
+<span class="text-ink-charcoal/70 font-label-sm text-label-sm font-bold">/ Realtime Sync</span>
+</div>
+<div class="flex items-center gap-2 font-label-sm text-label-sm text-ink-charcoal font-bold">
+<span>Rows 1–6 of 284</span>
+<button class="p-1 rounded border border-ink-charcoal bg-white hover:bg-sun-yellow transition-colors shadow-[1px_1px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+<button class="p-1 rounded border border-ink-charcoal bg-white hover:bg-sun-yellow transition-colors shadow-[1px_1px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-[#FAF3E6] border-b-2 border-ink-charcoal font-label-md text-label-md text-ink-charcoal uppercase tracking-wider select-none font-black">
+<tr>
+<th class="py-3 px-3">Invoice #</th>
+<th class="py-3 px-3">Customer</th>
+<th class="py-3 px-2">Sub Ref</th>
+<th class="py-3 px-2">Due Date</th>
+<th class="py-3 px-3 text-right">Total</th>
+<th class="py-3 px-3 text-center">Status</th>
+<th class="py-3 px-3 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-ink-charcoal/10" id="invoiceTableBody">
+<!-- Row 1: Selected active item (PixelCraft) -->
+<tr class="invoice-row bg-[#E6FFF9] hover:bg-[#D5FFF6] transition-colors cursor-pointer border-l-4 border-l-mint-electric" data-id="INV-2024-00912">
+<td class="py-3 px-3">
+<span class="font-label-md text-label-md font-black text-ink-charcoal block">INV-2024-00912</span>
+<span class="font-body-sm text-[11px] text-ink-charcoal/70">Oct 24, 2024</span>
+</td>
+<td class="py-3 px-3">
+<div class="font-body-md text-body-md font-bold text-ink-charcoal">PixelCraft Studios</div>
+<div class="text-[11px] text-ink-charcoal/70">m.vance@pixelcraft.io</div>
+</td>
+<td class="py-3 px-2">
+<span class="px-1.5 py-0.5 rounded border border-ink-charcoal bg-white font-label-sm text-label-sm text-ink-charcoal font-bold">SUB-8841</span>
+</td>
+<td class="py-3 px-2 text-ink-charcoal font-body-sm font-semibold">Nov 07, 2024</td>
+<td class="py-3 px-3 text-right font-headline-sm text-headline-sm text-ink-charcoal font-black">$3,450.00</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border-2 border-ink-charcoal bg-mint-electric text-ink-charcoal font-label-sm text-label-sm uppercase font-black shadow-[1.5px_1.5px_0px_#1D1E24]">
+<span class="w-1.5 h-1.5 rounded-full bg-ink-charcoal"></span>
+                      Paid
+                    </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded border border-ink-charcoal bg-white hover:bg-mint-electric text-ink-charcoal transition-colors shadow-[1px_1px_0px_#1D1E24]" title="Inspect">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+</button>
+<button class="p-1 rounded border border-ink-charcoal bg-white hover:bg-sun-yellow text-ink-charcoal transition-colors shadow-[1px_1px_0px_#1D1E24]" title="Print">
+<span class="material-symbols-outlined text-[16px]">print</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Overdue item -->
+<tr class="invoice-row hover:bg-[#FFEBF0] transition-colors cursor-pointer" data-id="INV-2024-00911">
+<td class="py-3 px-3">
+<span class="font-label-md text-label-md font-black text-ink-charcoal block">INV-2024-00911</span>
+<span class="font-body-sm text-[11px] text-ink-charcoal/70">Oct 12, 2024</span>
+</td>
+<td class="py-3 px-3">
+<div class="font-body-md text-body-md font-bold text-ink-charcoal">HyperScale Systems</div>
+<div class="text-[11px] text-ink-charcoal/70">ap@hyperscale.net</div>
+</td>
+<td class="py-3 px-2">
+<span class="px-1.5 py-0.5 rounded border border-ink-charcoal bg-white font-label-sm text-label-sm text-ink-charcoal font-bold">SUB-7290</span>
+</td>
+<td class="py-3 px-2 text-hot-coral font-body-sm font-bold">Oct 26, 2024</td>
+<td class="py-3 px-3 text-right font-headline-sm text-headline-sm text-hot-coral font-black">$1,890.00</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border-2 border-ink-charcoal bg-hot-coral text-white font-label-sm text-label-sm uppercase font-black shadow-[1.5px_1.5px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[12px]">priority_high</span>
+                      Overdue
+                    </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded border border-ink-charcoal bg-white hover:bg-mint-electric text-ink-charcoal transition-colors shadow-[1px_1px_0px_#1D1E24]" title="Inspect">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+</button>
+<button class="p-1 rounded border border-ink-charcoal bg-hot-coral text-white hover:bg-red-600 transition-colors shadow-[1px_1px_0px_#1D1E24]" title="Retry Billing">
+<span class="material-symbols-outlined text-[16px]">credit_card_off</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Confirmed item -->
+<tr class="invoice-row hover:bg-[#FAF3E6] transition-colors cursor-pointer" data-id="INV-2024-00910">
+<td class="py-3 px-3">
+<span class="font-label-md text-label-md font-black text-ink-charcoal block">INV-2024-00910</span>
+<span class="font-body-sm text-[11px] text-ink-charcoal/70">Oct 22, 2024</span>
+</td>
+<td class="py-3 px-3">
+<div class="font-body-md text-body-md font-bold text-ink-charcoal">Waveform Audio Labs</div>
+<div class="text-[11px] text-ink-charcoal/70">elena@waveform.co</div>
+</td>
+<td class="py-3 px-2">
+<span class="px-1.5 py-0.5 rounded border border-ink-charcoal bg-white font-label-sm text-label-sm text-ink-charcoal font-bold">SUB-4392</span>
+</td>
+<td class="py-3 px-2 text-ink-charcoal font-body-sm font-semibold">Nov 05, 2024</td>
+<td class="py-3 px-3 text-right font-headline-sm text-headline-sm text-ink-charcoal font-black">$4,200.00</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border-2 border-ink-charcoal bg-sun-yellow text-ink-charcoal font-label-sm text-label-sm uppercase font-black shadow-[1.5px_1.5px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[12px]">send</span>
+                      Confirmed
+                    </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded border border-ink-charcoal bg-white hover:bg-mint-electric text-ink-charcoal transition-colors shadow-[1px_1px_0px_#1D1E24]" title="Inspect">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+</button>
+<button class="p-1 rounded border border-ink-charcoal bg-white hover:bg-sun-yellow text-ink-charcoal transition-colors shadow-[1px_1px_0px_#1D1E24]" title="Send Email">
+<span class="material-symbols-outlined text-[16px]">mail</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Draft -->
+<tr class="invoice-row hover:bg-[#FAF3E6] transition-colors cursor-pointer" data-id="INV-2024-00909">
+<td class="py-3 px-3">
+<span class="font-label-md text-label-md font-black text-ink-charcoal block">INV-2024-00909</span>
+<span class="font-body-sm text-[11px] text-ink-charcoal/70">Oct 23, 2024</span>
+</td>
+<td class="py-3 px-3">
+<div class="font-body-md text-body-md font-bold text-ink-charcoal">Kinetic Dynamics</div>
+<div class="text-[11px] text-ink-charcoal/70">finance@kinetic.tech</div>
+</td>
+<td class="py-3 px-2">
+<span class="px-1.5 py-0.5 rounded border border-ink-charcoal bg-white font-label-sm text-label-sm text-ink-charcoal font-bold">SUB-1102</span>
+</td>
+<td class="py-3 px-2 text-ink-charcoal/60 font-body-sm">— (Unissued)</td>
+<td class="py-3 px-3 text-right font-headline-sm text-headline-sm text-ink-charcoal font-black">$780.00</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border-2 border-ink-charcoal bg-[#FAF3E6] text-ink-charcoal font-label-sm text-label-sm uppercase font-black shadow-[1.5px_1.5px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[12px]">edit</span>
+                      Draft
+                    </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded border border-ink-charcoal bg-white hover:bg-mint-electric text-ink-charcoal transition-colors shadow-[1px_1px_0px_#1D1E24]" title="Inspect">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+</button>
+<button class="p-1 rounded border border-ink-charcoal bg-sun-yellow text-ink-charcoal hover:bg-yellow-400 transition-colors shadow-[1px_1px_0px_#1D1E24]" title="Approve &amp; Send">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: Overdue -->
+<tr class="invoice-row hover:bg-[#FFEBF0] transition-colors cursor-pointer" data-id="INV-2024-00908">
+<td class="py-3 px-3">
+<span class="font-label-md text-label-md font-black text-ink-charcoal block">INV-2024-00908</span>
+<span class="font-body-sm text-[11px] text-ink-charcoal/70">Oct 08, 2024</span>
+</td>
+<td class="py-3 px-3">
+<div class="font-body-md text-body-md font-bold text-ink-charcoal">Neon Modular Collective</div>
+<div class="text-[11px] text-ink-charcoal/70">hello@neonmod.org</div>
+</td>
+<td class="py-3 px-2">
+<span class="px-1.5 py-0.5 rounded border border-ink-charcoal bg-white font-label-sm text-label-sm text-ink-charcoal font-bold">SUB-6349</span>
+</td>
+<td class="py-3 px-2 text-hot-coral font-body-sm font-bold">Oct 22, 2024</td>
+<td class="py-3 px-3 text-right font-headline-sm text-headline-sm text-hot-coral font-black">$7,460.00</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border-2 border-ink-charcoal bg-hot-coral text-white font-label-sm text-label-sm uppercase font-black shadow-[1.5px_1.5px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[12px]">priority_high</span>
+                      Overdue
+                    </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded border border-ink-charcoal bg-white hover:bg-mint-electric text-ink-charcoal transition-colors shadow-[1px_1px_0px_#1D1E24]" title="Inspect">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+</button>
+<button class="p-1 rounded border border-ink-charcoal bg-hot-coral text-white hover:bg-red-600 transition-colors shadow-[1px_1px_0px_#1D1E24]" title="Send Dunning Notice">
+<span class="material-symbols-outlined text-[16px]">notification_important</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 6: Paid -->
+<tr class="invoice-row hover:bg-[#FAF3E6] transition-colors cursor-pointer" data-id="INV-2024-00907">
+<td class="py-3 px-3">
+<span class="font-label-md text-label-md font-black text-ink-charcoal block">INV-2024-00907</span>
+<span class="font-body-sm text-[11px] text-ink-charcoal/70">Oct 19, 2024</span>
+</td>
+<td class="py-3 px-3">
+<div class="font-body-md text-body-md font-bold text-ink-charcoal">VaporStream Media</div>
+<div class="text-[11px] text-ink-charcoal/70">billing@vaporstream.com</div>
+</td>
+<td class="py-3 px-2">
+<span class="px-1.5 py-0.5 rounded border border-ink-charcoal bg-white font-label-sm text-label-sm text-ink-charcoal font-bold">SUB-3011</span>
+</td>
+<td class="py-3 px-2 text-ink-charcoal font-body-sm font-semibold">Nov 02, 2024</td>
+<td class="py-3 px-3 text-right font-headline-sm text-headline-sm text-ink-charcoal font-black">$12,500.00</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border-2 border-ink-charcoal bg-mint-electric text-ink-charcoal font-label-sm text-label-sm uppercase font-black shadow-[1.5px_1.5px_0px_#1D1E24]">
+<span class="w-1.5 h-1.5 rounded-full bg-ink-charcoal"></span>
+                      Paid
+                    </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded border border-ink-charcoal bg-white hover:bg-mint-electric text-ink-charcoal transition-colors shadow-[1px_1px_0px_#1D1E24]" title="Inspect">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+</button>
+<button class="p-1 rounded border border-ink-charcoal bg-white hover:bg-sun-yellow text-ink-charcoal transition-colors shadow-[1px_1px_0px_#1D1E24]" title="Print">
+<span class="material-symbols-outlined text-[16px]">print</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Quick Subscription Auto-Generator Drawer/Banner -->
+<div class="bg-[#FFFCE6] border-t-2 border-ink-charcoal p-space-md flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<span class="p-2 rounded border-2 border-ink-charcoal bg-sun-yellow text-ink-charcoal material-symbols-outlined text-[20px] shadow-[2px_2px_0px_#1D1E24]">autorenew</span>
+<div>
+<div class="font-label-md text-label-md uppercase text-ink-charcoal font-black">Pending Renewal Queue</div>
+<div class="font-body-sm text-body-sm text-ink-charcoal/80 font-medium">19 active subscriptions reach their scheduled anniversary today</div>
+</div>
+</div>
+<button class="neo-btn px-4 py-1.5 rounded bg-mint-electric text-ink-charcoal font-label-md text-label-md uppercase font-black flex items-center gap-1.5" id="batchProcessBtn">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+<span>Draft 19 Invoices ($38,400)</span>
+</button>
+</div>
+</div>
+<!-- Retro Hardware / Storage Banner (Aesthetic Touch from reference) -->
+<div class="neo-box bg-[#FFFDF9] rounded-lg p-space-md flex items-center justify-between relative overflow-hidden">
+<div class="flex items-center gap-4 z-10">
+<div class="w-12 h-12 rounded border-2 border-ink-charcoal bg-sun-yellow flex items-center justify-center text-ink-charcoal shadow-[2.5px_2.5px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[28px]">receipt</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm uppercase tracking-tight text-ink-charcoal font-black">Direct Bank Debit (ACH / SEPA)</span>
+<span class="font-body-sm text-body-sm text-ink-charcoal/80 font-medium">Auto-reconciliation connected with Stripe Billing &amp; Silicon Valley Bank feeds</span>
+</div>
+</div>
+<div class="flex items-center gap-3 z-10">
+<span class="px-2.5 py-1 rounded border-2 border-ink-charcoal bg-mint-electric text-ink-charcoal font-label-sm text-label-sm uppercase font-black shadow-[2px_2px_0px_#1D1E24]">Live Synced</span>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Printable Official Invoice Preview (90s Perforated Stationery Look) -->
+<div class="xl:col-span-5 flex flex-col gap-3 sticky top-20">
+<!-- Outer Retro Window Framing -->
+<div class="neo-box-lg bg-[#FAF3E6] rounded-lg overflow-hidden flex flex-col">
+<!-- Window Topbar with Retro OS Window Controls -->
+<div class="bg-[#FFF2B2] border-b-2 border-ink-charcoal px-space-md py-2 flex items-center justify-between select-none">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-ink-charcoal text-[18px]">print</span>
+<span class="font-label-md text-label-md uppercase text-ink-charcoal tracking-wider font-black">Document Preview: INV-2024-00912</span>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="w-5 h-5 rounded border border-ink-charcoal bg-white hover:bg-sun-yellow flex items-center justify-center font-label-sm text-[10px] text-ink-charcoal leading-none transition-colors shadow-[1px_1px_0px_#1D1E24]">_</button>
+<button class="w-5 h-5 rounded border border-ink-charcoal bg-white hover:bg-sun-yellow flex items-center justify-center font-label-sm text-[10px] text-ink-charcoal leading-none transition-colors shadow-[1px_1px_0px_#1D1E24]">□</button>
+<button class="w-5 h-5 rounded border border-ink-charcoal bg-hot-coral text-white hover:bg-red-600 flex items-center justify-center font-label-sm text-[10px] leading-none transition-colors shadow-[1px_1px_0px_#1D1E24]">×</button>
+</div>
+</div>
+<!-- Document Action Toolbar -->
+<div class="bg-white border-b-2 border-ink-charcoal px-space-md py-2 flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-1.5">
+<button class="neo-btn flex items-center gap-1.5 px-3 py-1.5 rounded bg-white text-ink-charcoal font-label-sm text-label-sm uppercase font-black" id="printActionBtn">
+<span class="material-symbols-outlined text-[15px]">print</span>
+<span>Print PDF</span>
+</button>
+<button class="neo-btn flex items-center gap-1.5 px-3 py-1.5 rounded bg-sun-yellow text-ink-charcoal font-label-sm text-label-sm uppercase font-black" id="emailActionBtn">
+<span class="material-symbols-outlined text-[15px]">send</span>
+<span>Email Customer</span>
+</button>
+</div>
+<button class="neo-btn flex items-center gap-1.5 px-3 py-1.5 rounded bg-mint-electric text-ink-charcoal font-label-sm text-label-sm uppercase font-black" id="manualPayBtn">
+<span class="material-symbols-outlined text-[15px]">paid</span>
+<span>Record Manual Payment</span>
+</button>
+</div>
+<!-- Printable Paper Area (90s Perforated Receipt / Modern Stationery) -->
+<div class="m-3 p-6 bg-white border-2 border-ink-charcoal rounded-lg shadow-[3px_3px_0px_#1D1E24] flex flex-col gap-5 relative" id="printableInvoiceCanvas">
+<!-- Perforated top bar strip -->
+<div class="w-full -mt-2 -mx-2 h-3 border-b-2 border-dashed border-ink-charcoal/30 flex justify-between items-center px-4">
+<span class="text-[9px] font-label-sm text-ink-charcoal/50 uppercase tracking-widest">● ● TEAR ALONG PERFORATION ● ●</span>
+<span class="text-[9px] font-label-sm text-ink-charcoal/50 uppercase tracking-widest">FORM-90B</span>
+</div>
+<!-- Header / Watermark -->
+<div class="flex items-start justify-between mt-1">
+<!-- Issuer Info -->
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<div class="w-9 h-9 rounded border-2 border-ink-charcoal bg-sun-yellow flex items-center justify-center text-ink-charcoal font-headline-sm text-headline-sm font-black shadow-[2px_2px_0px_#1D1E24]">
+  BL
+</div>
+<span class="font-headline-md text-headline-md tracking-tight uppercase text-ink-charcoal font-black">Brightloop</span>
+</div>
+<div class="font-body-sm text-body-sm text-ink-charcoal/80 mt-1 leading-snug font-medium">
+  Brightloop Technologies Inc.<br/>
+  844 Montgomery St, Floor 4<br/>
+  San Francisco, CA 94133 • USA<br/>
+<span class="font-label-sm text-label-sm text-ink-charcoal/60 font-bold">TAX ID: US-94-3991204</span>
+</div>
+</div>
+<!-- Invoice Reference & Stamp -->
+<div class="flex flex-col items-end text-right">
+<div class="px-3 py-1 rounded border-2 border-ink-charcoal bg-sun-yellow text-ink-charcoal font-headline-sm text-headline-sm uppercase tracking-wider font-black mb-1 shadow-[2px_2px_0px_#1D1E24]">
+  INVOICE
+</div>
+<span class="font-label-md text-label-md font-black text-ink-charcoal">#INV-2024-00912</span>
+<span class="font-body-sm text-body-sm text-ink-charcoal/70 mt-0.5 font-medium">Ref: SUB-8841 (Annual Pro)</span>
+<!-- Paid Retro Stamp (Bold Mint Accent) -->
+<div class="mt-2 px-3.5 py-1 rounded border-2 border-ink-charcoal bg-mint-electric text-ink-charcoal font-headline-sm text-headline-sm font-black uppercase tracking-widest rotate-[-4deg] shadow-[2.5px_2.5px_0px_#1D1E24]">
+  ✓ PAID IN FULL
+</div>
+</div>
+</div>
+<!-- Perforated Tear Line Visual Indicator -->
+<div class="relative w-full my-0.5 flex items-center justify-between">
+<div class="h-[2px] w-full border-t-2 border-dashed border-ink-charcoal/40"></div>
+<span class="absolute right-0 -top-2.5 text-[9px] font-label-sm text-ink-charcoal/70 bg-[#FFF2B2] px-1.5 border border-ink-charcoal uppercase tracking-widest font-black rounded-sm">ORIGINAL CUSTOMER COPY</span>
+</div>
+<!-- Meta Grid (Dates & Bill To) -->
+<div class="grid grid-cols-2 gap-4 bg-[#FFFDF9] border-2 border-ink-charcoal p-3.5 rounded-lg shadow-[2px_2px_0px_#1D1E24]">
+<div>
+<span class="font-label-sm text-label-sm uppercase text-ink-charcoal/60 block font-bold">Billed To</span>
+<div class="font-headline-sm text-headline-sm text-ink-charcoal font-black mt-0.5">PixelCraft Studios</div>
+<div class="font-body-sm text-body-sm text-ink-charcoal/80 leading-relaxed font-medium">
+  Attention: Marcus Vance<br/>
+  204 Industrial Blvd, Suite 800<br/>
+  Austin, TX 78701<br/>
+<span class="text-ink-charcoal font-bold underline">marcus@pixelcraft.io</span>
+</div>
+</div>
+<div class="flex flex-col justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase text-ink-charcoal/60 block font-bold">Invoice Issue Date</span>
+<span class="font-body-md text-body-md font-bold text-ink-charcoal">October 24, 2024</span>
+</div>
+<div class="mt-1">
+<span class="font-label-sm text-label-sm uppercase text-ink-charcoal/60 block font-bold">Payment Terms &amp; Due</span>
+<span class="font-body-md text-body-md font-bold text-ink-charcoal">Net 14 • Due Nov 07, 2024</span>
+</div>
+<div class="mt-1">
+<span class="font-label-sm text-label-sm uppercase text-ink-charcoal/60 block font-bold">Settlement Method</span>
+<span class="font-label-md text-label-md text-ink-charcoal font-black bg-mint-electric px-1.5 py-0.5 border border-ink-charcoal rounded inline-block">Stripe Card (•• 8941)</span>
+</div>
+</div>
+</div>
+<!-- Itemized Breakdown Table -->
+<div class="rounded-lg border-2 border-ink-charcoal bg-white overflow-hidden shadow-[2px_2px_0px_#1D1E24]">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-[#FAF3E6] border-b-2 border-ink-charcoal font-label-sm text-label-sm text-ink-charcoal uppercase tracking-wider font-black">
+<tr>
+<th class="py-2 px-3">Item / Service</th>
+<th class="py-2 px-2 text-center">Qty</th>
+<th class="py-2 px-2 text-right">Unit Price</th>
+<th class="py-2 px-2 text-center">Tax</th>
+<th class="py-2 px-3 text-right">Total</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-ink-charcoal/10">
+<tr>
+<td class="py-2.5 px-3">
+<div class="font-body-md text-body-md font-bold text-ink-charcoal">Enterprise Growth Plan</div>
+<div class="text-[11px] text-ink-charcoal/70">Annual billing cycle (Oct 24, 2024 – Oct 24, 2025)</div>
+</td>
+<td class="py-2.5 px-2 text-center font-bold">1</td>
+<td class="py-2.5 px-2 text-right font-semibold">$2,400.00</td>
+<td class="py-2.5 px-2 text-center text-ink-charcoal/70 font-bold">18%</td>
+<td class="py-2.5 px-3 text-right font-black text-ink-charcoal">$2,400.00</td>
+</tr>
+<tr>
+<td class="py-2.5 px-3">
+<div class="font-body-md text-body-md font-bold text-ink-charcoal">High-Volume Events Add-on</div>
+<div class="text-[11px] text-ink-charcoal/70">500,000 webhook events / month bundle</div>
+</td>
+<td class="py-2.5 px-2 text-center font-bold">2</td>
+<td class="py-2.5 px-2 text-right font-semibold">$350.00</td>
+<td class="py-2.5 px-2 text-center text-ink-charcoal/70 font-bold">18%</td>
+<td class="py-2.5 px-3 text-right font-black text-ink-charcoal">$700.00</td>
+</tr>
+<tr>
+<td class="py-2.5 px-3">
+<div class="font-body-md text-body-md font-bold text-ink-charcoal">Dedicated IP Pool &amp; Warmup</div>
+<div class="text-[11px] text-ink-charcoal/70">Managed deliverability routing</div>
+</td>
+<td class="py-2.5 px-2 text-center font-bold">1</td>
+<td class="py-2.5 px-2 text-right font-semibold">$500.00</td>
+<td class="py-2.5 px-2 text-center text-ink-charcoal/70 font-bold">18%</td>
+<td class="py-2.5 px-3 text-right font-black text-ink-charcoal">$500.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Calculation & Discount Breakdown -->
+<div class="flex flex-col sm:flex-row items-start justify-between gap-4 pt-1">
+<div class="w-full sm:w-1/2 p-3 rounded-lg border-2 border-ink-charcoal bg-[#FFEBF0] flex flex-col gap-1.5 shadow-[2px_2px_0px_#1D1E24]">
+<span class="font-label-sm text-label-sm uppercase text-hot-coral font-black">Promotions &amp; Deductions</span>
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-hot-coral font-black flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">loyalty</span>
+  Autumn SaaS Promo (10%)
+</span>
+<span class="text-hot-coral font-black bg-white px-1.5 py-0.2 border border-ink-charcoal rounded">-$150.00</span>
+</div>
+<div class="text-[11px] text-ink-charcoal/80 mt-1 leading-snug font-medium">
+  Coupon applied automatically via marketing referral program.
+</div>
+</div>
+<!-- Totals Block -->
+<div class="w-full sm:w-1/2 flex flex-col gap-1.5 font-medium">
+<div class="flex items-center justify-between font-body-sm text-body-sm text-ink-charcoal/80">
+<span>Subtotal Amount:</span>
+<span class="font-bold text-ink-charcoal">$3,600.00</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-ink-charcoal/80">
+<span>Promotional Discount:</span>
+<span class="text-hot-coral font-bold">-$150.00</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-ink-charcoal/80">
+<span>GST / VAT (Calculated):</span>
+<span class="text-ink-charcoal font-bold">$0.00 (Reverse Charged)</span>
+</div>
+<!-- Final Amount Due Banner (Electric Mint & Bold Yellow Accent) -->
+<div class="mt-2 p-3 rounded-lg border-2 border-ink-charcoal bg-mint-electric text-ink-charcoal flex items-center justify-between shadow-[3px_3px_0px_#1D1E24]">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase font-black tracking-wider">Total Amount Due</span>
+<span class="text-[10px] uppercase font-bold text-ink-charcoal/80">Paid on Oct 24, 2024</span>
+</div>
+<span class="font-headline-lg text-headline-lg font-black tracking-tight text-ink-charcoal">$3,450.00</span>
+</div>
+</div>
+</div>
+<!-- Legal / Micro Footer -->
+<div class="pt-3 border-t-2 border-dashed border-ink-charcoal/30 flex flex-col items-center justify-center text-center gap-1 font-body-sm text-[11px] text-ink-charcoal/70">
+<span class="font-medium">Thank you for choosing Brightloop. Subscriptions automatically renew unless canceled 48h prior to next billing date.</span>
+<div class="flex items-center gap-3 font-label-sm text-[10px] text-ink-charcoal/60 uppercase tracking-widest mt-0.5 font-black">
+<span>SECURITY DIGEST: 8F2A-91C0</span>
+<span>•</span>
+<span>GENERATED BY RETRO BILLING BOT v2.4</span>
+</div>
+</div>
+</div>
+<!-- Bottom Action Confirmation Bar inside Window -->
+<div class="bg-[#FFF2B2] border-t-2 border-ink-charcoal p-space-sm flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-ink-charcoal font-bold">Audit state: Immutable snapshot verified</span>
+<div class="flex items-center gap-2">
+<button class="neo-btn px-3 py-1 rounded bg-white text-ink-charcoal font-label-sm text-label-sm uppercase font-black">
+  Download JSON
+</button>
+<button class="neo-btn px-3 py-1 rounded bg-sun-yellow text-ink-charcoal font-label-sm text-label-sm uppercase font-black">
+  Share Link
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Filter tabs click logic
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab').forEach(t => {
+        t.classList.remove('bg-sun-yellow', 'border-2', 'border-ink-charcoal', 'shadow-[2px_2px_0px_#1D1E24]', 'font-black');
+        t.classList.add('text-ink-charcoal', 'font-bold');
+      });
+      tab.classList.add('bg-sun-yellow', 'border-2', 'border-ink-charcoal', 'shadow-[2px_2px_0px_#1D1E24]', 'font-black');
+      tab.classList.remove('font-medium');
+    });
+  });
+
+  // Highlight selected table row
+  document.querySelectorAll('.invoice-row').forEach(row => {
+    row.addEventListener('click', () => {
+      document.querySelectorAll('.invoice-row').forEach(r => {
+        r.classList.remove('bg-[#E6FFF9]', 'border-l-4', 'border-l-mint-electric');
+      });
+      row.classList.add('bg-[#E6FFF9]', 'border-l-4', 'border-l-mint-electric');
+    });
+  });
+
+  // Action feedback micro-interactions
+  document.getElementById('printActionBtn')?.addEventListener('click', () => {
+    window.print();
+  });
+
+  document.getElementById('emailActionBtn')?.addEventListener('click', function() {
+    const originalText = this.innerHTML;
+    this.innerHTML = '<span class="material-symbols-outlined text-[15px] animate-spin">sync</span><span>Sending...</span>';
+    setTimeout(() => {
+      this.innerHTML = '<span class="material-symbols-outlined text-[15px]">check</span><span>Dispatched!</span>';
+      setTimeout(() => {
+        this.innerHTML = originalText;
+      }, 2000);
+    }, 800);
+  });
+
+  document.getElementById('runSweepBtn')?.addEventListener('click', function() {
+    const originalText = this.innerHTML;
+    this.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span><span>Processing Queue...</span>';
+    setTimeout(() => {
+      this.innerHTML = '<span class="material-symbols-outlined text-[18px]">done_all</span><span>Cycle Completed (0 Errors)</span>';
+      setTimeout(() => {
+        this.innerHTML = originalText;
+      }, 2500);
+    }, 1200);
+  });
+</script></main></div></body></html>

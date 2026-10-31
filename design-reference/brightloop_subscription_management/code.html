@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+<html lang="en" style=""><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;background-color:#FFF8EE;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface": "#FFF8EE", "surface-bright": "#FFFBF5", "surface-container-lowest": "#FFFFFF", "surface-container-low": "#FFF3E2", "surface-container": "#FDECD2", "surface-container-high": "#F5DEBE", "surface-container-highest": "#EED0AA", "surface-dim": "#E5C299", "on-surface": "#1D1E24", "on-surface-variant": "#2F313D", "outline": "#606275", "outline-variant": "#9295AA", "inverse-surface": "#1D1E24", "primary": "#008F7A", "primary-container": "#00E5C9", "on-primary-container": "#003D34", "primary-fixed": "#38EFD0", "primary-fixed-dim": "#00CBAF", "secondary": "#C78B00", "secondary-container": "#FFD600", "on-secondary-container": "#3F2C00", "secondary-fixed": "#FFE156", "tertiary": "#D62246", "tertiary-container": "#FF6B8B", "on-tertiary-container": "#5C0015", "mint-neon": "#00E5C9", "yellow-sun": "#FFD600", "amber-glow": "#FFAA00", "cyan-pop": "#00C2E8", "coral-pop": "#FF5252", "ink-black": "#1D1E24" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "gutter": "1.25rem", "gutter-mobile": "0.75rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "margin": "2rem", "space-xl": "2.25rem", "space-md": "1rem", "space-sm": "0.5rem", "margin-mobile": "1rem" }, "fontFamily": { "label-md": ["Space Grotesk", "sans-serif"], "body-sm": ["Plus Jakarta Sans", "sans-serif"], "headline-xl": ["Space Grotesk", "sans-serif"], "label-sm": ["Space Grotesk", "sans-serif"], "headline-lg": ["Space Grotesk", "sans-serif"], "headline-md": ["Space Grotesk", "sans-serif"], "body-md": ["Plus Jakarta Sans", "sans-serif"], "headline-xl-mobile": ["Space Grotesk", "sans-serif"], "headline-lg-mobile": ["Space Grotesk", "sans-serif"], "body-lg": ["Plus Jakarta Sans", "sans-serif"], "headline-sm": ["Space Grotesk", "sans-serif"], "label-lg": ["Space Grotesk", "sans-serif"] } } } }</script></head><body class="bg-[#FFF8EE] font-body-md text-[#1D1E24] antialiased min-h-screen selection:bg-[#00E5C9] selection:text-[#1D1E24]"><aside class="fixed left-0 top-0 h-screen w-72 bg-[#FFF3E2] border-r-2 border-[#1D1E24] z-50 flex flex-col justify-between select-none shadow-[3px_0px_0px_#1D1E24]"><div class="flex flex-col h-full overflow-hidden"><div class="p-space-md border-b-2 border-[#1D1E24] bg-[#FFD600] flex items-center justify-between shadow-[0_2px_0px_#1D1E24]"><div class="flex items-center gap-space-sm"><img alt="Brightloop Retro SaaS Logo" class="h-8 w-auto object-contain drop-shadow-[1px_1px_0px_#1D1E24]" src="https://lh3.googleusercontent.com/aida/AEtjO1Xsivtj-tPOaHXD5dIu7yCQVnMF6jOpeiXMH_1PdXnsikV8oT4F3jEiPdN0oc944gng0j6Zt2vyusNWasNN48aD-jZy0i7HKLwodoUotRrVhl_YMezAG0dP1F6T0vSunykCTUXjaehHYJhb3Tj2o3QqbmdQ83RyKdW8R_hyXwlaHKchtaQ3W3wJxwWfM-ld1I5GEXTM0usDwIcCXubUfAPZNI6Ljv2bVL-KXrnxwtXc"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm uppercase text-[#1D1E24] font-extrabold tracking-tight leading-none">Brightloop</span><span class="font-label-sm text-[10px] text-[#1D1E24] font-bold tracking-widest bg-white/70 px-1 py-0.2 border border-[#1D1E24] mt-0.5 w-max">SUB.SYS_v2.4</span></div></div><div class="flex items-center gap-1"><div class="w-3.5 h-3.5 border-2 border-[#1D1E24] bg-white flex items-center justify-center font-label-sm text-[8px] leading-none cursor-pointer font-bold shadow-[1px_1px_0px_#1D1E24]">_</div><div class="w-3.5 h-3.5 border-2 border-[#1D1E24] bg-white flex items-center justify-center font-label-sm text-[8px] leading-none cursor-pointer font-bold shadow-[1px_1px_0px_#1D1E24]">□</div><div class="w-3.5 h-3.5 border-2 border-[#1D1E24] bg-[#FF5252] text-white flex items-center justify-center font-label-sm text-[9px] leading-none cursor-pointer font-bold shadow-[1px_1px_0px_#1D1E24]">×</div></div></div><div class="p-space-sm border-b-2 border-[#1D1E24] bg-[#FDECD2]"><div class="text-[10px] font-label-sm uppercase text-[#1D1E24] font-bold tracking-wider mb-1 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#00E5C9] border border-[#1D1E24]"></span>Workspace Mode</div><div class="grid grid-cols-3 gap-1 bg-white p-0.5 border-2 border-[#1D1E24] shadow-[2px_2px_0px_#1D1E24]"><button class="py-1 font-label-sm text-label-sm text-center uppercase bg-[#00E5C9] text-[#1D1E24] font-bold border border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24]">Admin</button><button class="py-1 font-label-sm text-label-sm text-center uppercase text-[#1D1E24] hover:bg-[#FFD600] font-semibold transition-colors">Staff</button><button class="py-1 font-label-sm text-label-sm text-center uppercase text-[#1D1E24] hover:bg-[#FFD600] font-semibold transition-colors">Portal</button></div></div><nav class="flex-1 overflow-y-auto p-space-sm flex flex-col gap-1.5" data-active-classes="bg-[#00E5C9] text-[#1D1E24] font-bold border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] translate-x-1"><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-[#1D1E24] hover:bg-[#FDECD2] hover:border-2 hover:border-[#1D1E24] transition-all border-2 border-transparent font-bold" data-path="overview" href="#"><span class="material-symbols-outlined text-[19px]">dashboard</span><span class="">Overview</span></a><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-[#1D1E24] hover:bg-[#FDECD2] hover:border-2 hover:border-[#1D1E24] transition-all border-2 border-transparent font-bold" data-path="products" href="#"><span class="material-symbols-outlined text-[19px]">inventory_2</span><span class="">Products</span></a><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-[#1D1E24] hover:bg-[#FDECD2] hover:border-2 hover:border-[#1D1E24] transition-all border-2 border-transparent font-bold" data-path="plans" href="#"><span class="material-symbols-outlined text-[19px]">layers</span><span class="">Plans</span></a><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-[#1D1E24] hover:bg-[#FDECD2] hover:border-2 hover:border-[#1D1E24] transition-all border-2 border-transparent font-bold" data-path="customers" href="#"><span class="material-symbols-outlined text-[19px]">group</span><span class="">Customers</span></a><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-[#1D1E24] hover:bg-[#FDECD2] hover:border-2 hover:border-[#1D1E24] transition-all border-2 border-transparent font-bold" data-path="quotations" href="#"><span class="material-symbols-outlined text-[19px]">request_quote</span><span class="">Quotations</span></a><a aria-current="page" class="flex items-center gap-2.5 px-3 py-1.5 transition-all bg-[#00E5C9] text-[#1D1E24] font-bold border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] translate-x-1" data-path="subscriptions" href="#"><span class="material-symbols-outlined text-[19px] font-bold">autorenew</span><span class="tracking-wide">Subscriptions</span><span class="ml-auto w-2 h-2 rounded-full bg-[#FFD600] border border-[#1D1E24]"></span></a><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-[#1D1E24] hover:bg-[#FDECD2] hover:border-2 hover:border-[#1D1E24] transition-all border-2 border-transparent font-bold" data-path="invoices" href="#"><span class="material-symbols-outlined text-[19px]">receipt_long</span><span class="">Invoices</span></a><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-[#1D1E24] hover:bg-[#FDECD2] hover:border-2 hover:border-[#1D1E24] transition-all border-2 border-transparent font-bold" data-path="discounts" href="#"><span class="material-symbols-outlined text-[19px]">loyalty</span><span class="">Discounts</span></a><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-[#1D1E24] hover:bg-[#FDECD2] hover:border-2 hover:border-[#1D1E24] transition-all border-2 border-transparent font-bold" data-path="payments" href="#"><span class="material-symbols-outlined text-[19px]">payments</span><span class="">Payments</span></a><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-[#1D1E24] hover:bg-[#FDECD2] hover:border-2 hover:border-[#1D1E24] transition-all border-2 border-transparent font-bold" data-path="reports-and-analytics" href="#"><span class="material-symbols-outlined text-[19px]">analytics</span><span class="">Reports &amp; Analytics</span></a><div class="my-1 border-t-2 border-[#1D1E24]"></div><a class="flex items-center justify-between px-3 py-1.5 font-label-md text-label-md text-[#1D1E24] hover:bg-[#FDECD2] hover:border-2 hover:border-[#1D1E24] transition-all border-2 border-transparent font-bold" data-path="staff-management" href="#"><div class="flex items-center gap-2.5"><span class="material-symbols-outlined text-[19px]">badge</span><span class="">Staff Mgmt</span></div><span class="px-1.5 py-0.2 bg-[#FFD600] text-[#1D1E24] border-2 border-[#1D1E24] font-label-sm text-[9px] font-extrabold shadow-[1px_1px_0px_#1D1E24]">ADMIN</span></a><a class="flex items-center gap-2.5 px-3 py-1.5 font-label-md text-label-md text-[#1D1E24] hover:bg-[#FDECD2] hover:border-2 hover:border-[#1D1E24] transition-all border-2 border-transparent font-bold" data-path="settings" href="#"><span class="material-symbols-outlined text-[19px]">settings</span><span class="">Settings</span></a></nav><div class="p-space-sm border-t-2 border-[#1D1E24] bg-[#FDECD2] flex flex-col gap-2"><div class="flex items-center justify-between px-2.5 py-1.5 bg-white border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24]"><div class="flex items-center gap-2"><span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00E5C9] opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-[#008F7A] border border-[#1D1E24]"></span></span><span class="font-label-sm text-label-sm text-[#1D1E24] font-bold uppercase">v2.4 Live</span></div><span class="font-label-sm text-[11px] font-bold px-1.5 bg-[#00E5C9] border border-[#1D1E24]">99.98%</span></div><a class="flex items-center justify-center gap-2 px-3 py-1.5 font-label-md text-label-md uppercase bg-white hover:bg-[#FF6B8B] text-[#1D1E24] font-bold border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] active:translate-x-0.5 active:translate-y-0.5 transition-all" data-path="logout" href="#"><span class="material-symbols-outlined text-[16px]">logout</span><span class="">Log Out</span></a></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-[#FFF8EE] border-b-2 border-[#1D1E24] z-40 px-gutter flex items-center justify-between shadow-[0_3px_0px_#1D1E24]"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-2 text-[#1D1E24] font-label-md text-label-md font-bold"><span class="px-2 py-0.5 bg-[#FFD600] border-2 border-[#1D1E24] shadow-[2px_2px_0px_#1D1E24] uppercase">SYSTEM</span><span class="material-symbols-outlined text-[#1D1E24] text-[16px]">arrow_forward</span><span class="px-2 py-0.5 bg-white border-2 border-[#1D1E24] shadow-[2px_2px_0px_#1D1E24] uppercase">Workspace</span></div><div class="relative flex items-center w-80"><span class="material-symbols-outlined absolute left-2.5 text-[#1D1E24] text-[18px]">search</span><input class="w-full pl-9 pr-12 py-1.5 bg-white border-2 border-[#1D1E24] text-[#1D1E24] font-body-sm text-body-sm shadow-[3px_3px_0px_#1D1E24] focus:bg-[#FFFBF5] focus:outline-none placeholder:text-[#606275] font-medium" placeholder="Search subscriptions, plans, users..." type="text"/><span class="absolute right-2 px-1.5 py-0.2 bg-[#FDECD2] border border-[#1D1E24] font-label-sm text-[10px] text-[#1D1E24] font-bold">⌘K</span></div></div><div class="flex items-center gap-3"><div class="flex items-center gap-2"><button class="flex items-center gap-1.5 px-3 py-1.5 font-label-md text-label-md uppercase bg-[#00E5C9] text-[#1D1E24] border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] hover:bg-[#38EFD0] active:translate-x-0.5 active:translate-y-0.5 transition-all font-extrabold"><span class="material-symbols-outlined text-[18px]">add</span><span class="">Quotation</span></button><button class="flex items-center gap-1.5 px-3 py-1.5 font-label-md text-label-md uppercase bg-[#FFD600] text-[#1D1E24] border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] hover:bg-[#FFE156] active:translate-x-0.5 active:translate-y-0.5 transition-all font-extrabold"><span class="material-symbols-outlined text-[18px]">person_add</span><span class="">Customer</span></button></div><div class="h-6 w-0.5 bg-[#1D1E24] mx-1"></div><div class="flex items-center gap-2"><button class="relative p-1.5 bg-white border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] hover:bg-[#FFD600] active:translate-x-0.5 active:translate-y-0.5 transition-all text-[#1D1E24] flex items-center justify-center"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute -top-2 -right-2 px-1.5 py-0.2 bg-[#FF5252] text-white font-label-sm text-[9px] border-2 border-[#1D1E24] font-extrabold leading-tight shadow-[1px_1px_0px_#1D1E24]">4</span></button><button class="p-1.5 bg-white border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] hover:bg-[#FFD600] active:translate-x-0.5 active:translate-y-0.5 transition-all text-[#1D1E24] flex items-center justify-center"><span class="material-symbols-outlined text-[20px]">help</span></button></div><div class="h-6 w-0.5 bg-[#1D1E24] mx-1"></div><div class="flex items-center gap-2 pl-1 py-1 pr-2 bg-white border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] cursor-pointer hover:bg-[#FDECD2] transition-colors"><img alt="Profile" class="w-8 h-8 object-cover border-2 border-[#1D1E24]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoRG5fzgoj76JWJQ3KJJeO0DGYETUiGuNlf-2xkt1Hsb6xzRT7aEiLn9AWu8f_qinFTb73K5BFCrrD2oz9T_rSERgmmrZllrNw_5qnR8h-8GwsrI71KpkGKBA5MWsai0ClAisdF5SuZWM0RXWRLjxQzC6YXcRan4Z821MnLZbkxnN5BqBkBBegJsWQ5rPrYollyAbCc8vuhWJknrOMG2Ct4jBMT4rebDX2bwRgDEs"/><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-[#1D1E24] font-bold leading-tight">Samira Jenkins</span><span class="font-label-sm text-[9px] uppercase px-1 py-0.2 bg-[#FFD600] border border-[#1D1E24] text-[#1D1E24] font-black leading-tight inline-block w-max">Super Admin</span></div><span class="material-symbols-outlined text-[16px] text-[#1D1E24] ml-1">expand_more</span></div></div></header><main class="w-full pt-16 bg-[#FFF8EE] min-h-[calc(100vh-4rem)]"><div class="flex flex-col w-full">
+<div class="p-gutter flex flex-col gap-6 max-w-[1400px] mx-auto w-full">
+<!-- Top Stats Banner & Header -->
+<section class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-white border-2 border-[#1D1E24] p-space-md shadow-[4px_4px_0px_#1D1E24]">
+<div class="flex flex-col md:flex-row md:items-center gap-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-[#FFD600] border-2 border-[#1D1E24] flex items-center justify-center shadow-[3px_3px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[28px] text-[#1D1E24] font-extrabold">autorenew</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h1 class="font-headline-md text-headline-md tracking-tight uppercase font-extrabold text-[#1D1E24]">Subscription Management</h1>
+<span class="font-label-sm text-[10px] px-2 py-0.5 bg-[#00E5C9] text-[#1D1E24] font-black border-2 border-[#1D1E24] shadow-[2px_2px_0px_#1D1E24]">SYS.LIVE</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#606275] font-medium">Manage end-to-end subscriber lifecycles, contract renewals &amp; billing terms</p>
+</div>
+</div>
+<div class="hidden sm:flex items-center gap-2.5 pl-4 border-l-2 border-[#1D1E24]">
+<div class="px-3.5 py-1.5 bg-[#FFF8EE] border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24]">
+<span class="font-label-sm text-[10px] uppercase text-[#606275] font-bold block">Active Volume</span>
+<span class="font-headline-sm text-headline-sm text-[#1D1E24] font-extrabold">1,842 Subs</span>
+</div>
+<div class="px-3.5 py-1.5 bg-[#FFF8EE] border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24]">
+<span class="font-label-sm text-[10px] uppercase text-[#606275] font-bold block">Net Run Rate</span>
+<span class="font-headline-sm text-headline-sm text-[#008F7A] font-extrabold">$184.2k <span class="font-label-sm text-[11px] text-[#1D1E24] font-bold">/mo</span></span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-1.5 px-3 py-2 font-label-md text-label-md uppercase bg-white text-[#1D1E24] border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] hover:bg-[#FDECD2] active:translate-x-0.5 active:translate-y-0.5 transition-all font-bold">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span class="">Batch Export</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 font-label-md text-label-md uppercase bg-[#FFD600] text-[#1D1E24] border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] hover:bg-[#FFE156] active:translate-x-0.5 active:translate-y-0.5 transition-all font-black tracking-wide" id="btnCreateSub">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span class="">+ Create Subscription</span>
+</button>
+</div>
+</section>
+<!-- 5-Stage Retro Pipeline Stepper Ribbons (High Vibrancy 90s Colors) -->
+<section class="bg-white border-2 border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24]">
+<div class="p-space-sm bg-[#FFD600] border-b-2 border-[#1D1E24] flex items-center justify-between font-bold">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-[#1D1E24] font-black">LIFECYCLE PIPELINE PROTOCOL</span>
+<span class="font-label-sm text-[10px] px-2 py-0.2 bg-white text-[#1D1E24] border border-[#1D1E24] font-extrabold shadow-[1px_1px_0px_#1D1E24]">5 PHASES</span>
+</div>
+<span class="font-label-sm text-[11px] text-[#1D1E24] bg-white/70 px-2 py-0.5 border border-[#1D1E24] font-bold">CLICK STAGE TO FAST-FILTER</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 divide-y-2 lg:divide-y-0 lg:divide-x-2 divide-[#1D1E24]">
+<!-- Draft: Soft Cream/Yellow -->
+<button class="lifecycle-step flex flex-col p-3.5 text-left bg-[#FFF8EE] hover:bg-[#FFF0DC] transition-colors group relative" onclick="filterLifecycle('draft')">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label-sm text-[10px] text-[#606275] uppercase font-bold tracking-wider">Phase 01</span>
+<span class="w-3 h-3 rounded-full border-2 border-[#1D1E24] bg-[#FFE0A3]"></span>
+</div>
+<div class="font-headline-sm text-headline-sm uppercase text-[#1D1E24] font-extrabold tracking-tight">Draft</div>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-[#1D1E24]/20">
+<span class="font-label-md text-label-md font-bold text-[#1D1E24]">18 Queued</span>
+<span class="font-label-sm text-[11px] px-1.5 py-0.2 bg-white border border-[#1D1E24] font-bold shadow-[1px_1px_0px_#1D1E24] group-hover:bg-[#FFD600]">Edit</span>
+</div>
+</button>
+<!-- Quotation: Warm Amber / Sunburst -->
+<button class="lifecycle-step flex flex-col p-3.5 text-left bg-[#FFF4D4] hover:bg-[#FFE8A3] transition-colors group relative" onclick="filterLifecycle('quotation')">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label-sm text-[10px] text-[#B87A00] uppercase font-bold tracking-wider">Phase 02</span>
+<span class="w-3 h-3 rounded-full border-2 border-[#1D1E24] bg-[#FFAA00]"></span>
+</div>
+<div class="font-headline-sm text-headline-sm uppercase text-[#1D1E24] font-extrabold tracking-tight">Quotation</div>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-[#1D1E24]/20">
+<span class="font-label-md text-label-md font-black text-[#B87A00]">56 Issued</span>
+<span class="font-label-sm text-[11px] px-1.5 py-0.2 bg-[#FFD600] text-[#1D1E24] border border-[#1D1E24] font-black shadow-[1px_1px_0px_#1D1E24]">$64.2k</span>
+</div>
+</button>
+<!-- Confirmed: Cyan Pop -->
+<button class="lifecycle-step flex flex-col p-3.5 text-left bg-[#E0F9FF] hover:bg-[#B8F2FF] transition-colors group relative" onclick="filterLifecycle('confirmed')">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label-sm text-[10px] text-[#007A99] uppercase font-bold tracking-wider">Phase 03</span>
+<span class="w-3 h-3 rounded-full border-2 border-[#1D1E24] bg-[#00C2E8]"></span>
+</div>
+<div class="font-headline-sm text-headline-sm uppercase text-[#1D1E24] font-extrabold tracking-tight">Confirmed</div>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-[#1D1E24]/20">
+<span class="font-label-md text-label-md font-black text-[#007A99]">94 Signed</span>
+<span class="font-label-sm text-[11px] px-1.5 py-0.2 bg-white text-[#1D1E24] border border-[#1D1E24] font-bold shadow-[1px_1px_0px_#1D1E24]">Awaiting Auth</span>
+</div>
+</button>
+<!-- Active: Electric Mint (Current / Highlighted) -->
+<button class="lifecycle-step flex flex-col p-3.5 text-left bg-[#00E5C9] hover:bg-[#38EFD0] transition-colors group relative shadow-[inset_0_0_0_2px_#1D1E24]" onclick="filterLifecycle('active')">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label-sm text-[10px] text-[#004D40] uppercase font-black tracking-wider">Phase 04 · CURRENT</span>
+<span class="w-3.5 h-3.5 rounded-full border-2 border-[#1D1E24] bg-[#008F7A] animate-pulse"></span>
+</div>
+<div class="font-headline-sm text-headline-sm uppercase text-[#1D1E24] font-black tracking-tight">Active</div>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-[#1D1E24]/30">
+<span class="font-label-md text-label-md font-black text-[#003D34]">1,842 In-Cycle</span>
+<span class="font-label-sm text-[11px] px-1.5 py-0.2 bg-[#1D1E24] text-[#00E5C9] border border-[#1D1E24] font-black">98.4% MRR</span>
+</div>
+</button>
+<!-- Closed / Paused: Vivid Coral -->
+<button class="lifecycle-step flex flex-col p-3.5 text-left bg-[#FFE6E8] hover:bg-[#FFD1D6] transition-colors group relative" onclick="filterLifecycle('closed')">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label-sm text-[10px] text-[#C21838] uppercase font-bold tracking-wider">Phase 05</span>
+<span class="w-3 h-3 rounded-full border-2 border-[#1D1E24] bg-[#FF5252]"></span>
+</div>
+<div class="font-headline-sm text-headline-sm uppercase text-[#1D1E24] font-extrabold tracking-tight">Closed / Paused</div>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-[#1D1E24]/20">
+<span class="font-label-md text-label-md font-bold text-[#C21838]">53 Accounts</span>
+<span class="font-label-sm text-[11px] px-1.5 py-0.2 bg-[#FF6B8B] text-white border border-[#1D1E24] font-bold shadow-[1px_1px_0px_#1D1E24]">31 Paused</span>
+</div>
+</button>
+</div>
+</section>
+<!-- Filter Tabstrip & Search Toolbar -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+<!-- Tabs -->
+<div class="flex items-center flex-wrap gap-1.5 bg-white p-1.5 border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24]">
+<button class="tab-btn px-3 py-1 font-label-md text-label-md uppercase bg-white text-[#1D1E24] border-2 border-transparent font-bold hover:bg-[#FDECD2] transition-colors" onclick="setFilter(this, 'all')">All (2,045)</button>
+<button class="tab-btn px-3 py-1 font-label-md text-label-md uppercase bg-[#00E5C9] text-[#1D1E24] border-2 border-[#1D1E24] font-extrabold shadow-[2px_2px_0px_#1D1E24]" onclick="setFilter(this, 'active')">Active (1,842)</button>
+<button class="tab-btn px-3 py-1 font-label-md text-label-md uppercase bg-white text-[#1D1E24] border-2 border-transparent font-bold hover:bg-[#FDECD2] transition-colors" onclick="setFilter(this, 'confirmed')">Confirmed (94)</button>
+<button class="tab-btn px-3 py-1 font-label-md text-label-md uppercase bg-white text-[#1D1E24] border-2 border-transparent font-bold hover:bg-[#FDECD2] transition-colors" onclick="setFilter(this, 'quotations')">Quotations (56)</button>
+<button class="tab-btn px-3 py-1 font-label-md text-label-md uppercase bg-white text-[#1D1E24] border-2 border-transparent font-bold hover:bg-[#FDECD2] transition-colors" onclick="setFilter(this, 'paused')">Paused (31)</button>
+<button class="tab-btn px-3 py-1 font-label-md text-label-md uppercase bg-white text-[#1D1E24] border-2 border-transparent font-bold hover:bg-[#FDECD2] transition-colors" onclick="setFilter(this, 'expired')">Expired/Closed (22)</button>
+</div>
+<!-- Search & Sort Controls -->
+<div class="flex items-center gap-2">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-2 text-[18px] text-[#1D1E24]">filter_list</span>
+<input class="pl-8 pr-3 py-1.5 text-body-sm font-body-sm bg-white border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] focus:outline-none w-64 font-medium" id="tableSearch" placeholder="Search subscription code, customer..." type="text"/>
+</div>
+<select class="px-2.5 py-1.5 font-label-sm text-label-sm uppercase bg-white border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] cursor-pointer font-bold">
+<option>Sort: Renewal Date (Earliest)</option>
+<option>Sort: Subscription Amount (High-Low)</option>
+<option>Sort: Recent Created</option>
+</select>
+</div>
+</div>
+<!-- Main Retro Card & Data Table -->
+<div class="bg-white border-2 border-[#1D1E24] shadow-[5px_5px_0px_#1D1E24]">
+<!-- Card Window Header -->
+<div class="p-space-sm bg-[#FFD600] border-b-2 border-[#1D1E24] flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3.5 h-3.5 bg-[#00E5C9] border-2 border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24]"></span>
+<span class="font-headline-sm text-headline-sm uppercase tracking-tight font-extrabold text-[#1D1E24]">Active Subscriptions Directory</span>
+<span class="font-label-sm text-[10px] px-2 py-0.5 bg-white text-[#1D1E24] border border-[#1D1E24] font-black shadow-[1px_1px_0px_#1D1E24]">SHOWING 6 OF 1,842</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm text-[#1D1E24] mr-2 font-bold">LAYOUT: VINTAGE GUI</span>
+<div class="w-4 h-4 border-2 border-[#1D1E24] bg-white flex items-center justify-center font-label-sm text-[10px] font-bold cursor-pointer shadow-[1px_1px_0px_#1D1E24]">_</div>
+<div class="w-4 h-4 border-2 border-[#1D1E24] bg-white flex items-center justify-center font-label-sm text-[10px] font-bold cursor-pointer shadow-[1px_1px_0px_#1D1E24]">□</div>
+<div class="w-4 h-4 border-2 border-[#1D1E24] bg-[#FF5252] text-white flex items-center justify-center font-label-sm text-[10px] font-bold cursor-pointer shadow-[1px_1px_0px_#1D1E24]">×</div>
+</div>
+</div>
+<!-- The Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#FFF3E2] border-b-2 border-[#1D1E24] font-label-md text-label-md uppercase text-[#1D1E24] select-none font-bold">
+<th class="p-3 w-10 text-center border-r-2 border-[#1D1E24]">
+<input class="w-4 h-4 accent-[#008F7A] cursor-pointer border-2 border-[#1D1E24]" type="checkbox"/>
+</th>
+<th class="p-3 border-r-2 border-[#1D1E24] cursor-pointer hover:bg-[#FDECD2]">
+<div class="flex items-center justify-between">
+<span class="">Subscription ID</span>
+<span class="material-symbols-outlined text-[14px]">unfold_more</span>
+</div>
+</th>
+<th class="p-3 border-r-2 border-[#1D1E24]">Customer / Org</th>
+<th class="p-3 border-r-2 border-[#1D1E24]">Plan &amp; Product</th>
+<th class="p-3 border-r-2 border-[#1D1E24]">Start / Renewal</th>
+<th class="p-3 border-r-2 border-[#1D1E24]">Billing &amp; Terms</th>
+<th class="p-3 border-r-2 border-[#1D1E24] text-right">Contract Value</th>
+<th class="p-3 border-r-2 border-[#1D1E24] text-center">Status</th>
+<th class="p-3 text-center">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y-2 divide-[#1D1E24] font-body-sm text-body-sm font-medium">
+<!-- Row 1 (Inspected/Active row highlighted) -->
+<tr class="hover:bg-[#00E5C9]/15 transition-colors bg-[#00E5C9]/20 border-l-4 border-l-[#008F7A] cursor-pointer" onclick="openInspection('SUB-2024-8841')">
+<td class="p-3 text-center border-r-2 border-[#1D1E24]" onclick="event.stopPropagation()">
+<input checked="" class="w-4 h-4 accent-[#008F7A] cursor-pointer border-2 border-[#1D1E24]" type="checkbox"/>
+</td>
+<td class="p-3 font-label-md text-label-md font-extrabold text-[#008F7A] border-r-2 border-[#1D1E24] whitespace-nowrap">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-[#008F7A] font-bold">visibility</span>
+<span class="">SUB-2024-8841</span>
+</div>
+<span class="font-label-sm text-[10px] text-[#606275] block font-semibold">Auto-Renew: ON</span>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] whitespace-nowrap">
+<div class="font-label-md text-label-md font-bold text-[#1D1E24]">Apex Interactive Inc.</div>
+<div class="text-[#606275] text-[11px] font-body-sm">apex-tech.corp • IT &amp; Cloud</div>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24]">
+<div class="font-label-md text-label-md text-[#1D1E24] font-bold">Enterprise Pro 365</div>
+<div class="font-label-sm text-[11px] text-[#606275] font-semibold">Tier 3 (50 Seats) + API Pack</div>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] whitespace-nowrap">
+<div class="font-label-sm text-label-sm font-bold text-[#1D1E24]">15 Jan 2024</div>
+<div class="font-label-sm text-[11px] text-[#D62246] font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">alarm</span>
+<span class="">14 Jan 2025 (48d)</span>
+</div>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] whitespace-nowrap">
+<span class="px-1.5 py-0.5 bg-[#FFF8EE] border border-[#1D1E24] font-label-sm text-label-sm uppercase font-bold shadow-[1px_1px_0px_#1D1E24]">Annual</span>
+<span class="font-label-sm text-[11px] text-[#606275] ml-1 font-semibold">Auto-Debit (ACH)</span>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] text-right whitespace-nowrap">
+<div class="font-label-md text-label-md font-black text-[#1D1E24]">$4,800.00</div>
+<span class="font-label-sm text-[10px] text-[#606275] uppercase font-bold">$400.00/mo eq.</span>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] text-center whitespace-nowrap">
+<span class="px-2.5 py-1 rounded-full bg-[#00E5C9] text-[#1D1E24] border-2 border-[#1D1E24] font-label-sm text-[10px] font-black tracking-wider inline-flex items-center gap-1.5 shadow-[2px_2px_0px_#1D1E24]">
+<span class="w-2 h-2 rounded-full bg-[#008F7A] border border-[#1D1E24]"></span> ACTIVE
+                </span>
+</td>
+<td class="p-3 text-center whitespace-nowrap" onclick="event.stopPropagation()">
+<div class="flex items-center justify-center gap-1.5">
+<button class="p-1 bg-[#FFF8EE] border-2 border-[#1D1E24] hover:bg-[#00E5C9] transition-all shadow-[1px_1px_0px_#1D1E24]" onclick="openInspection('SUB-2024-8841')" title="Inspect Subscription">
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</button>
+<button class="p-1 bg-[#FFF8EE] border-2 border-[#1D1E24] hover:bg-[#FFD600] transition-all shadow-[1px_1px_0px_#1D1E24]" title="Quick Invoice">
+<span class="material-symbols-outlined text-[16px]">receipt</span>
+</button>
+<button class="p-1 bg-[#FFF8EE] border-2 border-[#1D1E24] hover:bg-[#FF6B8B] transition-all shadow-[1px_1px_0px_#1D1E24]" title="Pause contract">
+<span class="material-symbols-outlined text-[16px]">pause_circle</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-[#FFF3E2] transition-colors cursor-pointer" onclick="openInspection('SUB-2024-8840')">
+<td class="p-3 text-center border-r-2 border-[#1D1E24]" onclick="event.stopPropagation()">
+<input class="w-4 h-4 accent-[#008F7A] cursor-pointer border-2 border-[#1D1E24]" type="checkbox"/>
+</td>
+<td class="p-3 font-label-md text-label-md font-bold border-r-2 border-[#1D1E24] whitespace-nowrap">
+<span class="">SUB-2024-8840</span>
+<span class="font-label-sm text-[10px] text-[#606275] block font-semibold">Auto-Renew: ON</span>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] whitespace-nowrap">
+<div class="font-label-md text-label-md font-bold text-[#1D1E24]">VectorWave Ltd.</div>
+<div class="text-[#606275] text-[11px] font-body-sm">finance@vectorwave.io</div>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24]">
+<div class="font-label-md text-label-md text-[#1D1E24] font-bold">Cloud Suite v4</div>
+<div class="font-label-sm text-[11px] text-[#606275] font-semibold">Standard Team (15 Seats)</div>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] whitespace-nowrap">
+<div class="font-label-sm text-label-sm text-[#1D1E24] font-semibold">01 Feb 2024</div>
+<div class="font-label-sm text-[11px] text-[#606275] font-semibold">01 Feb 2025</div>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] whitespace-nowrap">
+<span class="px-1.5 py-0.5 bg-[#FFF8EE] border border-[#1D1E24] font-label-sm text-label-sm uppercase font-bold shadow-[1px_1px_0px_#1D1E24]">Monthly</span>
+<span class="font-label-sm text-[11px] text-[#606275] ml-1 font-semibold">Net 30</span>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] text-right whitespace-nowrap">
+<div class="font-label-md text-label-md font-black text-[#1D1E24]">$1,450.00</div>
+<span class="font-label-sm text-[10px] text-[#606275] uppercase font-bold">Billed Monthly</span>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] text-center whitespace-nowrap">
+<span class="px-2.5 py-1 rounded-full bg-[#00E5C9] text-[#1D1E24] border-2 border-[#1D1E24] font-label-sm text-[10px] font-black tracking-wider inline-flex items-center gap-1.5 shadow-[2px_2px_0px_#1D1E24]">
+<span class="w-2 h-2 rounded-full bg-[#008F7A] border border-[#1D1E24]"></span> ACTIVE
+                </span>
+</td>
+<td class="p-3 text-center whitespace-nowrap" onclick="event.stopPropagation()">
+<div class="flex items-center justify-center gap-1.5">
+<button class="p-1 bg-[#FFF8EE] border-2 border-[#1D1E24] hover:bg-[#00E5C9] shadow-[1px_1px_0px_#1D1E24]" onclick="openInspection('SUB-2024-8840')">
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</button>
+<button class="p-1 bg-[#FFF8EE] border-2 border-[#1D1E24] hover:bg-[#FFD600] shadow-[1px_1px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[16px]">receipt</span>
+</button>
+<button class="p-1 bg-[#FFF8EE] border-2 border-[#1D1E24] hover:bg-[#FF6B8B] shadow-[1px_1px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[16px]">pause_circle</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Quotation -->
+<tr class="hover:bg-[#FFF3E2] transition-colors cursor-pointer" onclick="openInspection('SUB-2024-8839')">
+<td class="p-3 text-center border-r-2 border-[#1D1E24]" onclick="event.stopPropagation()">
+<input class="w-4 h-4 accent-[#008F7A] cursor-pointer border-2 border-[#1D1E24]" type="checkbox"/>
+</td>
+<td class="p-3 font-label-md text-label-md font-bold border-r-2 border-[#1D1E24] whitespace-nowrap">
+<span class="">SUB-2024-8839</span>
+<span class="font-label-sm text-[10px] text-[#B87A00] font-black block">Quotation QT-402</span>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] whitespace-nowrap">
+<div class="font-label-md text-label-md font-bold text-[#1D1E24]">Kassulke Global LLC</div>
+<div class="text-[#606275] text-[11px] font-body-sm">marcus@kassulke.org</div>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24]">
+<div class="font-label-md text-label-md text-[#1D1E24] font-bold">DataSync Pipeline Pro</div>
+<div class="font-label-sm text-[11px] text-[#606275] font-semibold">Custom Enterprise Nodes</div>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] whitespace-nowrap">
+<div class="font-label-sm text-label-sm text-[#1D1E24] font-semibold">Valid: 28 Nov 2024</div>
+<div class="font-label-sm text-[11px] text-[#B87A00] font-black">Expires in 12d</div>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] whitespace-nowrap">
+<span class="px-1.5 py-0.5 bg-[#FFF8EE] border border-[#1D1E24] font-label-sm text-label-sm uppercase font-bold shadow-[1px_1px_0px_#1D1E24]">Annual</span>
+<span class="font-label-sm text-[11px] text-[#606275] ml-1 font-semibold">Wire Transfer</span>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] text-right whitespace-nowrap">
+<div class="font-label-md text-label-md font-black text-[#1D1E24]">$12,900.00</div>
+<span class="font-label-sm text-[10px] text-[#606275] uppercase font-bold">Est. Annual</span>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] text-center whitespace-nowrap">
+<span class="px-2.5 py-1 rounded-full bg-[#FFD600] text-[#1D1E24] border-2 border-[#1D1E24] font-label-sm text-[10px] font-black tracking-wider inline-flex items-center gap-1.5 shadow-[2px_2px_0px_#1D1E24]">
+<span class="w-2 h-2 rounded-full bg-[#FFAA00] border border-[#1D1E24]"></span> QUOTATION
+                </span>
+</td>
+<td class="p-3 text-center whitespace-nowrap" onclick="event.stopPropagation()">
+<div class="flex items-center justify-center gap-1.5">
+<button class="p-1 bg-[#FFF8EE] border-2 border-[#1D1E24] hover:bg-[#FFD600] shadow-[1px_1px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[16px]">send</span>
+</button>
+<button class="p-1 bg-[#FFF8EE] border-2 border-[#1D1E24] hover:bg-[#00E5C9] shadow-[1px_1px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Confirmed -->
+<tr class="hover:bg-[#FFF3E2] transition-colors cursor-pointer" onclick="openInspection('SUB-2024-8838')">
+<td class="p-3 text-center border-r-2 border-[#1D1E24]" onclick="event.stopPropagation()">
+<input class="w-4 h-4 accent-[#008F7A] cursor-pointer border-2 border-[#1D1E24]" type="checkbox"/>
+</td>
+<td class="p-3 font-label-md text-label-md font-bold border-r-2 border-[#1D1E24] whitespace-nowrap">
+<span class="">SUB-2024-8838</span>
+<span class="font-label-sm text-[10px] text-[#606275] block font-bold">Signed 24 Nov</span>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] whitespace-nowrap">
+<div class="font-label-md text-label-md font-bold text-[#1D1E24]">Solaria Creative Co.</div>
+<div class="text-[#606275] text-[11px] font-body-sm">billing@solariacreative.studio</div>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24]">
+<div class="font-label-md text-label-md text-[#1D1E24] font-bold">Studio Creator Pack</div>
+<div class="font-label-sm text-[11px] text-[#606275] font-semibold">Seats: 8 Users + GPU Render</div>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] whitespace-nowrap">
+<div class="font-label-sm text-label-sm text-[#1D1E24] font-semibold">Starts 01 Dec 2024</div>
+<div class="font-label-sm text-[11px] text-[#606275] font-semibold">Pending First Charge</div>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] whitespace-nowrap">
+<span class="px-1.5 py-0.5 bg-[#FFF8EE] border border-[#1D1E24] font-label-sm text-label-sm uppercase font-bold shadow-[1px_1px_0px_#1D1E24]">Monthly</span>
+<span class="font-label-sm text-[11px] text-[#606275] ml-1 font-semibold">Card ****9042</span>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] text-right whitespace-nowrap">
+<div class="font-label-md text-label-md font-black text-[#1D1E24]">$890.00</div>
+<span class="font-label-sm text-[10px] text-[#606275] uppercase font-bold">Monthly Billing</span>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] text-center whitespace-nowrap">
+<span class="px-2.5 py-1 rounded-full bg-[#00C2E8] text-[#1D1E24] border-2 border-[#1D1E24] font-label-sm text-[10px] font-black tracking-wider inline-flex items-center gap-1.5 shadow-[2px_2px_0px_#1D1E24]">
+<span class="w-2 h-2 rounded-full bg-white border border-[#1D1E24]"></span> CONFIRMED
+                </span>
+</td>
+<td class="p-3 text-center whitespace-nowrap" onclick="event.stopPropagation()">
+<div class="flex items-center justify-center gap-1.5">
+<button class="p-1 bg-[#FFF8EE] border-2 border-[#1D1E24] hover:bg-[#00E5C9] shadow-[1px_1px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[16px]">play_circle</span>
+</button>
+<button class="p-1 bg-[#FFF8EE] border-2 border-[#1D1E24] hover:bg-[#FFD600] shadow-[1px_1px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[16px]">receipt</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: Paused -->
+<tr class="hover:bg-[#FFF3E2] transition-colors cursor-pointer" onclick="openInspection('SUB-2024-8837')">
+<td class="p-3 text-center border-r-2 border-[#1D1E24]" onclick="event.stopPropagation()">
+<input class="w-4 h-4 accent-[#008F7A] cursor-pointer border-2 border-[#1D1E24]" type="checkbox"/>
+</td>
+<td class="p-3 font-label-md text-label-md font-bold border-r-2 border-[#1D1E24] whitespace-nowrap">
+<span class="">SUB-2024-8837</span>
+<span class="font-label-sm text-[10px] text-[#FF5252] block font-black">On Freeze</span>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] whitespace-nowrap">
+<div class="font-label-md text-label-md font-bold text-[#1D1E24]">Northstar Logistics</div>
+<div class="text-[#606275] text-[11px] font-body-sm">ops@northstar-eu.de</div>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24]">
+<div class="font-label-md text-label-md text-[#1D1E24] font-bold">Fleet Telemetry Enterprise</div>
+<div class="font-label-sm text-[11px] text-[#606275] font-semibold">120 GPS Gateways</div>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] whitespace-nowrap">
+<div class="font-label-sm text-label-sm text-[#606275] font-semibold">Paused: 10 Nov 2024</div>
+<div class="font-label-sm text-[11px] text-[#606275] font-semibold">Resume: 10 Jan 2025</div>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] whitespace-nowrap">
+<span class="px-1.5 py-0.5 bg-[#FFF8EE] border border-[#1D1E24] font-label-sm text-label-sm uppercase font-bold shadow-[1px_1px_0px_#1D1E24]">Quarterly</span>
+<span class="font-label-sm text-[11px] text-[#606275] ml-1 font-semibold">Direct Debit</span>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] text-right whitespace-nowrap">
+<div class="font-label-md text-label-md font-black text-[#606275]">$3,600.00</div>
+<span class="font-label-sm text-[10px] text-[#FF5252] uppercase font-black">Billing Held</span>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] text-center whitespace-nowrap">
+<span class="px-2.5 py-1 rounded-full bg-[#FFE156] text-[#1D1E24] border-2 border-[#1D1E24] font-label-sm text-[10px] font-black tracking-wider inline-flex items-center gap-1.5 shadow-[2px_2px_0px_#1D1E24]">
+<span class="w-2 h-2 rounded-full bg-[#FFAA00] border border-[#1D1E24]"></span> PAUSED
+                </span>
+</td>
+<td class="p-3 text-center whitespace-nowrap" onclick="event.stopPropagation()">
+<div class="flex items-center justify-center gap-1.5">
+<button class="p-1 bg-[#FFF8EE] border-2 border-[#1D1E24] hover:bg-[#00E5C9] shadow-[1px_1px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+</button>
+<button class="p-1 bg-[#FFF8EE] border-2 border-[#1D1E24] hover:bg-[#FF6B8B] shadow-[1px_1px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[16px]">cancel</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 6: Closed/Expired -->
+<tr class="hover:bg-[#FFF3E2] transition-colors cursor-pointer bg-[#F5DEBE]/30" onclick="openInspection('SUB-2024-8836')">
+<td class="p-3 text-center border-r-2 border-[#1D1E24]" onclick="event.stopPropagation()">
+<input class="w-4 h-4 accent-[#008F7A] cursor-pointer border-2 border-[#1D1E24]" type="checkbox"/>
+</td>
+<td class="p-3 font-label-md text-label-md font-bold border-r-2 border-[#1D1E24] whitespace-nowrap text-[#606275]">
+<span class="">SUB-2024-8836</span>
+<span class="font-label-sm text-[10px] text-[#606275] block font-bold">Terminated</span>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] whitespace-nowrap">
+<div class="font-label-md text-label-md font-bold text-[#606275]">Orbitron Media House</div>
+<div class="text-[#606275] text-[11px] font-body-sm">contact@orbitron.media</div>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24]">
+<div class="font-label-md text-label-md text-[#606275] font-bold">Marketing Suite Lite</div>
+<div class="font-label-sm text-[11px] text-[#606275] font-semibold">Legacy Tier</div>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] whitespace-nowrap">
+<div class="font-label-sm text-label-sm text-[#606275] font-semibold">Closed: 01 Nov 2024</div>
+<div class="font-label-sm text-[11px] text-[#606275] font-semibold">Contract Expired</div>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] whitespace-nowrap">
+<span class="px-1.5 py-0.5 bg-white border border-[#1D1E24] font-label-sm text-label-sm uppercase text-[#606275] font-bold">Annual</span>
+<span class="font-label-sm text-[11px] text-[#606275] ml-1 font-semibold">Card Expired</span>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] text-right whitespace-nowrap">
+<div class="font-label-md text-label-md font-black text-[#606275]">$2,100.00</div>
+<span class="font-label-sm text-[10px] text-[#606275] uppercase font-bold">Archived</span>
+</td>
+<td class="p-3 border-r-2 border-[#1D1E24] text-center whitespace-nowrap">
+<span class="px-2.5 py-1 rounded-full bg-[#FF5252] text-white border-2 border-[#1D1E24] font-label-sm text-[10px] font-black tracking-wider inline-flex items-center gap-1.5 shadow-[2px_2px_0px_#1D1E24]">
+<span class="w-2 h-2 rounded-full bg-white border border-[#1D1E24]"></span> EXPIRED
+                </span>
+</td>
+<td class="p-3 text-center whitespace-nowrap" onclick="event.stopPropagation()">
+<div class="flex items-center justify-center gap-1.5">
+<button class="p-1 bg-[#FFF8EE] border-2 border-[#1D1E24] hover:bg-[#FFD600] shadow-[1px_1px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
+</button>
+<button class="p-1 bg-[#FFF8EE] border-2 border-[#1D1E24] hover:bg-[#FFF3E2] shadow-[1px_1px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[16px]">archive</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Retro Pagination Footer -->
+<div class="p-space-sm bg-[#FFF3E2] border-t-2 border-[#1D1E24] flex flex-col sm:flex-row items-center justify-between gap-3 font-label-sm text-label-sm uppercase font-bold">
+<div class="flex items-center gap-2">
+<span class="">Row display count:</span>
+<select class="px-2 py-0.5 bg-white border-2 border-[#1D1E24] font-label-sm font-bold shadow-[1px_1px_0px_#1D1E24]">
+<option>10 per window</option>
+<option>25 per window</option>
+<option>50 per window</option>
+</select>
+<span class="text-[#606275] ml-2">Record 1 to 6 of 1,842 total entries</span>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="px-2.5 py-1 bg-white border-2 border-[#1D1E24] shadow-[2px_2px_0px_#1D1E24] hover:bg-[#FFD600] font-black">PREV</button>
+<button class="px-3 py-1 bg-[#00E5C9] text-[#1D1E24] border-2 border-[#1D1E24] font-black shadow-[2px_2px_0px_#1D1E24]">1</button>
+<button class="px-3 py-1 bg-white border-2 border-[#1D1E24] hover:bg-[#FFD600] font-bold shadow-[2px_2px_0px_#1D1E24]">2</button>
+<button class="px-3 py-1 bg-white border-2 border-[#1D1E24] hover:bg-[#FFD600] font-bold shadow-[2px_2px_0px_#1D1E24]">3</button>
+<span class="px-1 text-[#606275] font-black">...</span>
+<button class="px-3 py-1 bg-white border-2 border-[#1D1E24] hover:bg-[#FFD600] font-bold shadow-[2px_2px_0px_#1D1E24]">184</button>
+<button class="px-2.5 py-1 bg-white border-2 border-[#1D1E24] shadow-[2px_2px_0px_#1D1E24] hover:bg-[#FFD600] font-black">NEXT</button>
+</div>
+</div>
+</div>
+<!-- Detail Inspection Panel / Slide-out Simulator (Anchored section below or expanded side drawer) -->
+<section class="bg-white border-2 border-[#1D1E24] shadow-[6px_6px_0px_#1D1E24] relative" id="inspectionDrawer">
+<!-- Title strip resembling 90s GUI active window -->
+<div class="p-space-sm bg-[#FFD600] border-b-2 border-[#1D1E24] flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[22px] text-[#1D1E24] font-bold">wysiwyg</span>
+<span class="font-headline-sm text-headline-sm uppercase text-[#1D1E24] tracking-tight font-black">Active Inspector: <span class="underline decoration-2" id="inspectSubId">SUB-2024-8841</span></span>
+<span class="px-2 py-0.5 bg-[#00E5C9] text-[#1D1E24] border-2 border-[#1D1E24] font-label-sm text-[10px] font-black uppercase ml-2 shadow-[2px_2px_0px_#1D1E24]">In Effect</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-5 h-5 bg-white border-2 border-[#1D1E24] font-label-sm text-[10px] flex items-center justify-center hover:bg-[#FFD600] font-bold cursor-pointer shadow-[1px_1px_0px_#1D1E24]" onclick="minimizeInspector()">_</button>
+<button class="w-5 h-5 bg-white border-2 border-[#1D1E24] font-label-sm text-[10px] flex items-center justify-center hover:bg-[#FFD600] font-bold cursor-pointer shadow-[1px_1px_0px_#1D1E24]">□</button>
+<button class="w-5 h-5 bg-[#FF5252] text-white border-2 border-[#1D1E24] font-label-sm text-[10px] flex items-center justify-center hover:bg-[#FF6B8B] font-bold cursor-pointer shadow-[1px_1px_0px_#1D1E24]" onclick="closeInspector()">×</button>
+</div>
+</div>
+<div class="p-space-lg grid grid-cols-1 lg:grid-cols-12 gap-6"><!-- Penny the Coin Mascot Highlight Panel -->
+<div class="lg:col-span-12 flex flex-col sm:flex-row items-center gap-5 bg-[#FFF4D4] border-2 border-[#1D1E24] p-4 shadow-[4px_4px_0px_#1D1E24] relative overflow-hidden">
+<div class="flex items-center gap-4 shrink-0">
+<div class="relative p-1.5 bg-white border-2 border-[#1D1E24] rounded-full shadow-[3px_3px_0px_#1D1E24] group cursor-pointer">
+<img alt="Penny the Coin mascot" class="w-20 h-20 object-contain shrink-0 transform group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida/AEtjO1WOrm_Q-zqM3grhKyuYY_oSukxGVZ5G8dSPBON2PCzKKRYozDcbc-OqUOVNXO89kdckz5T2A0lNpKzV8qZzvM-4HdJqzKJx98C5RSFp2IrGhzKslcV5CgyOkzCPseZIF6vu57npRhlVm8bHVC1gsS-yyr5OjcC94dY_m3yhNPvu9sJzOwDA0wACcnMaSK3XzhaowaJBqI-1LZEJvFesWQ94a-ScS7MYDn0DUTTizbwz"/>
+<span class="absolute -bottom-1 -right-1 px-1.5 py-0.2 bg-[#FFD600] text-[#1D1E24] border-2 border-[#1D1E24] font-label-sm text-[9px] font-black uppercase shadow-[1px_1px_0px_#1D1E24]">HOT TIP</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm uppercase text-[#1D1E24] font-black leading-none">Penny</span>
+<span class="px-2 py-0.5 bg-[#00E5C9] text-[#1D1E24] border border-[#1D1E24] font-label-sm text-[10px] font-black uppercase shadow-[1px_1px_0px_#1D1E24]">Live Assistant</span>
+</div>
+<span class="font-label-sm text-[10px] text-[#606275] tracking-widest font-extrabold uppercase mt-0.5">LIFECYCLE BOT v2</span>
+</div>
+</div>
+<!-- Speech bubble with retro dialog pointer -->
+<div class="flex-1 bg-white border-2 border-[#1D1E24] p-3.5 shadow-[3px_3px_0px_#1D1E24] relative">
+<div class="font-body-md text-[14px] text-[#1D1E24] font-semibold leading-relaxed">
+“Hey chief! Take a look at <span class="font-black text-[#008F7A] bg-[#00E5C9]/30 px-1 border border-[#008F7A]/30">Apex Interactive</span>—their contract renewed today! Need me to prep the Q4 invoice draft right now?”
+</div>
+<div class="mt-2.5 flex items-center gap-2.5">
+<button class="px-3 py-1 bg-[#FFD600] text-[#1D1E24] border-2 border-[#1D1E24] font-label-sm text-[11px] uppercase font-black hover:bg-[#FFE156] shadow-[2px_2px_0px_#1D1E24] active:translate-x-0.5 active:translate-y-0.5" onclick="triggerAction('Penny Drafted Invoice')">⚡ Prep Invoice Draft</button>
+<button class="px-3 py-1 bg-[#FFF8EE] border-2 border-[#1D1E24] font-label-sm text-[11px] uppercase font-bold hover:bg-[#FDECD2] shadow-[2px_2px_0px_#1D1E24]" onclick="this.closest('.lg\\:col-span-12').remove()">Dismiss Tip</button>
+</div>
+</div>
+</div>
+<!-- Left: Customer Profile & Financial Summary -->
+<div class="lg:col-span-4 flex flex-col gap-4">
+<!-- Customer Info Card -->
+<div class="bg-[#FFF8EE] border-2 border-[#1D1E24] p-space-md shadow-[4px_4px_0px_#1D1E24]">
+<div class="flex items-center justify-between pb-2 border-b-2 border-[#1D1E24] mb-3">
+<span class="font-label-sm text-label-sm uppercase font-black text-[#1D1E24]">Customer Dossier</span>
+<span class="font-label-sm text-[10px] px-1.5 bg-white border border-[#1D1E24] font-bold shadow-[1px_1px_0px_#1D1E24]">ID: CUST-9021</span>
+</div>
+<div class="flex items-start gap-3 mb-3">
+<img class="w-12 h-12 border-2 border-[#1D1E24] bg-white object-cover shadow-[2px_2px_0px_#1D1E24]" data-alt="Corporate headshot logo emblem of Apex Interactive company on bright yellow and teal graphic background in vintage vector badge style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1DN52vZ7_gLEfCkg_GIFxk_EB6C4RLpz1S-Hg1zBT-yEkP1NplJfMbQY6UxKLhOk-d8aMcpepUaFY1SPN7MHYch2lZB0jwqNhfnFJE5Rn30jhB1aY2DdOe03_FL9-hU7CJ9cuHVu5Mn7O8zsHjk9c8CZTPKnbu8QTFvo9BaYvnPnd4KggYtwslncL0zsLJUxhuKb1NrJh11pRzQOfPgc2xJR2eyV6xLpxqJ5Z0Ng"/>
+<div>
+<h3 class="font-headline-sm text-headline-sm uppercase text-[#1D1E24] font-extrabold leading-tight">Apex Interactive</h3>
+<span class="font-body-sm text-[11px] text-[#606275] font-semibold">Tax ID: US-EIN-9482910</span>
+<div class="mt-1 flex items-center gap-1.5">
+<span class="px-1.5 py-0.2 bg-[#00E5C9] border border-[#1D1E24] font-label-sm text-[9px] font-black uppercase shadow-[1px_1px_0px_#1D1E24]">Enterprise Tier</span>
+<span class="font-label-sm text-[10px] text-[#008F7A] font-black">100% On-Time Pay</span>
+</div>
+</div>
+</div>
+<div class="space-y-2 text-body-sm font-body-sm pt-2 border-t-2 border-[#1D1E24]/20 font-medium">
+<div class="flex justify-between"><span class="text-[#606275] font-bold">Primary Contact:</span> <span class="font-bold text-[#1D1E24]">Evelyn Vance</span></div>
+<div class="flex justify-between"><span class="text-[#606275] font-bold">Email:</span> <span class="text-[#1D1E24] font-semibold">e.vance@apex-interactive.io</span></div>
+<div class="flex justify-between"><span class="text-[#606275] font-bold">Billing Address:</span> <span class="text-[#1D1E24] font-semibold">104 Market St, Suite 400, SF</span></div>
+<div class="flex justify-between items-center"><span class="text-[#606275] font-bold">Current Payment:</span> <span class="font-label-sm text-label-sm uppercase bg-[#FFD600] px-1.5 py-0.5 border border-[#1D1E24] font-black shadow-[1px_1px_0px_#1D1E24]">ACH Auto-Debit</span></div>
+</div>
+</div>
+<!-- Subscription Parameters Gauge -->
+<div class="bg-[#FFF8EE] border-2 border-[#1D1E24] p-space-md shadow-[4px_4px_0px_#1D1E24]">
+<div class="flex items-center justify-between pb-2 border-b-2 border-[#1D1E24] mb-3">
+<span class="font-label-sm text-label-sm uppercase font-black text-[#1D1E24]">Cycle Gauge &amp; Consumption</span>
+<span class="font-label-sm text-[10px] font-black text-[#008F7A] bg-[#00E5C9]/30 px-1.5 py-0.5 border border-[#1D1E24]">317 / 365 DAYS</span>
+</div>
+<!-- Segmented Retro Progress Bar -->
+<div class="mb-2">
+<div class="flex justify-between font-label-sm text-label-sm uppercase mb-1 font-bold">
+<span class="">Contract Term Elapsed</span>
+<span class="font-black text-[#008F7A]">86.8%</span>
+</div>
+<div class="h-6 w-full bg-white border-2 border-[#1D1E24] p-0.5 flex gap-1 shadow-[2px_2px_0px_#1D1E24]">
+<div class="h-full w-1/12 bg-[#00E5C9] border border-[#1D1E24]"></div>
+<div class="h-full w-1/12 bg-[#00E5C9] border border-[#1D1E24]"></div>
+<div class="h-full w-1/12 bg-[#00E5C9] border border-[#1D1E24]"></div>
+<div class="h-full w-1/12 bg-[#00E5C9] border border-[#1D1E24]"></div>
+<div class="h-full w-1/12 bg-[#00E5C9] border border-[#1D1E24]"></div>
+<div class="h-full w-1/12 bg-[#00E5C9] border border-[#1D1E24]"></div>
+<div class="h-full w-1/12 bg-[#00E5C9] border border-[#1D1E24]"></div>
+<div class="h-full w-1/12 bg-[#00E5C9] border border-[#1D1E24]"></div>
+<div class="h-full w-1/12 bg-[#00E5C9] border border-[#1D1E24]"></div>
+<div class="h-full w-1/12 bg-[#FFD600] border border-[#1D1E24]"></div>
+<div class="h-full w-1/12 bg-[#FFF3E2] border border-dashed border-[#1D1E24]"></div>
+<div class="h-full w-1/12 bg-[#FFF3E2] border border-dashed border-[#1D1E24]"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-4 pt-2 border-t-2 border-[#1D1E24]/20">
+<div class="p-2 bg-white border-2 border-[#1D1E24] shadow-[2px_2px_0px_#1D1E24]">
+<span class="font-label-sm text-[10px] uppercase text-[#606275] font-black block">Upcoming Renewal</span>
+<span class="font-headline-sm text-headline-sm text-[#D62246] font-black">14 Jan 2025</span>
+</div>
+<div class="p-2 bg-white border-2 border-[#1D1E24] shadow-[2px_2px_0px_#1D1E24]">
+<span class="font-label-sm text-[10px] uppercase text-[#606275] font-black block">Auto Invoice</span>
+<span class="font-headline-sm text-headline-sm text-[#1D1E24] font-black">INV-9811 (Q4)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Middle & Right: Plan Products Table, Timeline Log & Quick Actions -->
+<div class="lg:col-span-8 flex flex-col gap-4">
+<!-- Subscribed Line Items Window -->
+<div class="bg-white border-2 border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24]">
+<div class="p-space-sm bg-[#FFF3E2] border-b-2 border-[#1D1E24] flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] font-bold text-[#1D1E24]">inventory_2</span>
+<span class="font-headline-sm text-headline-sm uppercase font-extrabold text-[#1D1E24]">Configured Line Items &amp; Add-ons</span>
+</div>
+<button class="px-2.5 py-1 bg-white border-2 border-[#1D1E24] font-label-sm text-label-sm uppercase hover:bg-[#FFD600] font-bold shadow-[2px_2px_0px_#1D1E24]">+ Add Line Item</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse font-body-sm text-body-sm">
+<thead>
+<tr class="bg-[#FFF8EE] border-b-2 border-[#1D1E24] font-label-sm text-label-sm uppercase text-[#1D1E24] font-black">
+<th class="p-2.5 border-r-2 border-[#1D1E24]">SKU &amp; Item Description</th>
+<th class="p-2.5 border-r-2 border-[#1D1E24] text-center">Qty / Seats</th>
+<th class="p-2.5 border-r-2 border-[#1D1E24] text-right">Unit Price</th>
+<th class="p-2.5 border-r-2 border-[#1D1E24] text-center">Tax (GST)</th>
+<th class="p-2.5 border-r-2 border-[#1D1E24] text-right">Discount</th>
+<th class="p-2.5 text-right">Subtotal</th>
+</tr>
+</thead>
+<tbody class="divide-y-2 divide-[#1D1E24] bg-white font-medium">
+<tr>
+<td class="p-2.5 border-r-2 border-[#1D1E24]">
+<div class="font-bold text-[#1D1E24] font-label-md text-label-md">SKU-ENT-PRO365</div>
+<div class="text-[#606275] text-[11px]">Brightloop Core Engine Enterprise Base (Annual)</div>
+</td>
+<td class="p-2.5 border-r-2 border-[#1D1E24] text-center font-bold">1 Lic</td>
+<td class="p-2.5 border-r-2 border-[#1D1E24] text-right font-bold">$3,600.00</td>
+<td class="p-2.5 border-r-2 border-[#1D1E24] text-center"><span class="px-1.5 bg-[#FFF3E2] border border-[#1D1E24] font-label-sm text-[10px] font-bold">18.0%</span></td>
+<td class="p-2.5 border-r-2 border-[#1D1E24] text-right text-[#008F7A] font-black">-$360.00 (10%)</td>
+<td class="p-2.5 text-right font-black text-[#1D1E24]">$3,240.00</td>
+</tr>
+<tr>
+<td class="p-2.5 border-r-2 border-[#1D1E24]">
+<div class="font-bold text-[#1D1E24] font-label-md text-label-md">SKU-SEAT-ADD50</div>
+<div class="text-[#606275] text-[11px]">High-Concurrency Team Seats Pack (50 users)</div>
+</td>
+<td class="p-2.5 border-r-2 border-[#1D1E24] text-center font-bold">50 Seats</td>
+<td class="p-2.5 border-r-2 border-[#1D1E24] text-right font-bold">$20.00/ea</td>
+<td class="p-2.5 border-r-2 border-[#1D1E24] text-center"><span class="px-1.5 bg-[#FFF3E2] border border-[#1D1E24] font-label-sm text-[10px] font-bold">18.0%</span></td>
+<td class="p-2.5 border-r-2 border-[#1D1E24] text-right text-[#606275] font-bold">$0.00</td>
+<td class="p-2.5 text-right font-black text-[#1D1E24]">$1,000.00</td>
+</tr>
+<tr>
+<td class="p-2.5 border-r-2 border-[#1D1E24]">
+<div class="font-bold text-[#1D1E24] font-label-md text-label-md">SKU-API-BURST</div>
+<div class="text-[#606275] text-[11px]">Unlimited Webhook &amp; Rest API Tier Acceleration</div>
+</td>
+<td class="p-2.5 border-r-2 border-[#1D1E24] text-center font-bold">1 Bundle</td>
+<td class="p-2.5 border-r-2 border-[#1D1E24] text-right font-bold">$560.00</td>
+<td class="p-2.5 border-r-2 border-[#1D1E24] text-center"><span class="px-1.5 bg-[#FFF3E2] border border-[#1D1E24] font-label-sm text-[10px] font-bold">18.0%</span></td>
+<td class="p-2.5 border-r-2 border-[#1D1E24] text-right text-[#606275] font-bold">$0.00</td>
+<td class="p-2.5 text-right font-black text-[#1D1E24]">$560.00</td>
+</tr>
+</tbody>
+<tfoot>
+<tr class="bg-[#FFF4D4] font-label-md text-label-md border-t-2 border-[#1D1E24]">
+<td class="p-2.5 text-right uppercase border-r-2 border-[#1D1E24] font-bold" colspan="4">Total Contract Calculation (Inc. GST 18%):</td>
+<td class="p-2.5 text-right font-headline-sm text-headline-sm font-black text-[#008F7A]" colspan="2">$4,800.00 / yr</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<!-- Lifecycle Timeline Log Strip -->
+<div class="bg-[#FFF8EE] border-2 border-[#1D1E24] p-space-md shadow-[4px_4px_0px_#1D1E24]">
+<div class="flex items-center justify-between pb-2 border-b-2 border-[#1D1E24] mb-3">
+<span class="font-label-sm text-label-sm uppercase font-black text-[#1D1E24]">Audit Trail &amp; State Machine Transitions</span>
+<span class="font-label-sm text-[10px] text-[#1D1E24] bg-white px-2 py-0.5 border border-[#1D1E24] font-black shadow-[1px_1px_0px_#1D1E24]">UPDATED 14 MIN AGO</span>
+</div>
+<div class="relative pl-6 space-y-4 border-l-2 border-dashed border-[#1D1E24] ml-3 py-1 font-body-sm text-body-sm font-medium">
+<!-- Event 1 -->
+<div class="relative">
+<span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-[#00E5C9] border-2 border-[#1D1E24] flex items-center justify-center text-[#1D1E24] text-[10px] font-black">✓</span>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-black text-[#1D1E24] uppercase">Current Active Cycle Renewed</span>
+<span class="font-label-sm text-[10px] text-[#606275] font-bold">15 Jan 2024, 00:00 UTC</span>
+</div>
+<p class="text-[#606275] text-[12px] font-medium">Automatic payment authorization successful via ACH account ending in #9914 ($4,800.00 settlement).</p>
+</div>
+<!-- Event 2 -->
+<div class="relative">
+<span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-white border-2 border-[#1D1E24] flex items-center justify-center text-[10px] font-black">✓</span>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-[#1D1E24] uppercase">Contract Confirmation &amp; Signature</span>
+<span class="font-label-sm text-[10px] text-[#606275] font-bold">10 Jan 2024, 16:42 UTC</span>
+</div>
+<p class="text-[#606275] text-[12px] font-medium">Digital agreement digitally verified by Evelyn Vance (CFO, Apex Interactive).</p>
+</div>
+<!-- Event 3 -->
+<div class="relative">
+<span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-white border-2 border-[#1D1E24] flex items-center justify-center text-[10px] font-black">✓</span>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-[#1D1E24] uppercase">Quotation QT-2024-8841 Approved</span>
+<span class="font-label-sm text-[10px] text-[#606275] font-bold">05 Jan 2024, 11:20 UTC</span>
+</div>
+<p class="text-[#606275] text-[12px] font-medium">Enterprise discount tier applied (10% partner benefit) and verified by Brightloop Sales Desk.</p>
+</div>
+</div>
+</div>
+<!-- Master Action Controls Toolbar -->
+<div class="bg-[#FFD600] border-2 border-[#1D1E24] p-space-md shadow-[4px_4px_0px_#1D1E24] flex flex-wrap items-center justify-between gap-3">
+<div>
+<span class="font-label-sm text-label-sm uppercase font-black text-[#1D1E24] block">Available Lifecycle Actions</span>
+<span class="font-body-sm text-[11px] text-[#1D1E24] font-semibold">Execute immediate state alterations or trigger billing webhooks</span>
+</div>
+<div class="flex items-center flex-wrap gap-2.5">
+<button class="px-3.5 py-1.5 font-label-md text-label-md uppercase bg-[#00E5C9] text-[#1D1E24] border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] hover:bg-[#38EFD0] active:translate-x-0.5 active:translate-y-0.5 transition-all font-black" onclick="triggerAction('Renewal Requested')">
+                Request Early Renewal
+              </button>
+<button class="px-3.5 py-1.5 font-label-md text-label-md uppercase bg-white text-[#1D1E24] border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] hover:bg-[#FFF3E2] active:translate-x-0.5 active:translate-y-0.5 transition-all font-black" onclick="triggerAction('Subscription Paused')">
+                Pause Subscription
+              </button>
+<button class="px-3.5 py-1.5 font-label-md text-label-md uppercase bg-[#00C2E8] text-[#1D1E24] border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] hover:bg-[#66E0F8] active:translate-x-0.5 active:translate-y-0.5 transition-all font-black" onclick="triggerAction('Immediate Invoice Generated')">
+                Generate Invoice Now
+              </button>
+<button class="px-3.5 py-1.5 font-label-md text-label-md uppercase bg-[#FF5252] text-white border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] hover:bg-[#FF6B8B] active:translate-x-0.5 active:translate-y-0.5 transition-all font-black" onclick="triggerAction('Early Closure Initiated')">
+                Early Closure
+              </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Retro Bottom Banner / Quick Stats Footing -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 pb-6">
+<div class="p-space-md bg-white border-2 border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24] flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase text-[#606275] font-black block">Auto-Renew Status</span>
+<span class="font-headline-sm text-headline-sm uppercase text-[#1D1E24] font-black">94.2% Automated</span>
+</div>
+<div class="w-10 h-10 bg-[#00E5C9] border-2 border-[#1D1E24] flex items-center justify-center shadow-[2px_2px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[20px] font-bold text-[#1D1E24]">verified</span>
+</div>
+</div>
+<div class="p-space-md bg-white border-2 border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24] flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase text-[#606275] font-black block">Upcoming Expirations (&lt;30d)</span>
+<span class="font-headline-sm text-headline-sm uppercase text-[#FF5252] font-black">38 Contracts</span>
+</div>
+<div class="w-10 h-10 bg-[#FF6B8B] border-2 border-[#1D1E24] flex items-center justify-center shadow-[2px_2px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[20px] font-bold text-white">notification_important</span>
+</div>
+</div>
+<div class="p-space-md bg-white border-2 border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24] flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase text-[#606275] font-black block">Average Customer LTV</span>
+<span class="font-headline-sm text-headline-sm uppercase text-[#1D1E24] font-black">$14,240 USD</span>
+</div>
+<div class="w-10 h-10 bg-[#FFD600] border-2 border-[#1D1E24] flex items-center justify-center shadow-[2px_2px_0px_#1D1E24]">
+<span class="material-symbols-outlined text-[20px] font-bold text-[#1D1E24]">trending_up</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Feedback Toast (Hidden by Default) -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-200 bg-white border-2 border-[#1D1E24] shadow-[5px_5px_0px_#1D1E24] p-3.5 flex items-center gap-3" id="retroToast">
+<div class="w-7 h-7 bg-[#00E5C9] border-2 border-[#1D1E24] flex items-center justify-center font-black text-[#1D1E24] shadow-[2px_2px_0px_#1D1E24]">✓</div>
+<div>
+<span class="font-label-md text-label-md uppercase block font-black text-[#1D1E24]" id="toastTitle">System Notification</span>
+<span class="font-body-sm text-body-sm text-[#606275] font-semibold" id="toastMsg">Action dispatched successfully.</span>
+</div>
+</div>
+</div>
+<script>
+  function showToast(title, msg) {
+    const toast = document.getElementById('retroToast');
+    const toastTitle = document.getElementById('toastTitle');
+    const toastMsg = document.getElementById('toastMsg');
+    
+    toastTitle.innerText = title;
+    toastMsg.innerText = msg;
+    
+    toast.classList.remove('translate-y-24', 'opacity-0');
+    toast.classList.add('translate-y-0', 'opacity-100');
+    
+    setTimeout(() => {
+      toast.classList.add('translate-y-24', 'opacity-0');
+      toast.classList.remove('translate-y-0', 'opacity-100');
+    }, 3200);
+  }
+
+  function setFilter(el, type) {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.className = 'tab-btn px-3 py-1 font-label-md text-label-md uppercase bg-white text-[#1D1E24] border-2 border-transparent font-bold hover:bg-[#FDECD2] transition-colors';
+    });
+    el.className = 'tab-btn px-3 py-1 font-label-md text-label-md uppercase bg-[#00E5C9] text-[#1D1E24] border-2 border-[#1D1E24] font-extrabold shadow-[2px_2px_0px_#1D1E24]';
+    showToast('Filter Applied', 'Filtered subscription list by: ' + type.toUpperCase());
+  }
+
+  function filterLifecycle(stage) {
+    showToast('Lifecycle Filter', 'Isolating records in Phase: ' + stage.toUpperCase());
+  }
+
+  function openInspection(id) {
+    document.getElementById('inspectSubId').innerText = id;
+    const drawer = document.getElementById('inspectionDrawer');
+    drawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    showToast('Inspecting Record', 'Loaded data dossier for ' + id);
+  }
+
+  function triggerAction(actionName) {
+    showToast('Action Processed', actionName + ' recorded in event ledger.');
+  }
+
+  function closeInspector() {
+    const drawer = document.getElementById('inspectionDrawer');
+    drawer.style.display = 'none';
+    showToast('Inspector Hidden', 'Inspection panel closed. Select a row to reopen.');
+  }
+
+  function minimizeInspector() {
+    showToast('Window State', 'Inspector minimized to status tray.');
+  }
+
+  function maximizeInspector() {
+    showToast('Window State', 'Inspector maximized.');
+  }
+
+  document.getElementById('btnCreateSub').addEventListener('click', function() {
+    showToast('Modal Trigger', 'Initializing New Subscription Wizard (Draft mode).');
+  });
+
+  document.getElementById('tableSearch').addEventListener('keyup', function(e) {
+    if (e.key === 'Enter') {
+      showToast('Search Query', 'Querying index for: ' + this.value);
+    }
+  });
+</script></main></div>
+</body></html>
