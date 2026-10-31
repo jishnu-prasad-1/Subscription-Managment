@@ -107,3 +107,4 @@ export async function requireTenantAccess(customerId: string): Promise<SessionPa
   }
   return user;
 }
+

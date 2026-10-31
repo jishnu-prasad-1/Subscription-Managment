@@ -145,3 +145,4 @@ export const PaymentsClient: React.FC<PaymentsClientProps> = ({ initialPayments 
     </div>
   );
 };
+

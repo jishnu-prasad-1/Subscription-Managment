@@ -677,3 +677,4 @@ export const SubscriptionsClient: React.FC<SubscriptionsClientProps> = ({
     </div>
   );
 };
+

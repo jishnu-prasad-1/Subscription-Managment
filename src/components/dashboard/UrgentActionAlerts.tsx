@@ -92,3 +92,4 @@ export const UrgentActionAlerts: React.FC<UrgentActionAlertsProps> = ({
     </WindowCard>
   );
 };
+

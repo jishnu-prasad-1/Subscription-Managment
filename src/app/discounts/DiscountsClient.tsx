@@ -302,3 +302,4 @@ export const DiscountsClient: React.FC<DiscountsClientProps> = ({ initialDiscoun
     </div>
   );
 };
+

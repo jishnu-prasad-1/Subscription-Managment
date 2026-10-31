@@ -223,3 +223,4 @@ export const StaffClient: React.FC<StaffClientProps> = ({ initialStaff }) => {
     </div>
   );
 };
+

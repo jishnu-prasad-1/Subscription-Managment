@@ -72,3 +72,4 @@ export const WindowCard: React.FC<WindowCardProps> = ({
     </div>
   );
 };
+

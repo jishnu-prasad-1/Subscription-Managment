@@ -299,3 +299,4 @@ export const ProductsClient: React.FC<ProductsClientProps> = ({ initialProducts 
     </div>
   );
 };
+

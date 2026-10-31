@@ -4,9 +4,10 @@ export type PennyMood = "dispatch" | "celebrate" | "alert" | "thinking";
 
 interface PennyMascotProps {
   mood?: PennyMood;
-  size?: "sm" | "md" | "lg" | "xl";
+  size?: "sm" | "md" | "lg" | "xl" | number;
   className?: string;
   animate?: boolean;
+  animated?: boolean;
 }
 
 export const PennyMascot: React.FC<PennyMascotProps> = ({
@@ -14,7 +15,10 @@ export const PennyMascot: React.FC<PennyMascotProps> = ({
   size = "md",
   className = "",
   animate = true,
+  animated,
 }) => {
+  const shouldAnimate = animated !== undefined ? animated : animate;
+
   const sizeMap = {
     sm: "w-10 h-10",
     md: "w-16 h-16",
@@ -22,10 +26,15 @@ export const PennyMascot: React.FC<PennyMascotProps> = ({
     xl: "w-32 h-32",
   };
 
+  const isPresetSize = typeof size === "string" && size in sizeMap;
+  const sizeClass = isPresetSize ? sizeMap[size as keyof typeof sizeMap] : "";
+  const inlineStyle = typeof size === "number" ? { width: size, height: size } : undefined;
+
   return (
     <div
-      className={`relative inline-flex items-center justify-center shrink-0 ${sizeMap[size]} ${className} ${
-        animate ? "hover:scale-105 transition-transform" : ""
+      style={inlineStyle}
+      className={`relative inline-flex items-center justify-center shrink-0 ${sizeClass} ${className} ${
+        shouldAnimate ? "hover:scale-105 transition-transform" : ""
       }`}
     >
       <svg
@@ -151,3 +160,4 @@ export const PennyMascot: React.FC<PennyMascotProps> = ({
     </div>
   );
 };
+

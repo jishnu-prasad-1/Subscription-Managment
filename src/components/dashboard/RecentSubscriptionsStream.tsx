@@ -123,3 +123,4 @@ export const RecentSubscriptionsStream: React.FC<RecentSubscriptionsStreamProps>
     </WindowCard>
   );
 };
+

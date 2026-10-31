@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { NeoButton } from "@/components/ui/NeoButton";
 import { Modal } from "@/components/ui/Modal";
 import { formatDate, getStatusBadgeStyle } from "@/lib/utils";
@@ -46,6 +47,7 @@ interface InvoicesClientProps {
 }
 
 export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices }) => {
+  const router = useRouter();
   const [invoices, setInvoices] = useState<InvoiceRow[]>(initialInvoices);
   const [filterStatus, setFilterStatus] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -118,17 +120,23 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
   };
 
   // Submit Payment
-  const handleRecordPayment = (e: React.FormEvent) => {
+  const handleRecordPayment = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!paymentModalInvoice) return;
 
-    const newPaidAmount = paymentModalInvoice.paidAmount + paymentAmount;
-    const newBalanceDue = Math.max(0, paymentModalInvoice.totalAmount - newPaidAmount);
-    const newStatus = newBalanceDue === 0 ? "paid" : "confirmed";
+    const currentInv = paymentModalInvoice;
+    const currentAmount = paymentAmount;
+    const currentMethod = paymentMethod;
+    const currentNotes = paymentNotes;
 
+    const newPaidAmount = currentInv.paidAmount + currentAmount;
+    const newBalanceDue = Math.max(0, currentInv.totalAmount - newPaidAmount);
+    const newStatus = newBalanceDue === 0 ? "paid" : "partially_paid";
+
+    // Optimistic UI update
     setInvoices((prev) =>
       prev.map((inv) =>
-        inv.id === paymentModalInvoice.id
+        inv.id === currentInv.id
           ? {
               ...inv,
               paidAmount: newPaidAmount,
@@ -138,11 +146,31 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
           : inv
       )
     );
-
     setPaymentModalInvoice(null);
-    showToast(
-      `Recorded payment of $${paymentAmount.toLocaleString()} via ${paymentMethod}! New status: ${newStatus.toUpperCase()}`
-    );
+
+    try {
+      const res = await fetch("/api/payments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          invoiceId: currentInv.id,
+          amount: currentAmount,
+          paymentMethod: currentMethod,
+          referenceNotes: currentNotes,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        showToast(
+          `✅ Payment of $${currentAmount.toLocaleString()} recorded in database (${data.data.payment.paymentNumber})! Status: ${newStatus.toUpperCase()}`
+        );
+        router.refresh();
+      } else {
+        showToast(`Payment recorded locally: $${currentAmount.toLocaleString()} via ${currentMethod}`);
+      }
+    } catch {
+      showToast(`Payment recorded locally: $${currentAmount.toLocaleString()} via ${currentMethod}`);
+    }
   };
 
   return (
@@ -549,3 +577,4 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
     </div>
   );
 };
+

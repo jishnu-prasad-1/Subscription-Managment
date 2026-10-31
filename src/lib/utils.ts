@@ -59,3 +59,4 @@ export function getStatusBadgeStyle(status: string): { bg: string; text: string;
       return { bg: "bg-white", text: "text-[#1D1E24]", border: "border-[#1D1E24]" };
   }
 }
+

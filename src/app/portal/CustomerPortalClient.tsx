@@ -253,3 +253,4 @@ export const CustomerPortalClient: React.FC<CustomerPortalClientProps> = ({ cust
     </div>
   );
 };
+

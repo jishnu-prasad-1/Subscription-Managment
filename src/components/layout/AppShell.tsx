@@ -3,6 +3,7 @@
 import React from "react";
 import { Sidebar } from "./Sidebar";
 import { Header } from "./Header";
+import { FloatingPennyAssistant } from "@/components/mascot/FloatingPennyAssistant";
 
 interface AppShellProps {
   children: React.ReactNode;
@@ -26,6 +27,10 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
           </div>
         </main>
       </div>
+
+      {/* Persistent Floating Penny Mascot Assistant */}
+      <FloatingPennyAssistant />
     </div>
   );
 };
+

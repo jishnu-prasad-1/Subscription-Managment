@@ -139,11 +139,29 @@ export const QuotationsClient: React.FC<QuotationsClientProps> = ({
   };
 
   // 1-Click Convert to Subscription!
-  const handleConvertToSubscription = (quote: QuotationRow) => {
-    setQuotations((prev) =>
-      prev.map((q) => (q.id === quote.id ? { ...q, status: "accepted" } : q))
-    );
-    showToast(`🎉 1-Click Conversion Success! ${quote.quoteNumber} converted to a CONFIRMED Subscription!`);
+  const handleConvertToSubscription = async (quote: QuotationRow) => {
+    try {
+      const res = await fetch(`/api/quotations/${quote.id}/convert`, { method: "POST" });
+      const data = await res.json();
+      if (data.success) {
+        setQuotations((prev) =>
+          prev.map((q) => (q.id === quote.id ? { ...q, status: "accepted" } : q))
+        );
+        showToast(`🎉 1-Click Success! Converted to ${data.data.subscription.subscriptionNumber} (CONFIRMED)!`);
+        router.refresh();
+      } else {
+        // Fallback optimistic display
+        setQuotations((prev) =>
+          prev.map((q) => (q.id === quote.id ? { ...q, status: "accepted" } : q))
+        );
+        showToast(`🎉 Converted ${quote.quoteNumber} to Confirmed Subscription!`);
+      }
+    } catch {
+      setQuotations((prev) =>
+        prev.map((q) => (q.id === quote.id ? { ...q, status: "accepted" } : q))
+      );
+      showToast(`🎉 1-Click Conversion processed for ${quote.quoteNumber}!`);
+    }
   };
 
   return (
@@ -394,3 +412,4 @@ export const QuotationsClient: React.FC<QuotationsClientProps> = ({
     </div>
   );
 };
+

@@ -302,3 +302,4 @@ export const PlansClient: React.FC<PlansClientProps> = ({ initialPlans }) => {
     </div>
   );
 };
+
