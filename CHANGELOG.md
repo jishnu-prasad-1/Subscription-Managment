@@ -4,6 +4,30 @@ All notable changes to this project are documented in this file in accordance wi
 
 ---
 
+## [1.2.0-interactivity] - 2026-10-31
+### 🎨 MILESTONE 3: COMPREHENSIVE INTERACTIVITY AUDIT, REAL CSV EXPORTS & VIBRANT TACTILE REFINEMENT
+
+#### Added
+- **Universal Browser CSV Download Engine (`src/lib/exportCsv.ts`)**: Built client-side CSV generation across all key data tables:
+  - *Subscriptions:* exports subscription number, customer, plan, cadence, status, next billing date, and recurring amount.
+  - *Invoices:* exports invoice number, customer, subscription, billing periods, due date, status, total, paid, and balance due.
+  - *Product Catalog:* exports product SKU name, type, sales price, cost price, variant count, and status.
+  - *Plans Matrix:* exports plan title, billing interval, base cost, min seats, auto-close, pause permissions, and subscriber counts.
+  - *Quotations:* exports quote number, customer, offer lines, validity date, subtotal, tax, and total.
+  - *Financial Intelligence:* exports audited cash collections, MRR, ARR, and overdue receivables.
+- **Full Product SKU Editor Modal**: Replaced passive toasts with an interactive SKU Editor modal allowing immediate modification of sales price, cost price, notes, and instant card updates.
+- **Plan Governance & Lifecycle Rule Editor**: Replaced passive toasts with a Plan Rule Editor modal allowing live toggles of Auto-Close, Customer Pause, Early Termination, Auto-Renewal, and Base Seat Pricing.
+- **Autonomous Dashboard Alert Triage**: Upgraded `UrgentActionAlerts` to an autonomous client component where clicking *"Run Sweep"* executes the `/api/billing/run-engine` pipeline directly from the overview screen with live progress notices.
+- **Interactive Header System**:
+  - Smart keyword search with enter-key routing (`invoices`, `plans`, `subs`, `customers`, `reports`).
+  - Help icon now opens **Penny's Quick Tour Guide** with key concepts (Zero Double-Billing, Odoo variant surcharge, Floating assistant).
+  - User profile chip opens an interactive Super Admin menu with diagnostics link and sign-out shortcut.
+- **Database-Backed Subscription Creation (`/api/subscriptions`)**: Connected subscription creation modal to SQLite database with audit logging.
+- **Customer Portal 1-Click Payments (`/portal`)**: Connected customer self-service invoice settlement to `/api/payments` with live balance recalculation.
+- **Vibrant Neo-Brutalist Tactile Polish**: Added tactile button depress physics (`active:translate-x-[2px] active:translate-y-[2px] active:shadow-none`), custom electric cyan selection highlighting, dot-matrix textures (`bg-retro-dots`), and punchy retro status ribbons.
+
+---
+
 ## [1.1.0-telemetry] - 2026-10-31
 ### 🚀 MILESTONE 2: FLOATING PENNY ASSISTANT, LIVE PAYMENT & QUOTATION APIS, AND SLA BENCHMARK
 

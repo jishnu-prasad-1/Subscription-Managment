@@ -7,6 +7,7 @@ import { Modal } from "@/components/ui/Modal";
 import { formatDate } from "@/lib/utils";
 import { PennyMascot } from "@/components/mascot/PennyMascot";
 import { useRouter } from "next/navigation";
+import { exportToCsv } from "@/lib/exportCsv";
 
 interface QuotationItemRow {
   productName: string;
@@ -164,6 +165,22 @@ export const QuotationsClient: React.FC<QuotationsClientProps> = ({
     }
   };
 
+  const handleExportQuotations = () => {
+    const headers = ["Quote Number", "Customer", "Offer Line", "Valid Until", "Status", "Subtotal ($)", "Tax ($)", "Total ($)"];
+    const rows = quotations.map((q) => [
+      q.quoteNumber,
+      q.customerName,
+      q.items.length > 0 ? `${q.items[0].productName} (${q.items[0].variantName})` : "General Service",
+      formatDate(q.validUntil),
+      q.status.toUpperCase(),
+      q.subtotal.toFixed(2),
+      q.taxAmount.toFixed(2),
+      q.totalAmount.toFixed(2),
+    ]);
+    exportToCsv("brightloop_quotations_proposals.csv", headers, rows);
+    showToast(`📁 Exported ${rows.length} quotations to CSV!`);
+  };
+
   return (
     <div className="flex flex-col gap-6">
       {/* Toast Alert */}
@@ -191,14 +208,24 @@ export const QuotationsClient: React.FC<QuotationsClientProps> = ({
           </div>
         </div>
 
-        <NeoButton
-          variant="secondary"
-          size="md"
-          icon="add"
-          onClick={() => setIsModalOpen(true)}
-        >
-          + Create Quotation
-        </NeoButton>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <NeoButton
+            variant="ghost"
+            size="sm"
+            icon="download"
+            onClick={handleExportQuotations}
+          >
+            Export Proposals
+          </NeoButton>
+          <NeoButton
+            variant="secondary"
+            size="md"
+            icon="add"
+            onClick={() => setIsModalOpen(true)}
+          >
+            + Create Quotation
+          </NeoButton>
+        </div>
       </section>
 
       {/* Quotations Data Grid */}

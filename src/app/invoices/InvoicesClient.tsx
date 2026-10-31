@@ -6,6 +6,7 @@ import { NeoButton } from "@/components/ui/NeoButton";
 import { Modal } from "@/components/ui/Modal";
 import { formatDate, getStatusBadgeStyle } from "@/lib/utils";
 import { PennyMascot } from "@/components/mascot/PennyMascot";
+import { exportToCsv } from "@/lib/exportCsv";
 
 interface InvoiceItemRow {
   description: string;
@@ -104,6 +105,35 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
     }
   };
 
+  const handleExportInvoices = () => {
+    const headers = [
+      "Invoice Number",
+      "Customer",
+      "Subscription",
+      "Billing Start",
+      "Billing End",
+      "Due Date",
+      "Status",
+      "Total ($)",
+      "Paid ($)",
+      "Balance Due ($)",
+    ];
+    const rows = filteredInvoices.map((inv) => [
+      inv.invoiceNumber,
+      inv.customerName,
+      inv.subscriptionNumber,
+      formatDate(inv.billingPeriodStart),
+      formatDate(inv.billingPeriodEnd),
+      formatDate(inv.dueDate),
+      inv.status.toUpperCase(),
+      inv.totalAmount.toFixed(2),
+      inv.paidAmount.toFixed(2),
+      inv.balanceDue.toFixed(2),
+    ]);
+    exportToCsv("brightloop_invoices_ledger.csv", headers, rows);
+    showToast(`📁 Exported ${rows.length} invoices to CSV!`);
+  };
+
   // Confirm Draft Invoice
   const handleConfirmInvoice = (id: string) => {
     setInvoices((prev) =>
@@ -138,11 +168,11 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
       prev.map((inv) =>
         inv.id === currentInv.id
           ? {
-              ...inv,
-              paidAmount: newPaidAmount,
-              balanceDue: newBalanceDue,
-              status: newStatus,
-            }
+            ...inv,
+            paidAmount: newPaidAmount,
+            balanceDue: newBalanceDue,
+            status: newStatus,
+          }
           : inv
       )
     );
@@ -228,6 +258,14 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
 
         <div className="flex items-center gap-2 sm:gap-3">
           <NeoButton
+            variant="ghost"
+            size="sm"
+            icon="download"
+            onClick={handleExportInvoices}
+          >
+            Export Invoices
+          </NeoButton>
+          <NeoButton
             variant="cyan"
             size="md"
             icon="autorenew"
@@ -262,9 +300,8 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
             <button
               key={st}
               onClick={() => setFilterStatus(st)}
-              className={`px-2 py-0.5 font-headline text-[10px] uppercase font-bold border border-[#1D1E24] ${
-                filterStatus === st ? "bg-[#25F4D2] text-[#003D32] font-black" : "bg-white"
-              }`}
+              className={`px-2 py-0.5 font-headline text-[10px] uppercase font-bold border border-[#1D1E24] ${filterStatus === st ? "bg-[#25F4D2] text-[#003D32] font-black" : "bg-white"
+                }`}
             >
               {st}
             </button>

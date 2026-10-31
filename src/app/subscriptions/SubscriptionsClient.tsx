@@ -5,6 +5,7 @@ import { NeoButton } from "@/components/ui/NeoButton";
 import { Modal } from "@/components/ui/Modal";
 import { formatDate, getStatusBadgeStyle } from "@/lib/utils";
 import { PennyMascot } from "@/components/mascot/PennyMascot";
+import { exportToCsv } from "@/lib/exportCsv";
 
 interface SubItem {
   productName: string;
@@ -124,7 +125,30 @@ export const SubscriptionsClient: React.FC<SubscriptionsClientProps> = ({
     }
   };
 
-  const handleCreateSubscription = (e: React.FormEvent) => {
+  const handleExportCsv = () => {
+    const headers = [
+      "Subscription Number",
+      "Customer Name",
+      "Plan Name",
+      "Cadence",
+      "Status",
+      "Next Billing Date",
+      "Recurring Amount ($)",
+    ];
+    const rows = filteredSubs.map((s) => [
+      s.subscriptionNumber,
+      s.customerName,
+      s.planName,
+      s.billingInterval,
+      s.status.toUpperCase(),
+      formatDate(s.nextBillingDate),
+      s.totalRecurringAmount.toFixed(2),
+    ]);
+    exportToCsv("brightloop_subscriptions.csv", headers, rows);
+    showToast(`📁 Exported ${rows.length} subscriptions to CSV!`);
+  };
+
+  const handleCreateSubscription = async (e: React.FormEvent) => {
     e.preventDefault();
     const cust = customers.find((c) => c.id === selectedCustomerId);
     const pl = plans.find((p) => p.id === selectedPlanId);
@@ -159,6 +183,22 @@ export const SubscriptionsClient: React.FC<SubscriptionsClientProps> = ({
     setSubscriptions([newSub, ...subscriptions]);
     setIsModalOpen(false);
     showToast(`Created Subscription ${newSub.subscriptionNumber} in DRAFT phase!`);
+
+    try {
+      await fetch("/api/subscriptions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customerId: selectedCustomerId,
+          planId: selectedPlanId,
+          productId: selectedProductId,
+          variantId: selectedVariantId || undefined,
+          quantity,
+        }),
+      });
+    } catch (err) {
+      console.warn("Background persistence notice:", err);
+    }
   };
 
   return (
@@ -219,7 +259,7 @@ export const SubscriptionsClient: React.FC<SubscriptionsClientProps> = ({
             variant="ghost"
             size="sm"
             icon="download"
-            onClick={() => showToast("Exporting Active Subscriptions CSV...")}
+            onClick={handleExportCsv}
           >
             Batch Export
           </NeoButton>

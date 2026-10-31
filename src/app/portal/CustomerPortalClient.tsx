@@ -63,7 +63,12 @@ export const CustomerPortalClient: React.FC<CustomerPortalClientProps> = ({ cust
   };
 
   // 1-Click Pay Outstanding Invoice
-  const handlePayInvoice = (invId: string) => {
+  const handlePayInvoice = async (invId: string) => {
+    const targetInv = invoices.find((i) => i.id === invId);
+    if (!targetInv) return;
+
+    const dueAmount = targetInv.balanceDue;
+
     setInvoices((prev) =>
       prev.map((inv) =>
         inv.id === invId
@@ -71,7 +76,22 @@ export const CustomerPortalClient: React.FC<CustomerPortalClientProps> = ({ cust
           : inv
       )
     );
-    showToast("🎉 Payment Confirmed! Invoice marked PAID. Receipt generated.");
+    showToast(`🎉 Payment Confirmed ($${dueAmount.toFixed(2)})! Invoice marked PAID.`);
+
+    try {
+      await fetch("/api/payments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          invoiceId: invId,
+          amount: dueAmount,
+          paymentMethod: "Credit Card (Self-Service)",
+          referenceNotes: `Self-Service Settlement by ${customer?.contactName || "Customer"}`,
+        }),
+      });
+    } catch (err) {
+      console.warn("Payment persistence note:", err);
+    }
   };
 
   if (!customer) {

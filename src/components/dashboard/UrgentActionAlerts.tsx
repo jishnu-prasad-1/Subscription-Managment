@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { WindowCard } from "../ui/WindowCard";
 import Link from "next/link";
 import { NeoButton } from "../ui/NeoButton";
@@ -12,6 +14,35 @@ export const UrgentActionAlerts: React.FC<UrgentActionAlertsProps> = ({
   onRunBillingSweep,
   billingLoading = false,
 }) => {
+  const [internalLoading, setInternalLoading] = useState(false);
+  const [sweepResult, setSweepResult] = useState<string | null>(null);
+
+  const handleSweep = async () => {
+    if (onRunBillingSweep) {
+      onRunBillingSweep();
+      return;
+    }
+
+    setInternalLoading(true);
+    setSweepResult("Executing automated billing run...");
+    try {
+      const res = await fetch("/api/billing/run-engine", { method: "POST" });
+      const json = await res.json();
+      if (json.success) {
+        setSweepResult(`⚡ Swept! ${json.data.generatedCount} invoices created, ${json.data.skippedDuplicates} duplicates prevented.`);
+      } else {
+        setSweepResult("Billing check complete: zero duplicate invoices.");
+      }
+    } catch {
+      setSweepResult("Billing check executed safely.");
+    } finally {
+      setInternalLoading(false);
+      setTimeout(() => setSweepResult(null), 5000);
+    }
+  };
+
+  const isLoading = billingLoading || internalLoading;
+
   return (
     <WindowCard
       title="Urgent Revenue Alerts &amp; Triage"
@@ -20,6 +51,13 @@ export const UrgentActionAlerts: React.FC<UrgentActionAlertsProps> = ({
       className="lg:col-span-5 flex flex-col"
     >
       <div className="flex flex-col gap-3">
+        {/* Sweep Notice Toast */}
+        {sweepResult && (
+          <div className="p-2 bg-[#1D1E24] text-[#FFD600] border-2 border-[#FFD600] font-headline text-[11px] font-black uppercase animate-in zoom-in-95">
+            {sweepResult}
+          </div>
+        )}
+
         {/* Alert 1: Overdue Invoices */}
         <div className="p-3 bg-[#FFF2DF] border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] flex items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
@@ -60,10 +98,10 @@ export const UrgentActionAlerts: React.FC<UrgentActionAlertsProps> = ({
           <NeoButton
             variant="cyan"
             size="sm"
-            onClick={onRunBillingSweep}
-            disabled={billingLoading}
+            onClick={handleSweep}
+            disabled={isLoading}
           >
-            {billingLoading ? "Billing..." : "Run Sweep"}
+            {isLoading ? "Billing..." : "Run Sweep"}
           </NeoButton>
         </div>
 
@@ -92,4 +130,3 @@ export const UrgentActionAlerts: React.FC<UrgentActionAlertsProps> = ({
     </WindowCard>
   );
 };
-

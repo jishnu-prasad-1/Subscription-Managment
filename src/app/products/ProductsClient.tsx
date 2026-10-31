@@ -5,6 +5,7 @@ import { WindowCard } from "@/components/ui/WindowCard";
 import { NeoButton } from "@/components/ui/NeoButton";
 import { Modal } from "@/components/ui/Modal";
 import { PennyMascot } from "@/components/mascot/PennyMascot";
+import { exportToCsv } from "@/lib/exportCsv";
 
 interface VariantRow {
   id: string;
@@ -31,7 +32,9 @@ interface ProductsClientProps {
 
 export const ProductsClient: React.FC<ProductsClientProps> = ({ initialProducts }) => {
   const [products, setProducts] = useState<ProductRow[]>(initialProducts);
+  const [searchQuery, setSearchQuery] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingProduct, setEditingProduct] = useState<ProductRow | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // Form State
@@ -42,9 +45,44 @@ export const ProductsClient: React.FC<ProductsClientProps> = ({ initialProducts 
   const [notes, setNotes] = useState("");
   const [hasOdooVariant, setHasOdooVariant] = useState(true);
 
+  // Edit State
+  const [editName, setEditName] = useState("");
+  const [editSalesPrice, setEditSalesPrice] = useState(0);
+  const [editCostPrice, setEditCostPrice] = useState(0);
+  const [editNotes, setEditNotes] = useState("");
+
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 3500);
+  };
+
+  const handleOpenEdit = (prod: ProductRow) => {
+    setEditingProduct(prod);
+    setEditName(prod.name);
+    setEditSalesPrice(prod.salesPrice);
+    setEditCostPrice(prod.costPrice);
+    setEditNotes(prod.notes || "");
+  };
+
+  const handleSaveEdit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingProduct) return;
+
+    setProducts((prev) =>
+      prev.map((p) =>
+        p.id === editingProduct.id
+          ? {
+              ...p,
+              name: editName,
+              salesPrice: Number(editSalesPrice),
+              costPrice: Number(editCostPrice),
+              notes: editNotes,
+            }
+          : p
+      )
+    );
+    showToast(`Saved modifications to '${editName}'!`);
+    setEditingProduct(null);
   };
 
   const handleCreateProduct = (e: React.FormEvent) => {
@@ -85,6 +123,26 @@ export const ProductsClient: React.FC<ProductsClientProps> = ({ initialProducts 
     showToast(`Added product '${name}' with ${newVariants.length} variants!`);
   };
 
+  const handleExportCatalog = () => {
+    const headers = ["Product Name", "Type", "Sales Price ($)", "Cost Price ($)", "Variant Count", "Status"];
+    const rows = products.map((p) => [
+      p.name,
+      p.productType,
+      p.salesPrice,
+      p.costPrice,
+      p.variants.length,
+      p.isActive ? "Active" : "Inactive",
+    ]);
+    exportToCsv("brightloop_product_catalog.csv", headers, rows);
+    showToast(`📁 Exported ${rows.length} catalog items to CSV!`);
+  };
+
+  const filteredProducts = products.filter(
+    (p) =>
+      p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.productType.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="flex flex-col gap-6">
       {/* Toast Alert */}
@@ -112,19 +170,54 @@ export const ProductsClient: React.FC<ProductsClientProps> = ({ initialProducts 
           </div>
         </div>
 
-        <NeoButton
-          variant="secondary"
-          size="md"
-          icon="add"
-          onClick={() => setIsModalOpen(true)}
-        >
-          + Add New Product
-        </NeoButton>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <NeoButton
+            variant="ghost"
+            size="sm"
+            icon="download"
+            onClick={handleExportCatalog}
+          >
+            Export Catalog
+          </NeoButton>
+          <NeoButton
+            variant="secondary"
+            size="md"
+            icon="add"
+            onClick={() => setIsModalOpen(true)}
+          >
+            + Add New Product
+          </NeoButton>
+        </div>
       </section>
+
+      {/* Filter and Search Bar */}
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-[#FFF2DF] p-3 border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24]">
+        <div className="flex items-center gap-2">
+          <span className="font-headline text-[11px] uppercase font-black text-[#1D1E24]">
+            Catalog View:
+          </span>
+          <span className="px-2 py-0.5 bg-[#25F4D2] text-[#003D32] border border-[#1D1E24] font-headline text-[10px] uppercase font-black">
+            All Offerings ({products.length})
+          </span>
+        </div>
+
+        <div className="relative flex items-center w-full sm:w-64">
+          <span className="material-symbols-outlined absolute left-2 text-[#1D1E24] text-[16px]">
+            search
+          </span>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search products or variants..."
+            className="w-full pl-7 pr-3 py-1 bg-white border border-[#1D1E24] text-[12px] font-bold shadow-[1.5px_1.5px_0px_#1D1E24] focus:outline-none"
+          />
+        </div>
+      </div>
 
       {/* Product Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((prod) => (
+        {filteredProducts.map((prod) => (
           <WindowCard
             key={prod.id}
             title={prod.name}
@@ -172,10 +265,10 @@ export const ProductsClient: React.FC<ProductsClientProps> = ({ initialProducts 
               <div className="flex items-center justify-between pt-2 border-t border-[#1D1E24]/20 font-headline text-[11px]">
                 <span className="text-[#006b5b] font-bold">● Active in Catalog</span>
                 <button
-                  onClick={() => showToast(`Opening editor for ${prod.name}...`)}
-                  className="px-2 py-0.5 bg-[#FFF8EE] border border-[#1D1E24] font-black uppercase shadow-[1px_1px_0px_#1D1E24] hover:bg-[#FFD600]"
+                  onClick={() => handleOpenEdit(prod)}
+                  className="px-2.5 py-1 bg-[#FFD600] border border-[#1D1E24] font-black uppercase text-[10px] shadow-[1.5px_1.5px_0px_#1D1E24] hover:bg-[#FFE04D] active:translate-x-0.5 active:translate-y-0.5 transition-all"
                 >
-                  Edit
+                  Edit SKU
                 </button>
               </div>
             </div>
@@ -205,7 +298,7 @@ export const ProductsClient: React.FC<ProductsClientProps> = ({ initialProducts 
             <input
               type="text"
               required
-              placeholder="e.g. BrightDesk Analytics Suite"
+              placeholder="e.g. Brightloop Analytics Suite"
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full p-2 bg-white border-2 border-[#1D1E24] font-bold text-[12px] shadow-[2px_2px_0px_#1D1E24] focus:outline-none"
@@ -296,7 +389,88 @@ export const ProductsClient: React.FC<ProductsClientProps> = ({ initialProducts 
           </div>
         </form>
       </Modal>
+
+      {/* Modal: Edit Product SKU */}
+      <Modal
+        isOpen={editingProduct !== null}
+        onClose={() => setEditingProduct(null)}
+        title={`Edit Offering: ${editingProduct?.name}`}
+        icon="edit_note"
+      >
+        <form onSubmit={handleSaveEdit} className="flex flex-col gap-4">
+          <div className="flex items-center gap-3 p-2.5 bg-[#FFF0DC] border-2 border-[#1D1E24]">
+            <PennyMascot mood="dispatch" size="sm" />
+            <p className="text-[12px] font-bold text-[#1D1E24]">
+              &ldquo;Update catalog pricing and tier notes in real time!&rdquo;
+            </p>
+          </div>
+
+          <div>
+            <label className="block font-headline text-[11px] uppercase font-black text-[#1D1E24] mb-1">
+              Product SKU Name
+            </label>
+            <input
+              type="text"
+              required
+              value={editName}
+              onChange={(e) => setEditName(e.target.value)}
+              className="w-full p-2 bg-white border-2 border-[#1D1E24] font-bold text-[12px] shadow-[2px_2px_0px_#1D1E24] focus:outline-none"
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block font-headline text-[11px] uppercase font-black text-[#1D1E24] mb-1">
+                Sales Price ($)
+              </label>
+              <input
+                type="number"
+                required
+                value={editSalesPrice}
+                onChange={(e) => setEditSalesPrice(parseFloat(e.target.value) || 0)}
+                className="w-full p-2 bg-white border-2 border-[#1D1E24] font-bold text-[12px] shadow-[2px_2px_0px_#1D1E24] focus:outline-none"
+              />
+            </div>
+            <div>
+              <label className="block font-headline text-[11px] uppercase font-black text-[#1D1E24] mb-1">
+                Cost Price ($)
+              </label>
+              <input
+                type="number"
+                required
+                value={editCostPrice}
+                onChange={(e) => setEditCostPrice(parseFloat(e.target.value) || 0)}
+                className="w-full p-2 bg-white border-2 border-[#1D1E24] font-bold text-[12px] shadow-[2px_2px_0px_#1D1E24] focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block font-headline text-[11px] uppercase font-black text-[#1D1E24] mb-1">
+              Tier Notes &amp; Capabilities
+            </label>
+            <textarea
+              rows={2}
+              value={editNotes}
+              onChange={(e) => setEditNotes(e.target.value)}
+              className="w-full p-2 bg-white border-2 border-[#1D1E24] font-bold text-[12px] shadow-[2px_2px_0px_#1D1E24] focus:outline-none"
+            />
+          </div>
+
+          <div className="flex items-center justify-end gap-2 pt-2 border-t-2 border-[#1D1E24]">
+            <button
+              type="button"
+              onClick={() => setEditingProduct(null)}
+              className="px-4 py-2 bg-[#FFF8EE] border-2 border-[#1D1E24] font-headline text-[11px] uppercase font-black shadow-[2px_2px_0px_#1D1E24]"
+            >
+              Cancel
+            </button>
+            <NeoButton variant="secondary" size="md" type="submit">
+              Update SKU
+            </NeoButton>
+          </div>
+        </form>
+      </Modal>
     </div>
   );
 };
-

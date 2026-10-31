@@ -5,6 +5,7 @@ import { WindowCard } from "@/components/ui/WindowCard";
 import { NeoButton } from "@/components/ui/NeoButton";
 import { Modal } from "@/components/ui/Modal";
 import { PennyMascot } from "@/components/mascot/PennyMascot";
+import { exportToCsv } from "@/lib/exportCsv";
 
 interface PlanRow {
   id: string;
@@ -26,7 +27,9 @@ interface PlansClientProps {
 
 export const PlansClient: React.FC<PlansClientProps> = ({ initialPlans }) => {
   const [plans, setPlans] = useState<PlanRow[]>(initialPlans);
+  const [searchQuery, setSearchQuery] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingPlan, setEditingPlan] = useState<PlanRow | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // Form State
@@ -39,9 +42,53 @@ export const PlansClient: React.FC<PlansClientProps> = ({ initialPlans }) => {
   const [allowPause, setAllowPause] = useState(true);
   const [allowRenewal, setAllowRenewal] = useState(true);
 
+  // Edit State
+  const [editName, setEditName] = useState("");
+  const [editBaseCost, setEditBaseCost] = useState(0);
+  const [editMinQuantity, setEditMinQuantity] = useState(1);
+  const [editAutoClose, setEditAutoClose] = useState(false);
+  const [editAllowPause, setEditAllowPause] = useState(true);
+  const [editAllowEarlyClosure, setEditAllowEarlyClosure] = useState(true);
+  const [editAllowRenewal, setEditAllowRenewal] = useState(true);
+
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 3500);
+  };
+
+  const handleOpenConfig = (pl: PlanRow) => {
+    setEditingPlan(pl);
+    setEditName(pl.name);
+    setEditBaseCost(pl.baseCost);
+    setEditMinQuantity(pl.minQuantity);
+    setEditAutoClose(pl.autoClose);
+    setEditAllowPause(pl.allowPause);
+    setEditAllowEarlyClosure(pl.allowEarlyClosure);
+    setEditAllowRenewal(pl.allowRenewal);
+  };
+
+  const handleSaveConfig = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingPlan) return;
+
+    setPlans((prev) =>
+      prev.map((p) =>
+        p.id === editingPlan.id
+          ? {
+              ...p,
+              name: editName,
+              baseCost: Number(editBaseCost),
+              minQuantity: Number(editMinQuantity),
+              autoClose: editAutoClose,
+              allowPause: editAllowPause,
+              allowEarlyClosure: editAllowEarlyClosure,
+              allowRenewal: editAllowRenewal,
+            }
+          : p
+      )
+    );
+    showToast(`Updated contract rules for '${editName}'!`);
+    setEditingPlan(null);
   };
 
   const handleCreatePlan = (e: React.FormEvent) => {
@@ -64,6 +111,37 @@ export const PlansClient: React.FC<PlansClientProps> = ({ initialPlans }) => {
     setIsModalOpen(false);
     showToast(`Created new plan '${name}' with ${billingInterval} interval!`);
   };
+
+  const handleExportPlans = () => {
+    const headers = [
+      "Plan Name",
+      "Cadence",
+      "Base Cost ($)",
+      "Min Seats",
+      "Auto-Close",
+      "Pause Allowed",
+      "Early Term Allowed",
+      "Subscribers",
+    ];
+    const rows = plans.map((p) => [
+      p.name,
+      p.billingInterval.toUpperCase(),
+      p.baseCost,
+      p.minQuantity,
+      p.autoClose ? "YES" : "NO",
+      p.allowPause ? "YES" : "NO",
+      p.allowEarlyClosure ? "YES" : "NO",
+      p.subscriberCount,
+    ]);
+    exportToCsv("brightloop_plans_matrix.csv", headers, rows);
+    showToast(`📁 Exported ${rows.length} plans to CSV!`);
+  };
+
+  const filteredPlans = plans.filter(
+    (p) =>
+      p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.billingInterval.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="flex flex-col gap-6">
@@ -92,19 +170,54 @@ export const PlansClient: React.FC<PlansClientProps> = ({ initialPlans }) => {
           </div>
         </div>
 
-        <NeoButton
-          variant="secondary"
-          size="md"
-          icon="add"
-          onClick={() => setIsModalOpen(true)}
-        >
-          + Create New Plan
-        </NeoButton>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <NeoButton
+            variant="ghost"
+            size="sm"
+            icon="download"
+            onClick={handleExportPlans}
+          >
+            Export Plans
+          </NeoButton>
+          <NeoButton
+            variant="secondary"
+            size="md"
+            icon="add"
+            onClick={() => setIsModalOpen(true)}
+          >
+            + Create New Plan
+          </NeoButton>
+        </div>
       </section>
+
+      {/* Search & Filter Bar */}
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-[#FFF2DF] p-3 border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24]">
+        <div className="flex items-center gap-2">
+          <span className="font-headline text-[11px] uppercase font-black text-[#1D1E24]">
+            Configured Intervals:
+          </span>
+          <span className="px-2 py-0.5 bg-[#25F4D2] text-[#003D32] border border-[#1D1E24] font-headline text-[10px] uppercase font-black">
+            Daily • Weekly • Monthly • Yearly ({plans.length})
+          </span>
+        </div>
+
+        <div className="relative flex items-center w-full sm:w-64">
+          <span className="material-symbols-outlined absolute left-2 text-[#1D1E24] text-[16px]">
+            search
+          </span>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search plans by cadence..."
+            className="w-full pl-7 pr-3 py-1 bg-white border border-[#1D1E24] text-[12px] font-bold shadow-[1.5px_1.5px_0px_#1D1E24] focus:outline-none"
+          />
+        </div>
+      </div>
 
       {/* Plans Bento Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {plans.map((pl) => (
+        {filteredPlans.map((pl) => (
           <WindowCard
             key={pl.id}
             title={pl.name}
@@ -161,10 +274,10 @@ export const PlansClient: React.FC<PlansClientProps> = ({ initialPlans }) => {
                   ● Active ({pl.subscriberCount} subs)
                 </span>
                 <button
-                  onClick={() => showToast(`Opening rule editor for ${pl.name}...`)}
-                  className="px-2 py-0.5 bg-[#FFF8EE] border border-[#1D1E24] font-black uppercase shadow-[1px_1px_0px_#1D1E24] hover:bg-[#FFD600]"
+                  onClick={() => handleOpenConfig(pl)}
+                  className="px-2.5 py-1 bg-[#25F4D2] text-[#003D32] border border-[#1D1E24] font-black uppercase text-[10px] shadow-[1.5px_1.5px_0px_#1D1E24] hover:bg-[#38EFD0] active:translate-x-0.5 active:translate-y-0.5 transition-all"
                 >
-                  Config
+                  Config Rules
                 </button>
               </div>
             </div>
@@ -204,7 +317,7 @@ export const PlansClient: React.FC<PlansClientProps> = ({ initialPlans }) => {
           <div className="grid grid-cols-3 gap-3">
             <div>
               <label className="block font-headline text-[11px] uppercase font-black text-[#1D1E24] mb-1">
-                Recurrence Cadence
+                Interval
               </label>
               <select
                 value={billingInterval}
@@ -234,7 +347,6 @@ export const PlansClient: React.FC<PlansClientProps> = ({ initialPlans }) => {
               </label>
               <input
                 type="number"
-                min="1"
                 value={minQuantity}
                 onChange={(e) => setMinQuantity(parseInt(e.target.value) || 1)}
                 className="w-full p-2 bg-white border-2 border-[#1D1E24] font-bold text-[12px] shadow-[2px_2px_0px_#1D1E24] focus:outline-none"
@@ -242,47 +354,48 @@ export const PlansClient: React.FC<PlansClientProps> = ({ initialPlans }) => {
             </div>
           </div>
 
-          {/* Lifecycle Checkboxes */}
-          <div className="grid grid-cols-2 gap-3 p-3 bg-[#FFF2DF] border-2 border-[#1D1E24] font-headline text-[11px]">
-            <label className="flex items-center gap-2 font-bold cursor-pointer">
-              <input
-                type="checkbox"
-                checked={autoClose}
-                onChange={(e) => setAutoClose(e.target.checked)}
-                className="w-4 h-4 accent-[#00BFA0] border-2 border-[#1D1E24]"
-              />
-              <span>Auto-Close on End Date</span>
-            </label>
-
-            <label className="flex items-center gap-2 font-bold cursor-pointer">
-              <input
-                type="checkbox"
-                checked={allowEarlyClosure}
-                onChange={(e) => setAllowEarlyClosure(e.target.checked)}
-                className="w-4 h-4 accent-[#00BFA0] border-2 border-[#1D1E24]"
-              />
-              <span>Allow Early Termination</span>
-            </label>
-
-            <label className="flex items-center gap-2 font-bold cursor-pointer">
-              <input
-                type="checkbox"
-                checked={allowPause}
-                onChange={(e) => setAllowPause(e.target.checked)}
-                className="w-4 h-4 accent-[#00BFA0] border-2 border-[#1D1E24]"
-              />
-              <span>Allow Pausing Recurrence</span>
-            </label>
-
-            <label className="flex items-center gap-2 font-bold cursor-pointer">
-              <input
-                type="checkbox"
-                checked={allowRenewal}
-                onChange={(e) => setAllowRenewal(e.target.checked)}
-                className="w-4 h-4 accent-[#00BFA0] border-2 border-[#1D1E24]"
-              />
-              <span>Allow Contract Renewal</span>
-            </label>
+          <div className="flex flex-col gap-2 p-3 bg-[#FFF8EE] border-2 border-[#1D1E24]">
+            <span className="font-headline text-[11px] uppercase font-black text-[#1D1E24]">
+              Lifecycle Governance Rules
+            </span>
+            <div className="grid grid-cols-2 gap-2 text-[12px]">
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={autoClose}
+                  onChange={(e) => setAutoClose(e.target.checked)}
+                  className="accent-[#00BFA0]"
+                />
+                <span className="font-bold">Auto-Close on End</span>
+              </label>
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={allowPause}
+                  onChange={(e) => setAllowPause(e.target.checked)}
+                  className="accent-[#00BFA0]"
+                />
+                <span className="font-bold">Allow Customer Pause</span>
+              </label>
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={allowEarlyClosure}
+                  onChange={(e) => setAllowEarlyClosure(e.target.checked)}
+                  className="accent-[#00BFA0]"
+                />
+                <span className="font-bold">Allow Early Termination</span>
+              </label>
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={allowRenewal}
+                  onChange={(e) => setAllowRenewal(e.target.checked)}
+                  className="accent-[#00BFA0]"
+                />
+                <span className="font-bold">Allow Auto-Renewal</span>
+              </label>
+            </div>
           </div>
 
           <div className="flex items-center justify-end gap-2 pt-2 border-t-2 border-[#1D1E24]">
@@ -299,7 +412,120 @@ export const PlansClient: React.FC<PlansClientProps> = ({ initialPlans }) => {
           </div>
         </form>
       </Modal>
+
+      {/* Modal: Edit Plan Rule Config */}
+      <Modal
+        isOpen={editingPlan !== null}
+        onClose={() => setEditingPlan(null)}
+        title={`Plan Governance: ${editingPlan?.name}`}
+        icon="tune"
+      >
+        <form onSubmit={handleSaveConfig} className="flex flex-col gap-4">
+          <div className="flex items-center gap-3 p-2.5 bg-[#FFF0DC] border-2 border-[#1D1E24]">
+            <PennyMascot mood="dispatch" size="sm" />
+            <p className="text-[12px] font-bold text-[#1D1E24]">
+              &ldquo;Update contract terms, pause permissions, and base pricing!&rdquo;
+            </p>
+          </div>
+
+          <div>
+            <label className="block font-headline text-[11px] uppercase font-black text-[#1D1E24] mb-1">
+              Plan Title
+            </label>
+            <input
+              type="text"
+              required
+              value={editName}
+              onChange={(e) => setEditName(e.target.value)}
+              className="w-full p-2 bg-white border-2 border-[#1D1E24] font-bold text-[12px] shadow-[2px_2px_0px_#1D1E24] focus:outline-none"
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block font-headline text-[11px] uppercase font-black text-[#1D1E24] mb-1">
+                Base Cost ($)
+              </label>
+              <input
+                type="number"
+                required
+                value={editBaseCost}
+                onChange={(e) => setEditBaseCost(parseFloat(e.target.value) || 0)}
+                className="w-full p-2 bg-white border-2 border-[#1D1E24] font-bold text-[12px] shadow-[2px_2px_0px_#1D1E24] focus:outline-none"
+              />
+            </div>
+            <div>
+              <label className="block font-headline text-[11px] uppercase font-black text-[#1D1E24] mb-1">
+                Min Quantity (Seats)
+              </label>
+              <input
+                type="number"
+                required
+                value={editMinQuantity}
+                onChange={(e) => setEditMinQuantity(parseInt(e.target.value) || 1)}
+                className="w-full p-2 bg-white border-2 border-[#1D1E24] font-bold text-[12px] shadow-[2px_2px_0px_#1D1E24] focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2 p-3 bg-[#FFF8EE] border-2 border-[#1D1E24]">
+            <span className="font-headline text-[11px] uppercase font-black text-[#1D1E24]">
+              Live Governance Flags
+            </span>
+            <div className="grid grid-cols-2 gap-2 text-[12px]">
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={editAutoClose}
+                  onChange={(e) => setEditAutoClose(e.target.checked)}
+                  className="accent-[#00BFA0]"
+                />
+                <span className="font-bold">Auto-Close on End</span>
+              </label>
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={editAllowPause}
+                  onChange={(e) => setEditAllowPause(e.target.checked)}
+                  className="accent-[#00BFA0]"
+                />
+                <span className="font-bold">Allow Pause</span>
+              </label>
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={editAllowEarlyClosure}
+                  onChange={(e) => setEditAllowEarlyClosure(e.target.checked)}
+                  className="accent-[#00BFA0]"
+                />
+                <span className="font-bold">Allow Early Term</span>
+              </label>
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={editAllowRenewal}
+                  onChange={(e) => setEditAllowRenewal(e.target.checked)}
+                  className="accent-[#00BFA0]"
+                />
+                <span className="font-bold">Allow Auto-Renewal</span>
+              </label>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-end gap-2 pt-2 border-t-2 border-[#1D1E24]">
+            <button
+              type="button"
+              onClick={() => setEditingPlan(null)}
+              className="px-4 py-2 bg-[#FFF8EE] border-2 border-[#1D1E24] font-headline text-[11px] uppercase font-black shadow-[2px_2px_0px_#1D1E24]"
+            >
+              Cancel
+            </button>
+            <NeoButton variant="secondary" size="md" type="submit">
+              Update Contract Rules
+            </NeoButton>
+          </div>
+        </form>
+      </Modal>
     </div>
   );
 };
-

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
 @tailwind base;
@@ -9,21 +9,27 @@
   html, body {
     margin: 0;
     padding: 0;
-    background-color: #FFF8EE;
-    color: #1D1E24;
+    background-color: #FFF9F0;
+    color: #121316;
     font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  ::selection {
+    background-color: #25F4D2;
+    color: #003D32;
   }
   
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
   }
   ::-webkit-scrollbar-track {
     background: #FFF0DC;
+    border-left: 2px solid #1D1E24;
   }
   ::-webkit-scrollbar-thumb {
     background: #1D1E24;
-    border: 1px solid #FFF8EE;
+    border: 1px solid #FFD600;
   }
 }
 
@@ -32,37 +38,44 @@
 }
 
 .bg-retro-grid {
-  background-color: #FFF8EE;
+  background-color: #FFF9F0;
   background-image: 
-    linear-gradient(to right, rgba(29, 30, 36, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(29, 30, 36, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(29, 30, 36, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(29, 30, 36, 0.07) 1px, transparent 1px);
   background-size: 24px 24px;
+}
+
+.bg-retro-dots {
+  background-color: #FFF8EE;
+  background-image: radial-gradient(#1D1E24 0.75px, transparent 0.75px);
+  background-size: 16px 16px;
 }
 
 .neo-box {
   border: 2.5px solid #1D1E24;
-  box-shadow: 3px 3px 0px #1D1E24;
+  box-shadow: 3.5px 3.5px 0px #1D1E24;
 }
 
 .neo-box-sm {
-  border: 1.5px solid #1D1E24;
-  box-shadow: 1.5px 1.5px 0px #1D1E24;
+  border: 2px solid #1D1E24;
+  box-shadow: 2px 2px 0px #1D1E24;
 }
 
 .neo-box-lg {
   border: 3px solid #1D1E24;
-  box-shadow: 4px 4px 0px #1D1E24;
+  box-shadow: 5px 5px 0px #1D1E24;
 }
 
 .neo-btn {
   border: 2.5px solid #1D1E24;
   box-shadow: 3px 3px 0px #1D1E24;
   transition: all 0.1s ease;
+  user-select: none;
 }
 
 .neo-btn:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0px #1D1E24;
+  transform: translate(-1.5px, -1.5px);
+  box-shadow: 4.5px 4.5px 0px #1D1E24;
 }
 
 .neo-btn:active {
@@ -70,3 +83,11 @@
   box-shadow: 1px 1px 0px #1D1E24;
 }
 
+/* Custom retro badge */
+.retro-pill {
+  border: 1.5px solid #1D1E24;
+  box-shadow: 1.5px 1.5px 0px #1D1E24;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+}
