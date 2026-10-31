@@ -4,6 +4,21 @@ All notable changes to this project are documented in this file in accordance wi
 
 ---
 
+## [1.5.0-docs] - 2026-10-31
+### 📘 MILESTONE 10: COMPREHENSIVE PROBLEM & SOLUTION TECHNICAL SPECIFICATION
+
+#### Added & Documented
+- **Comprehensive White Paper (`docs/PROBLEM_AND_SOLUTION_DOCUMENTATION.md`)**:
+  - Authored a rigorous architectural white paper articulating:
+    - **The Problem Space**: Detailed breakdown of the recurring billing operational crisis, contrasting point-in-time commerce with long-lived multi-interval subscription governance.
+    - **The 4 Root Failure Modes**: Documented revenue leakage, concurrency/double-billing risks, pricing matrix/variant friction, and the "dashboard illusion" vs. audited cash collections.
+    - **The Solution Architecture**: Complete Mermaid entity and pipeline diagrams across catalog governance, commercial conversion, subscription state machine, idempotent billing engine, multi-method payment reconciliation, and real-time telemetry.
+    - **Mathematical Models**: Explicit KaTeX formulations for SHA-256 idempotency key hashing, dynamic variant surcharge line-item resolution, 18% GST tax computation, interval-normalized MRR/ARR velocity, and cash collection efficiency.
+    - **SLA & Test Verification**: Documented sub-15ms performance benchmark (13ms recorded, 99.3% headroom against 2,000ms SLA) and 8/8 automated unit tests pass rate.
+    - **System Sitemap & Codebase Reference**: Complete mapping of core APIs, state machines, audio synthesis, and neo-brutalist UI components.
+
+---
+
 ## [1.4.1-cleanup] - 2026-10-31
 ### 🧹 MILESTONE 9: AUDIT & REMOVAL OF MISLEADING NON-WORKING WINDOW CONTROLS
 
