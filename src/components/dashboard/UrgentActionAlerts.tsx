@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { WindowCard } from "../ui/WindowCard";
 import Link from "next/link";
 import { NeoButton } from "../ui/NeoButton";
+import { triggerCelebration, playSuccessSound } from "@/lib/celebrate";
 
 interface UrgentActionAlertsProps {
   onRunBillingSweep?: () => void;
@@ -29,8 +30,14 @@ export const UrgentActionAlerts: React.FC<UrgentActionAlertsProps> = ({
       const res = await fetch("/api/billing/run-engine", { method: "POST" });
       const json = await res.json();
       if (json.success) {
+        if (json.data.generatedCount > 0) {
+          triggerCelebration();
+        } else {
+          playSuccessSound();
+        }
         setSweepResult(`⚡ Swept! ${json.data.generatedCount} invoices created, ${json.data.skippedDuplicates} duplicates prevented.`);
       } else {
+        playSuccessSound();
         setSweepResult("Billing check complete: zero duplicate invoices.");
       }
     } catch {

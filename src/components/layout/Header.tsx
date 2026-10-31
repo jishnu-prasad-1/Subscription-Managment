@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { NeoButton } from "../ui/NeoButton";
 import { PennyMascot } from "../mascot/PennyMascot";
+import { sounds } from "@/lib/soundEffects";
 
 interface HeaderProps {
   onOpenQuotationModal?: () => void;
@@ -17,11 +18,30 @@ export const Header: React.FC<HeaderProps> = () => {
   const [showHelp, setShowHelp] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [sfxEnabled, setSfxEnabled] = useState(true);
+
+  useEffect(() => {
+    setSfxEnabled(sounds.isEnabled());
+  }, []);
+
+  const toggleSfx = () => {
+    const next = sounds.toggle();
+    setSfxEnabled(next);
+  };
+
+  const handleOpenCommandPalette = () => {
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("toggle-command-palette"));
+    }
+  };
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const query = searchQuery.trim().toLowerCase();
-    if (!query) return;
+    if (!query) {
+      handleOpenCommandPalette();
+      return;
+    }
 
     if (query.includes("sub") || query.includes("order")) {
       router.push("/subscriptions");
@@ -49,7 +69,7 @@ export const Header: React.FC<HeaderProps> = () => {
 
   return (
     <header className="fixed top-0 left-64 xl:left-72 right-0 h-16 bg-[#FFF2DF] border-b-[3px] border-[#1D1E24] z-40 px-4 sm:px-6 flex items-center justify-between shadow-[0_3px_0px_#1D1E24]">
-      {/* Left: Breadcrumbs & Quick Search */}
+      {/* Left: Breadcrumbs & Quick Search / CMD trigger */}
       <div className="flex items-center gap-3 sm:gap-6">
         <div className="hidden sm:flex items-center gap-1.5 text-[#1D1E24] font-headline text-[12px]">
           <span className="text-[#5B5D68] font-bold">SYSTEM</span>
@@ -62,7 +82,7 @@ export const Header: React.FC<HeaderProps> = () => {
         </div>
 
         {/* ⌘K Quick Search Input */}
-        <form onSubmit={handleSearchSubmit} className="relative flex items-center w-52 sm:w-72 lg:w-80">
+        <form onSubmit={handleSearchSubmit} className="relative flex items-center w-52 sm:w-64 lg:w-80">
           <span className="material-symbols-outlined absolute left-2 text-[#1D1E24] text-[17px]">
             search
           </span>
@@ -70,16 +90,28 @@ export const Header: React.FC<HeaderProps> = () => {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Type 'invoices', 'plans', 'subs' & ↵"
-            className="w-full pl-8 pr-10 py-1 bg-[#FFF8EE] border-2 border-[#1D1E24] text-[#1D1E24] text-[12px] font-bold shadow-[2px_2px_0px_#1D1E24] focus:bg-white focus:outline-none placeholder:text-[#5B5D68]"
+            placeholder="Search or hit ⌘K..."
+            className="w-full pl-8 pr-12 py-1 bg-[#FFF8EE] border-2 border-[#1D1E24] text-[#1D1E24] text-[12px] font-bold shadow-[2px_2px_0px_#1D1E24] focus:bg-white focus:outline-none placeholder:text-[#5B5D68]"
           />
           <button
-            type="submit"
-            className="absolute right-1.5 px-1 py-0.2 bg-[#FFD600] border border-[#1D1E24] font-headline text-[9px] text-[#1D1E24] font-black shadow-[1px_1px_0px_#1D1E24] hover:bg-[#FFE04D]"
+            type="button"
+            onClick={handleOpenCommandPalette}
+            className="absolute right-1.5 px-1.5 py-0.2 bg-[#FFD600] border border-[#1D1E24] font-headline text-[9px] text-[#1D1E24] font-black shadow-[1px_1px_0px_#1D1E24] hover:bg-[#FFE04D]"
+            title="Open Command Palette (⌘K)"
           >
-            GO
+            ⌘K
           </button>
         </form>
+
+        {/* ⌘K Palette Pill for desktop */}
+        <button
+          onClick={handleOpenCommandPalette}
+          className="hidden xl:flex items-center gap-1.5 px-2.5 py-1 bg-[#FFF8EE] border-2 border-[#1D1E24] shadow-[2px_2px_0px_#1D1E24] hover:bg-[#25F4D2] text-[#1D1E24] font-headline text-[11px] font-black uppercase transition-all duration-75"
+          title="Open Command Palette (⌘K / Ctrl+K)"
+        >
+          <span className="material-symbols-outlined text-[15px]">terminal</span>
+          <span>Command Menu</span>
+        </button>
       </div>
 
       {/* Right: Quick Action Buttons & Profile Controls */}
@@ -99,6 +131,20 @@ export const Header: React.FC<HeaderProps> = () => {
         </div>
 
         <div className="hidden md:block h-6 w-0.5 bg-[#1D1E24] opacity-30 mx-0.5"></div>
+
+        {/* Audio Effects (SFX) Toggle Switch */}
+        <button
+          onClick={toggleSfx}
+          className={`p-1.5 border-2 border-[#1D1E24] shadow-[2px_2px_0px_#1D1E24] active:translate-x-0.5 active:translate-y-0.5 transition-all text-[#1D1E24] flex items-center justify-center gap-1 font-headline text-[10px] font-black uppercase select-none ${
+            sfxEnabled ? "bg-[#25F4D2] hover:bg-[#38EFD0]" : "bg-[#E0E2EC] hover:bg-[#D0D2DC] text-[#606275]"
+          }`}
+          title={sfxEnabled ? "Audio Effects: ON (Click to mute)" : "Audio Effects: MUTED (Click to unmute)"}
+        >
+          <span className="material-symbols-outlined text-[18px]">
+            {sfxEnabled ? "volume_up" : "volume_off"}
+          </span>
+          <span className="hidden xl:inline">{sfxEnabled ? "SFX" : "MUTE"}</span>
+        </button>
 
         {/* Notifications & Help Icons */}
         <div className="flex items-center gap-1.5 relative">
@@ -158,7 +204,7 @@ export const Header: React.FC<HeaderProps> = () => {
               setShowProfileMenu(false);
             }}
             className="p-1.5 bg-[#FFF8EE] border-2 border-[#1D1E24] shadow-[2px_2px_0px_#1D1E24] hover:bg-[#FFD600] active:translate-x-0.5 active:translate-y-0.5 transition-all text-[#1D1E24] flex items-center justify-center"
-            title="Help &amp; Tour"
+            title="Help & Tour"
           >
             <span className="material-symbols-outlined text-[18px]">help</span>
           </button>

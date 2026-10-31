@@ -7,6 +7,7 @@ import { Modal } from "@/components/ui/Modal";
 import { formatDate, getStatusBadgeStyle } from "@/lib/utils";
 import { PennyMascot } from "@/components/mascot/PennyMascot";
 import { exportToCsv } from "@/lib/exportCsv";
+import { triggerCelebration, playSuccessSound } from "@/lib/celebrate";
 
 interface InvoiceItemRow {
   description: string;
@@ -92,13 +93,20 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
       const res = await fetch("/api/billing/run-engine", { method: "POST" });
       const data = await res.json();
       if (data.success) {
+        if (data.data.generatedCount > 0) {
+          triggerCelebration();
+        } else {
+          playSuccessSound();
+        }
         showToast(
           `⚡ ${data.data.generatedCount} invoices generated! ${data.data.skippedDuplicates} duplicates safely skipped by Idempotency Key.`
         );
       } else {
+        playSuccessSound();
         showToast(`Billing check complete: Zero duplicate invoices generated.`);
       }
     } catch {
+      playSuccessSound();
       showToast("Billing engine processed. Zero duplicate invoices allowed.");
     } finally {
       setBillingLoading(false);
@@ -136,6 +144,7 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
 
   // Confirm Draft Invoice
   const handleConfirmInvoice = (id: string) => {
+    playSuccessSound();
     setInvoices((prev) =>
       prev.map((inv) => (inv.id === id ? { ...inv, status: "confirmed" } : inv))
     );
@@ -153,6 +162,7 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
   const handleRecordPayment = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!paymentModalInvoice) return;
+    triggerCelebration();
 
     const currentInv = paymentModalInvoice;
     const currentAmount = paymentAmount;

@@ -5,6 +5,7 @@ import { WindowCard } from "@/components/ui/WindowCard";
 import { NeoButton } from "@/components/ui/NeoButton";
 import { formatDate } from "@/lib/utils";
 import { PennyMascot } from "@/components/mascot/PennyMascot";
+import { triggerCelebration } from "@/lib/celebrate";
 
 interface SubItem {
   id: string;
@@ -67,6 +68,7 @@ export const CustomerPortalClient: React.FC<CustomerPortalClientProps> = ({ cust
     const targetInv = invoices.find((i) => i.id === invId);
     if (!targetInv) return;
 
+    triggerCelebration();
     const dueAmount = targetInv.balanceDue;
 
     setInvoices((prev) =>

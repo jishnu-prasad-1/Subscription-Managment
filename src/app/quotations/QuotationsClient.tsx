@@ -8,6 +8,7 @@ import { formatDate } from "@/lib/utils";
 import { PennyMascot } from "@/components/mascot/PennyMascot";
 import { useRouter } from "next/navigation";
 import { exportToCsv } from "@/lib/exportCsv";
+import { triggerCelebration } from "@/lib/celebrate";
 
 interface QuotationItemRow {
   productName: string;
@@ -141,6 +142,7 @@ export const QuotationsClient: React.FC<QuotationsClientProps> = ({
 
   // 1-Click Convert to Subscription!
   const handleConvertToSubscription = async (quote: QuotationRow) => {
+    triggerCelebration();
     try {
       const res = await fetch(`/api/quotations/${quote.id}/convert`, { method: "POST" });
       const data = await res.json();

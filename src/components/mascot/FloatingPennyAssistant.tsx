@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import { PennyMascot } from "./PennyMascot";
 import { NeoButton } from "@/components/ui/NeoButton";
 import Link from "next/link";
+import { triggerCelebration, playSuccessSound } from "@/lib/celebrate";
+import { sounds } from "@/lib/soundEffects";
 
 interface PennyData {
   activeCount: number;
@@ -51,9 +53,15 @@ export const FloatingPennyAssistant: React.FC = () => {
       const res = await fetch("/api/billing/run-engine", { method: "POST" });
       const json = await res.json();
       if (json.success) {
+        if (json.data.generatedCount > 0) {
+          triggerCelebration();
+        } else {
+          playSuccessSound();
+        }
         setActionNotice(`⚡ Swept! ${json.data.generatedCount} invoices created, ${json.data.skippedDuplicates} duplicates prevented.`);
         fetchInsights();
       } else {
+        playSuccessSound();
         setActionNotice("Zero duplicate invoices generated.");
       }
     } catch {
@@ -70,8 +78,10 @@ export const FloatingPennyAssistant: React.FC = () => {
       const res = await fetch("/api/performance");
       const json = await res.json();
       if (json.success) {
+        playSuccessSound();
         setBenchmarkResult(`⚡ Latency: ${json.metrics.totalExecutionMs}ms (${json.compliance.performanceDelta})!`);
       } else {
+        playSuccessSound();
         setBenchmarkResult("Benchmark complete: <50ms.");
       }
     } catch {
@@ -258,7 +268,10 @@ export const FloatingPennyAssistant: React.FC = () => {
 
       {/* The Floating Mascot Trigger Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          sounds.playCoin();
+          setIsOpen(!isOpen);
+        }}
         className="group relative flex items-center justify-center p-1 bg-[#FFD600] border-[2.5px] border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24] hover:shadow-[2px_2px_0px_#1D1E24] hover:translate-x-[2px] hover:translate-y-[2px] transition-all rounded-full select-none"
         title="Penny Financial Assistant"
       >

@@ -1,4 +1,5 @@
 import React from "react";
+import { playClickSound } from "@/lib/celebrate";
 
 interface NeoButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "destructive" | "ghost" | "cyan";
@@ -14,6 +15,7 @@ export const NeoButton: React.FC<NeoButtonProps> = ({
   children,
   className = "",
   disabled,
+  onClick,
   ...props
 }) => {
   const variantStyles = {
@@ -30,9 +32,15 @@ export const NeoButton: React.FC<NeoButtonProps> = ({
     lg: "px-5 py-2.5 text-[14px]",
   };
 
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    playClickSound();
+    onClick?.(e);
+  };
+
   return (
     <button
       disabled={disabled}
+      onClick={handleClick}
       className={`inline-flex items-center justify-center gap-1.5 font-headline uppercase font-black border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-[transform,box-shadow,background-color] duration-75 ease-out select-none cursor-pointer disabled:opacity-50 disabled:pointer-events-none ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
       {...props}
     >
