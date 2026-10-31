@@ -4,6 +4,23 @@ All notable changes to this project are documented in this file in accordance wi
 
 ---
 
+## [1.5.2-masterplan] - 2026-10-31
+### 🎬 MILESTONE 12: 5-MINUTE VIDEO RECORDING MASTER BLUEPRINT & TELEPROMPTER SCRIPT
+
+#### Added & Documented
+- **Second-by-Second 5-Minute Production Blueprint (`docs/5_MINUTE_VIDEO_RECORDING_MASTER_PLAN.md`)**:
+  - Engineered an exhaustive 300-second recording storyboard broken into 7 sequential acts:
+    - **Act 1 (0:00–0:45)**: The Hook & Operational Crisis on the full-bleed dashboard with Bloomberg marquee ribbon.
+    - **Act 2 (0:45–1:30)**: Mission Control Quick Cockpit & Penny the Coin mascot with dual-tone Web Audio chimes and telemetry drawer.
+    - **Act 3 (1:30–2:20)**: Proposal drafting with dynamic $+₹560$ Odoo Brand variant surcharge, 18% GST tax breakdown, and INR currency totals.
+    - **Act 4 (2:20–3:00)**: 1-Click Convert with victory fanfare synthesizer audio, confetti cannon celebration, and 5-stage subscription state machine pipeline.
+    - **Act 5 (3:00–3:55)**: The Technical Climax—automated midnight billing sweep and double-click retry test proving SHA-256 zero double-billing protection (`0 duplicates generated, 18 periods skipped`).
+    - **Act 6 (3:55–4:35)**: Partial UPI payment settlement balance reconciliation and tenant self-service portal with itemized PDF tax invoice preview.
+    - **Act 7 (4:35–5:00)**: Sub-15ms SLA benchmark verification (13ms recorded vs. 2,000ms SLA mandate) and executive winning pitch close.
+  - **Pre-Recording Setup Guide**: Screen resolution (1080p), browser zoom (110%), fullscreen mode (F11), and Web Audio audio monitoring check.
+
+---
+
 ## [1.5.1-video] - 2026-10-31
 ### 🎬 MILESTONE 11: VIDEO DEMONSTRATION & PITCH RECORDING SCRIPT
 

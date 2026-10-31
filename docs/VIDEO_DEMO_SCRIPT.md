@@ -297,3 +297,4 @@ Keep these technical defenses ready if judges ask questions after the video:
 | **"How is the +₹560 Odoo surcharge calculated across bulk seat quantities?"** | *"Our pricing engine calculates effective unit price as $P_{\text{eff}} = P_{\text{base}} + \sum S_{\text{variant}}$. The $+₹560$ is applied per seat before line-item quantity multiplication and 18% GST tax application, matching the official challenge specifications."* |
 | **"Is Penny the Coin hardcoded or reactive?"** | *"Penny is connected to our live `/api/penny/insights` telemetry route. She actively queries SQLite/PostgreSQL to detect aging overdue receivables, churn thresholds, and renewal clusters, adapting her mood and dialogue in real time."* |
 | **"Are the sound effects loading external MP3 files?"** | *"No. All sound effects are synthesized 100% procedurally on the client using the browser's native Web Audio API (`AudioContext`). It adds zero network bytes and zero asset latency."* |
+
