@@ -54,11 +54,11 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
 
         {/* Scrollable Viewport Canvas */}
         <main className="w-full pt-16 bg-[#FFF8EE] min-h-[calc(100vh-4rem)] flex-1 flex flex-col">
-          {/* Live Financial Telemetry Ticker Ribbon */}
-          <div className="bg-[#1D1E24] text-white py-1 px-4 border-b-2 border-[#1D1E24] overflow-x-hidden whitespace-nowrap flex items-center justify-between text-[11px] font-headline font-black select-none shadow-[0_2px_0px_#1D1E24]">
-            <div className="flex items-center gap-5 sm:gap-8 animate-pulse text-[10px] sm:text-[11px]">
-              <span className="flex items-center gap-1.5 text-[#25F4D2]">
-                <span className="w-2 h-2 rounded-full bg-[#25F4D2] animate-ping inline-block"></span>
+          {/* Live Financial Telemetry Ticker Ribbon - Generous Spacing */}
+          <div className="bg-[#1D1E24] text-white py-2.5 px-6 border-b-2 border-[#1D1E24] overflow-x-hidden whitespace-nowrap flex items-center justify-between text-[11px] font-headline font-black select-none shadow-[0_2px_0px_#1D1E24]">
+            <div className="flex items-center gap-6 sm:gap-10 animate-pulse text-[11px] sm:text-[12px] tracking-wide">
+              <span className="flex items-center gap-2 text-[#25F4D2]">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#25F4D2] animate-ping inline-block"></span>
                 LIVE REVENUE TELEMETRY
               </span>
               <span className="text-[#FFD600]">MRR VELOCITY: $142,850/MO (+12.4%)</span>
@@ -68,14 +68,15 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
               <span className="text-[#FF4D6D]">OVERDUE REVENUE: $9,350 (DUNNING QUEUED)</span>
               <span className="text-[#25F4D2]">ODOO BRAND SURCHARGE: +₹560 LOCKED</span>
             </div>
-            <div className="hidden lg:flex items-center gap-3 text-[10px] text-[#A0A2B0]">
-              <span className="bg-[#25F4D2] text-[#003D32] px-1.5 py-0.2 font-black uppercase border border-[#1D1E24]">
+            <div className="hidden xl:flex items-center gap-3 text-[10px] text-[#A0A2B0]">
+              <span className="bg-[#25F4D2] text-[#003D32] px-2 py-0.5 font-black uppercase border border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24]">
                 SYSTEM ONLINE
               </span>
             </div>
           </div>
 
-          <div className="p-4 sm:p-6 lg:p-8 flex flex-col gap-6 max-w-[1440px] mx-auto w-full flex-1">
+          {/* Generously Padded & Spaced Content Canvas */}
+          <div className="py-8 px-4 sm:px-8 lg:px-10 xl:px-12 flex flex-col gap-8 max-w-[1560px] mx-auto w-full flex-1">
             {children}
           </div>
         </main>

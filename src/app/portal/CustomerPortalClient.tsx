@@ -108,7 +108,7 @@ export const CustomerPortalClient: React.FC<CustomerPortalClientProps> = ({ cust
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-8">
       {/* Toast Alert */}
       {toastMessage && (
         <div className="fixed bottom-6 right-6 z-50 bg-[#25F4D2] text-[#003D32] border-[2.5px] border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24] px-4 py-2 font-headline text-[12px] font-black uppercase animate-in slide-in-from-bottom-2">
@@ -116,43 +116,45 @@ export const CustomerPortalClient: React.FC<CustomerPortalClientProps> = ({ cust
         </div>
       )}
 
-      {/* Portal Header */}
-      <section className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white border-2 border-[#1D1E24] p-4 shadow-[4px_4px_0px_#1D1E24]">
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-[#FF4D6D] text-white border-2 border-[#1D1E24] flex items-center justify-center shadow-[3px_3px_0px_#1D1E24]">
-            <span className="material-symbols-outlined text-[28px] font-black">
+      {/* Portal Header - Comfortable Padding */}
+      <section className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white border-2 border-[#1D1E24] p-5 sm:p-6 shadow-[4px_4px_0px_#1D1E24]">
+        <div className="flex items-center gap-3.5">
+          <div className="w-14 h-14 bg-[#FF4D6D] text-white border-2 border-[#1D1E24] flex items-center justify-center shadow-[3px_3px_0px_#1D1E24] shrink-0">
+            <span className="material-symbols-outlined text-[32px] font-black">
               storefront
             </span>
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="font-headline text-[20px] uppercase font-black text-[#1D1E24]">
+              <h1 className="font-headline text-[22px] uppercase font-black text-[#1D1E24]">
                 Customer Self-Service Portal
               </h1>
               <span className="font-headline text-[10px] px-2 py-0.5 bg-[#FFD600] text-[#1D1E24] font-black border border-[#1D1E24]">
                 TENANT_ISOLATED
               </span>
             </div>
-            <p className="text-[12px] text-[#606275] font-semibold">
+            <p className="text-[13px] text-[#606275] font-semibold mt-0.5">
               Logged in as <strong className="text-[#1D1E24]">{customer.companyName}</strong> ({customer.contactName})
             </p>
           </div>
         </div>
 
-        <div className="px-3 py-1.5 bg-[#FFF0DC] border-2 border-[#1D1E24] font-headline text-[11px] font-bold">
+        <div className="px-3.5 py-2 bg-[#FFF0DC] border-2 border-[#1D1E24] font-headline text-[11.5px] font-bold">
           <span>Billing Terms: <strong>{customer.paymentTerms}</strong></span> |{" "}
           <span>Tax ID: <strong>{customer.taxId}</strong></span>
         </div>
       </section>
 
       {/* Penny Friendly Welcome */}
-      <div className="flex items-center gap-4 bg-[#FFE170]/40 border-[2.5px] border-[#1D1E24] p-3 shadow-[4px_4px_0px_#1D1E24]">
-        <PennyMascot mood="dispatch" size="md" />
+      <div className="flex items-center gap-5 bg-[#FFE170]/40 border-[2.5px] border-[#1D1E24] p-4 sm:p-5 shadow-[4px_4px_0px_#1D1E24]">
+        <div className="w-20 h-20 shrink-0 flex items-center justify-center bg-white border-2 border-[#1D1E24] p-1 shadow-[2px_2px_0px_#1D1E24]">
+          <PennyMascot mood="dispatch" size="lg" />
+        </div>
         <div>
-          <div className="font-headline text-[10px] uppercase font-black bg-[#FFD600] px-1.5 py-0.2 border border-[#1D1E24] w-fit mb-1">
+          <div className="font-headline text-[10.5px] uppercase font-black bg-[#FFD600] px-2 py-0.5 border border-[#1D1E24] w-fit mb-1.5 shadow-[1px_1px_0px_#1D1E24]">
             PENNY&apos;S CUSTOMER DESK
           </div>
-          <p className="text-[12px] font-bold text-[#1D1E24]">
+          <p className="text-[13px] font-bold text-[#1D1E24] leading-relaxed">
             &ldquo;Welcome to your subscriber portal! You can view your active plans, renewal countdown, and download official invoices below without needing to email support!&rdquo;
           </p>
         </div>

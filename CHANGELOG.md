@@ -4,6 +4,25 @@ All notable changes to this project are documented in this file in accordance wi
 
 ---
 
+## [1.3.1-polish] - 2026-10-31
+### 🎨 MILESTONE 6: HIGH-DETAIL PENNY MASCOT & GLOBAL LAYOUT DECONGESTION
+
+#### Enhanced
+- **High-Detail Mid-Century Cartoon Penny Mascot (`PennyMascot.tsx`)**:
+  - Re-illustrated Penny with classic mid-century animation character anatomy:
+    - **White Cartoon 4-Finger Gloves**: Mood-driven arm poses (waving in `dispatch`, celebratory double-hand raised `\o/` with sparkle bursts `✦` in `celebrate`, watchful pointing in `alert`, and chin-resting in `thinking`).
+    - **Cherry Red Retro Boots & Soles**: Vintage rounded cartoon boots with black soles and toe-cap specular highlights.
+    - **Antique Metallic Coin Shading**: Multi-stop radial gradients (`#FFA64D` $\to$ `#FF6B00` $\to$ `#D94E00`), serrated milled coin teeth notches, glossy specular reflection arc, and star shine glint.
+    - **Expressive Cartoon Facial Features**: Disney/mid-century eyes with primary and secondary specular catchlights, friendly curved eyebrows, open smile with white teeth line and pink tongue (`#FF4D6D`), and rosy blushing cheeks with stippling.
+- **Global Layout Decongestion & Spacious Typography**:
+  - Expanded master container from 1440px to 1560px with generous `gap-8` between sections and `py-8 px-4 sm:px-8 lg:px-12` canvas padding.
+  - **Spacious Window Cards (`WindowCard.tsx`)**: Upgraded body padding from `p-4` to `p-5 sm:p-6 lg:p-7` across all modules.
+  - **Decongested Bento Metric Grid (`BentoMetricGrid.tsx`)**: Upgraded layout to a responsive 4-to-7 column grid (`gap-4 lg:gap-5`) with `p-4 sm:p-5` cards, removing awkward text truncations and cramped sparklines.
+  - **Generous Data Table Cells**: Expanded all table headers and cells across Subscriptions, Invoices, Quotations, Customers, and Staff tables from `p-2.5`/`p-3` to `px-4 py-3.5` with comfortable vertical row heights.
+  - **Roomy Top Telemetry Ribbon & Sidebar**: Upgraded ticker ribbon height (`py-2.5 px-6`) and sidebar navigation link spacing (`py-2 px-3.5` with `gap-1.5`).
+
+---
+
 ## [1.3.0-experience] - 2026-10-31
 ### 🌟 MILESTONE 5: RETRO AUDIO SYNTHESIZER, ⌘K COMMAND PALETTE, CELEBRATION CONFETTI & TELEMETRY TICKER
 

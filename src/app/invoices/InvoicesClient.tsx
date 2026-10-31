@@ -353,33 +353,33 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
               const badge = getStatusBadgeStyle(inv.status);
               return (
                 <tr key={inv.id} className="hover:bg-[#25F4D2]/15 transition-colors">
-                  <td className="p-3 font-headline font-black text-[#1D1E24]">
+                  <td className="px-4 py-3.5 font-headline font-black text-[#1D1E24]">
                     {inv.invoiceNumber}
                   </td>
-                  <td className="p-3 font-bold text-[#1D1E24]">{inv.customerName}</td>
-                  <td className="p-3 font-headline text-[11px] text-[#006b5b] font-bold">
+                  <td className="px-4 py-3.5 font-bold text-[#1D1E24]">{inv.customerName}</td>
+                  <td className="px-4 py-3.5 font-headline text-[11px] text-[#006b5b] font-bold">
                     {inv.subscriptionNumber}
                   </td>
-                  <td className="p-3 text-[11px] text-[#606275]">
+                  <td className="px-4 py-3.5 text-[11px] text-[#606275]">
                     {formatDate(inv.billingPeriodStart)} – {formatDate(inv.billingPeriodEnd)}
                   </td>
-                  <td className="p-3">
+                  <td className="px-4 py-3.5">
                     <span
                       className={`inline-block px-2 py-0.5 text-[9px] font-headline uppercase font-black border border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24] ${badge.bg} ${badge.text}`}
                     >
                       {inv.status}
                     </span>
                   </td>
-                  <td className="p-3 font-headline font-bold text-[11px]">
+                  <td className="px-4 py-3.5 font-headline font-bold text-[11px]">
                     {formatDate(inv.dueDate)}
                   </td>
-                  <td className="p-3 text-right font-headline font-black text-[#1D1E24]">
+                  <td className="px-4 py-3.5 text-right font-headline font-black text-[#1D1E24]">
                     ${inv.totalAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                   </td>
-                  <td className="p-3 text-right font-headline font-black text-[#FF4D6D]">
+                  <td className="px-4 py-3.5 text-right font-headline font-black text-[#FF4D6D]">
                     ${inv.balanceDue.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                   </td>
-                  <td className="p-3 text-center">
+                  <td className="px-4 py-3.5 text-center">
                     <div className="inline-flex items-center gap-1.5">
                       <button
                         onClick={() => setPrintModalInvoice(inv)}

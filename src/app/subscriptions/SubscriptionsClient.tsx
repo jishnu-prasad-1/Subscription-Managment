@@ -483,10 +483,10 @@ export const SubscriptionsClient: React.FC<SubscriptionsClientProps> = ({
                 const badge = getStatusBadgeStyle(sub.status);
                 return (
                   <tr key={sub.id} className="hover:bg-[#25F4D2]/15 transition-colors">
-                    <td className="p-3 font-headline font-black text-[#1D1E24]">
+                    <td className="px-4 py-3.5 font-headline font-black text-[#1D1E24]">
                       {sub.subscriptionNumber}
                     </td>
-                    <td className="p-3">
+                    <td className="px-4 py-3.5">
                       <div className="font-bold text-[#1D1E24]">{sub.customerName}</div>
                       <div className="text-[10px] text-[#606275]">
                         {sub.items.length > 0
@@ -494,26 +494,26 @@ export const SubscriptionsClient: React.FC<SubscriptionsClientProps> = ({
                           : "Standard Software"}
                       </div>
                     </td>
-                    <td className="p-3">
+                    <td className="px-4 py-3.5">
                       <span className="font-bold text-[#1D1E24]">{sub.planName}</span>
                       <span className="ml-1.5 px-1 py-0.2 bg-[#FCE9D0] text-[#1D1E24] border border-[#1D1E24] font-headline text-[9px] uppercase font-black">
                         {sub.billingInterval}
                       </span>
                     </td>
-                    <td className="p-3">
+                    <td className="px-4 py-3.5">
                       <span
                         className={`inline-block px-2 py-0.5 text-[9px] font-headline uppercase font-black border border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24] ${badge.bg} ${badge.text}`}
                       >
                         {sub.status}
                       </span>
                     </td>
-                    <td className="p-3 font-headline font-bold text-[11px]">
+                    <td className="px-4 py-3.5 font-headline font-bold text-[11px]">
                       {formatDate(sub.nextBillingDate)}
                     </td>
-                    <td className="p-3 text-right font-headline font-black text-[#1D1E24]">
+                    <td className="px-4 py-3.5 text-right font-headline font-black text-[#1D1E24]">
                       ${sub.totalRecurringAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                     </td>
-                    <td className="p-3 text-center">
+                    <td className="px-4 py-3.5 text-center">
                       <div className="inline-flex items-center gap-1">
                         {sub.status === "draft" && (
                           <button

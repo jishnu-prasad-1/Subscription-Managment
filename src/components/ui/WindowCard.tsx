@@ -24,10 +24,10 @@ export const WindowCard: React.FC<WindowCardProps> = ({
   return (
     <div className={`bg-[#FFF8EE] border-[3px] border-[#1D1E24] shadow-[5px_5px_0px_#1D1E24] flex flex-col ${className}`}>
       {/* 90s Window Header Bar */}
-      <div className={`${headerBg} px-4 py-2 border-b-[3px] border-[#1D1E24] flex items-center justify-between select-none`}>
-        <div className="flex items-center gap-2">
+      <div className={`${headerBg} px-5 py-2.5 border-b-[3px] border-[#1D1E24] flex items-center justify-between select-none`}>
+        <div className="flex items-center gap-2.5">
           {icon && (
-            <span className="material-symbols-outlined text-[18px] text-[#1D1E24] font-bold">
+            <span className="material-symbols-outlined text-[19px] text-[#1D1E24] font-bold">
               {icon}
             </span>
           )}
@@ -35,13 +35,13 @@ export const WindowCard: React.FC<WindowCardProps> = ({
             {title}
           </span>
           {badge && (
-            <span className={`px-1.5 py-0.5 text-[9px] font-headline uppercase font-black border-2 border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24] ${badgeColor} text-[#1D1E24]`}>
+            <span className={`px-2 py-0.5 text-[9px] font-headline uppercase font-black border-2 border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24] ${badgeColor} text-[#1D1E24]`}>
               {badge}
             </span>
           )}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
           {actions}
           {/* Retro 90s Window Buttons */}
           <div className="flex items-center gap-1.5 ml-1">
@@ -67,8 +67,8 @@ export const WindowCard: React.FC<WindowCardProps> = ({
         </div>
       </div>
 
-      {/* Window Body */}
-      <div className="p-4 sm:p-5 flex-1">{children}</div>
+      {/* Window Body - Comfortable Padding & Breathing Room */}
+      <div className="p-5 sm:p-6 lg:p-7 flex-1 flex flex-col">{children}</div>
     </div>
   );
 };

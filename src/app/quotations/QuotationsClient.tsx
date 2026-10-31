@@ -192,19 +192,19 @@ export const QuotationsClient: React.FC<QuotationsClientProps> = ({
         </div>
       )}
 
-      {/* Top Banner */}
-      <section className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white border-2 border-[#1D1E24] p-4 shadow-[4px_4px_0px_#1D1E24]">
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-[#FFD600] border-2 border-[#1D1E24] flex items-center justify-center shadow-[3px_3px_0px_#1D1E24]">
-            <span className="material-symbols-outlined text-[28px] text-[#1D1E24] font-black">
+      {/* Top Banner - Comfortable Spacing */}
+      <section className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white border-2 border-[#1D1E24] p-5 sm:p-6 shadow-[4px_4px_0px_#1D1E24]">
+        <div className="flex items-center gap-3.5">
+          <div className="w-14 h-14 bg-[#FFD600] border-2 border-[#1D1E24] flex items-center justify-center shadow-[3px_3px_0px_#1D1E24] shrink-0">
+            <span className="material-symbols-outlined text-[32px] text-[#1D1E24] font-black">
               request_quote
             </span>
           </div>
           <div>
-            <h1 className="font-headline text-[20px] uppercase font-black text-[#1D1E24]">
+            <h1 className="font-headline text-[22px] uppercase font-black text-[#1D1E24]">
               Quotations &amp; Sales Proposals
             </h1>
-            <p className="text-[12px] text-[#606275] font-semibold">
+            <p className="text-[13px] text-[#606275] font-semibold mt-0.5">
               Generate structured sales quotes with preset templates, validity bounds &amp; 1-click subscription conversion
             </p>
           </div>
@@ -235,31 +235,31 @@ export const QuotationsClient: React.FC<QuotationsClientProps> = ({
         <table className="w-full text-left border-collapse text-[12px]">
           <thead>
             <tr className="bg-[#FFF0DC] border-b-2 border-[#1D1E24] font-headline text-[11px] uppercase font-black text-[#1D1E24]">
-              <th className="p-3">Quote #</th>
-              <th className="p-3">Customer Account</th>
-              <th className="p-3">Offer Lines</th>
-              <th className="p-3">Valid Until</th>
-              <th className="p-3">Status</th>
-              <th className="p-3 text-right">Total ($)</th>
-              <th className="p-3 text-center">Conversion Action</th>
+              <th className="px-4 py-3">Quote #</th>
+              <th className="px-4 py-3">Customer Account</th>
+              <th className="px-4 py-3">Offer Lines</th>
+              <th className="px-4 py-3">Valid Until</th>
+              <th className="px-4 py-3">Status</th>
+              <th className="px-4 py-3 text-right">Total ($)</th>
+              <th className="px-4 py-3 text-center">Conversion Action</th>
             </tr>
           </thead>
           <tbody className="divide-y-2 divide-[#1D1E24]">
             {quotations.map((q) => (
               <tr key={q.id} className="hover:bg-[#25F4D2]/15 transition-colors">
-                <td className="p-3 font-headline font-black text-[#1D1E24]">
+                <td className="px-4 py-3.5 font-headline font-black text-[#1D1E24]">
                   {q.quoteNumber}
                 </td>
-                <td className="p-3 font-bold text-[#1D1E24]">{q.customerName}</td>
-                <td className="p-3 text-[11px] text-[#34363F]">
+                <td className="px-4 py-3.5 font-bold text-[#1D1E24]">{q.customerName}</td>
+                <td className="px-4 py-3.5 text-[11px] text-[#34363F]">
                   {q.items.length > 0
                     ? `${q.items[0].productName} (${q.items[0].variantName}) × ${q.items[0].quantity}`
                     : "Standard Package"}
                 </td>
-                <td className="p-3 font-headline font-bold text-[11px]">
+                <td className="px-4 py-3.5 font-headline font-bold text-[11px]">
                   {formatDate(q.validUntil)}
                 </td>
-                <td className="p-3">
+                <td className="px-4 py-3.5">
                   <span
                     className={`inline-block px-2 py-0.5 text-[9px] font-headline uppercase font-black border border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24] ${
                       q.status === "accepted"
@@ -272,10 +272,10 @@ export const QuotationsClient: React.FC<QuotationsClientProps> = ({
                     {q.status}
                   </span>
                 </td>
-                <td className="p-3 text-right font-headline font-black text-[#1D1E24]">
+                <td className="px-4 py-3.5 text-right font-headline font-black text-[#1D1E24]">
                   ${q.totalAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                 </td>
-                <td className="p-3 text-center">
+                <td className="px-4 py-3.5 text-center">
                   {q.status === "accepted" ? (
                     <span className="font-headline text-[10px] uppercase font-black text-[#006b5b] bg-[#25F4D2]/60 px-2 py-0.5 border border-[#1D1E24]">
                       Converted to Sub

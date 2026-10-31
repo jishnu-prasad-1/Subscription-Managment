@@ -75,12 +75,12 @@ export const RecentSubscriptionsStream: React.FC<RecentSubscriptionsStreamProps>
         <table className="w-full text-left border-collapse text-[12px]">
           <thead>
             <tr className="bg-[#FFF0DC] border-b-2 border-[#1D1E24] font-headline text-[11px] uppercase font-black text-[#1D1E24]">
-              <th className="p-2.5">Subscription</th>
-              <th className="p-2.5">Customer</th>
-              <th className="p-2.5">Plan / SKU</th>
-              <th className="p-2.5">Status</th>
-              <th className="p-2.5">Next Billing</th>
-              <th className="p-2.5 text-right">Amount</th>
+              <th className="px-4 py-3">Subscription</th>
+              <th className="px-4 py-3">Customer</th>
+              <th className="px-4 py-3">Plan / SKU</th>
+              <th className="px-4 py-3">Status</th>
+              <th className="px-4 py-3">Next Billing</th>
+              <th className="px-4 py-3 text-right">Amount</th>
             </tr>
           </thead>
           <tbody className="divide-y-2 divide-[#1D1E24]">
@@ -91,7 +91,7 @@ export const RecentSubscriptionsStream: React.FC<RecentSubscriptionsStreamProps>
                   key={sub.id}
                   className="bg-white hover:bg-[#25F4D2]/20 transition-colors"
                 >
-                  <td className="p-2.5 font-headline font-black text-[#1D1E24]">
+                  <td className="px-4 py-3.5 font-headline font-black text-[#1D1E24]">
                     <Link
                       href={`/subscriptions?id=${sub.id}`}
                       className="hover:underline text-[#006b5b]"
@@ -99,19 +99,19 @@ export const RecentSubscriptionsStream: React.FC<RecentSubscriptionsStreamProps>
                       {sub.subscriptionNumber}
                     </Link>
                   </td>
-                  <td className="p-2.5 font-bold text-[#1D1E24]">{sub.customerName}</td>
-                  <td className="p-2.5 text-[#34363F] font-medium">{sub.planName}</td>
-                  <td className="p-2.5">
+                  <td className="px-4 py-3.5 font-bold text-[#1D1E24]">{sub.customerName}</td>
+                  <td className="px-4 py-3.5 text-[#34363F] font-medium">{sub.planName}</td>
+                  <td className="px-4 py-3.5">
                     <span
-                      className={`inline-block px-1.5 py-0.5 text-[9px] font-headline uppercase font-black border border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24] ${badge.bg} ${badge.text}`}
+                      className={`inline-block px-2 py-0.5 text-[9.5px] font-headline uppercase font-black border border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24] ${badge.bg} ${badge.text}`}
                     >
                       {sub.status}
                     </span>
                   </td>
-                  <td className="p-2.5 font-headline font-bold text-[11px]">
+                  <td className="px-4 py-3.5 font-headline font-bold text-[11px]">
                     {sub.nextBillingDate}
                   </td>
-                  <td className="p-2.5 text-right font-headline font-black text-[#1D1E24]">
+                  <td className="px-4 py-3.5 text-right font-headline font-black text-[#1D1E24]">
                     ${sub.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                   </td>
                 </tr>

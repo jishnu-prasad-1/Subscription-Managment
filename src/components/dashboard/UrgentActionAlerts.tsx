@@ -57,25 +57,25 @@ export const UrgentActionAlerts: React.FC<UrgentActionAlertsProps> = ({
       headerBg="bg-[#FFCCD5]"
       className="lg:col-span-5 flex flex-col"
     >
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-4">
         {/* Sweep Notice Toast */}
         {sweepResult && (
-          <div className="p-2 bg-[#1D1E24] text-[#FFD600] border-2 border-[#FFD600] font-headline text-[11px] font-black uppercase animate-in zoom-in-95">
+          <div className="p-2.5 bg-[#1D1E24] text-[#FFD600] border-2 border-[#FFD600] font-headline text-[11px] font-black uppercase animate-in zoom-in-95">
             {sweepResult}
           </div>
         )}
 
         {/* Alert 1: Overdue Invoices */}
-        <div className="p-3 bg-[#FFF2DF] border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2.5">
-            <span className="w-8 h-8 bg-[#FF4D6D] border-2 border-[#1D1E24] text-white flex items-center justify-center font-headline font-black text-[14px]">
+        <div className="p-4 sm:p-4.5 bg-[#FFF2DF] border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <span className="w-9 h-9 bg-[#FF4D6D] border-2 border-[#1D1E24] text-white flex items-center justify-center font-headline font-black text-[15px] shrink-0">
               !
             </span>
             <div>
-              <div className="font-headline text-[12px] uppercase font-black text-[#1D1E24]">
+              <div className="font-headline text-[13px] uppercase font-black text-[#1D1E24]">
                 14 Invoices Overdue ($9,350 at risk)
               </div>
-              <p className="text-[11px] text-[#5B5D68] font-medium">
+              <p className="text-[11.5px] text-[#5B5D68] font-medium mt-0.5">
                 Accounts past Net 15 terms requiring collection follow-up.
               </p>
             </div>
@@ -88,16 +88,16 @@ export const UrgentActionAlerts: React.FC<UrgentActionAlertsProps> = ({
         </div>
 
         {/* Alert 2: Midnight Billing Sweep Simulation */}
-        <div className="p-3 bg-[#E0F9FF] border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2.5">
-            <span className="w-8 h-8 bg-[#00C2E8] border-2 border-[#1D1E24] text-[#1D1E24] flex items-center justify-center font-headline font-black text-[14px]">
+        <div className="p-4 sm:p-4.5 bg-[#E0F9FF] border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <span className="w-9 h-9 bg-[#00C2E8] border-2 border-[#1D1E24] text-[#1D1E24] flex items-center justify-center font-headline font-black text-[15px] shrink-0">
               ⚡
             </span>
             <div>
-              <div className="font-headline text-[12px] uppercase font-black text-[#1D1E24]">
+              <div className="font-headline text-[13px] uppercase font-black text-[#1D1E24]">
                 142 Renewals Due For Invoicing
               </div>
-              <p className="text-[11px] text-[#5B5D68] font-medium">
+              <p className="text-[11.5px] text-[#5B5D68] font-medium mt-0.5">
                 Automated idempotent billing run ready for midnight execution.
               </p>
             </div>

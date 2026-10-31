@@ -144,7 +144,7 @@ export const PlansClient: React.FC<PlansClientProps> = ({ initialPlans }) => {
   );
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-8">
       {/* Toast Alert */}
       {toastMessage && (
         <div className="fixed bottom-6 right-6 z-50 bg-[#FFD600] border-[2.5px] border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24] px-4 py-2 font-headline text-[12px] font-black uppercase animate-in slide-in-from-bottom-2">
@@ -152,19 +152,19 @@ export const PlansClient: React.FC<PlansClientProps> = ({ initialPlans }) => {
         </div>
       )}
 
-      {/* Header Banner */}
-      <section className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white border-2 border-[#1D1E24] p-4 shadow-[4px_4px_0px_#1D1E24]">
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-[#25F4D2] border-2 border-[#1D1E24] flex items-center justify-center shadow-[3px_3px_0px_#1D1E24]">
-            <span className="material-symbols-outlined text-[28px] text-[#003D32] font-black">
+      {/* Header Banner - Comfortable Spacing */}
+      <section className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white border-2 border-[#1D1E24] p-5 sm:p-6 shadow-[4px_4px_0px_#1D1E24]">
+        <div className="flex items-center gap-3.5">
+          <div className="w-14 h-14 bg-[#25F4D2] border-2 border-[#1D1E24] flex items-center justify-center shadow-[3px_3px_0px_#1D1E24] shrink-0">
+            <span className="material-symbols-outlined text-[32px] text-[#003D32] font-black">
               layers
             </span>
           </div>
           <div>
-            <h1 className="font-headline text-[20px] uppercase font-black text-[#1D1E24]">
+            <h1 className="font-headline text-[22px] uppercase font-black text-[#1D1E24]">
               Subscription Plan Engine
             </h1>
-            <p className="text-[12px] text-[#606275] font-semibold">
+            <p className="text-[13px] text-[#606275] font-semibold mt-0.5">
               Configure recurrence intervals (Daily, Weekly, Monthly, Yearly) and contract lifecycle rules
             </p>
           </div>

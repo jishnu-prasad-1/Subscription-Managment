@@ -148,12 +148,12 @@ export const FloatingPennyAssistant: React.FC = () => {
               <div className="flex flex-col gap-3">
                 <div className="flex items-start gap-3">
                   <div className="shrink-0">
-                    <PennyMascot mood={currentMood} size={70} animated />
+                    <PennyMascot mood={currentMood} size={84} animated />
                   </div>
-                  <div className="flex-1 bg-white border-2 border-[#1D1E24] p-2.5 shadow-[2px_2px_0px_#1D1E24] relative text-[11px] text-[#1D1E24] leading-relaxed font-bold">
+                  <div className="flex-1 bg-white border-2 border-[#1D1E24] p-3 shadow-[2px_2px_0px_#1D1E24] relative text-[11.5px] text-[#1D1E24] leading-relaxed font-bold">
                     {/* Speech Bubble Arrow */}
-                    <div className="absolute top-4 -left-2 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-[#1D1E24]" />
-                    <div className="absolute top-4 -left-[6px] w-0 h-0 border-t-[7px] border-t-transparent border-b-[7px] border-b-transparent border-r-[7px] border-r-white" />
+                    <div className="absolute top-5 -left-2 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-[#1D1E24]" />
+                    <div className="absolute top-5 -left-[6px] w-0 h-0 border-t-[7px] border-t-transparent border-b-[7px] border-b-transparent border-r-[7px] border-r-white" />
                     <p className="font-headline text-[11px] text-[#FF5C00] font-black uppercase mb-1">
                       {currentMood === "alert" ? "🚨 Priority Alert" : "💡 Financial Dispatch"}
                     </p>
@@ -272,10 +272,10 @@ export const FloatingPennyAssistant: React.FC = () => {
           sounds.playCoin();
           setIsOpen(!isOpen);
         }}
-        className="group relative flex items-center justify-center p-1 bg-[#FFD600] border-[2.5px] border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24] hover:shadow-[2px_2px_0px_#1D1E24] hover:translate-x-[2px] hover:translate-y-[2px] transition-all rounded-full select-none"
+        className="group relative flex items-center justify-center p-1.5 bg-[#FFD600] border-[2.5px] border-[#1D1E24] shadow-[4px_4px_0px_#1D1E24] hover:shadow-[2px_2px_0px_#1D1E24] hover:translate-x-[2px] hover:translate-y-[2px] transition-all rounded-full select-none"
         title="Penny Financial Assistant"
       >
-        <PennyMascot mood={currentMood} size={54} animated />
+        <PennyMascot mood={currentMood} size={62} animated />
         {/* Overdue Alert Badge */}
         {(data?.overdueCount || 0) > 0 && (
           <span className="absolute -top-1 -right-1 bg-[#EA777E] text-[#1D1E24] border-[1.5px] border-[#1D1E24] text-[10px] font-headline font-black px-1.5 py-0.2 rounded-full shadow-[1.5px_1.5px_0px_#1D1E24] animate-pulse">
