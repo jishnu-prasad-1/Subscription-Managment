@@ -4,6 +4,18 @@ All notable changes to this project are documented in this file in accordance wi
 
 ---
 
+## [1.5.1-video] - 2026-10-31
+### 🎬 MILESTONE 11: VIDEO DEMONSTRATION & PITCH RECORDING SCRIPT
+
+#### Added & Documented
+- **Hackathon Video Recording Blueprint (`docs/VIDEO_DEMO_SCRIPT.md`)**:
+  - Authored dual-track presentation scripts optimized for hackathon video submission constraints:
+    - **Version A (3-Minute Rapid Pitch)**: Fast-paced walkthrough hitting the operational crisis, $+₹560$ Odoo variant surcharge, 1-click convert with confetti fanfare, midnight billing sweep with SHA-256 idempotency test, partial UPI payment settlement, and 13ms SLA benchmark.
+    - **Version B (5-Minute Master Walkthrough)**: Complete 7-scene production storyboard with exact timecodes, visual blocking instructions, word-for-word voiceover narration, native Web Audio SFX triggers, and mouse cursor choreography.
+  - **Technical Defense Guide**: Comprehensive Q&A defense strategy anticipating judge questions regarding database-level unique constraints, bulk seat surcharge math, dynamic mascot reactivity, and client-side procedural audio synthesis.
+
+---
+
 ## [1.5.0-docs] - 2026-10-31
 ### 📘 MILESTONE 10: COMPREHENSIVE PROBLEM & SOLUTION TECHNICAL SPECIFICATION
 
