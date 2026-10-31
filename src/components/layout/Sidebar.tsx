@@ -1,13 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export const Sidebar: React.FC = () => {
   const pathname = usePathname();
-  const router = useRouter();
-  const [workspaceMode, setWorkspaceMode] = useState<"admin" | "staff" | "portal">("admin");
+
+  const isPortal = pathname.startsWith("/portal");
+  const isStaff = pathname.startsWith("/staff");
+  const isAdmin = !isPortal && !isStaff;
 
   const navLinks = [
     { label: "Overview", path: "/", icon: "dashboard" },
@@ -21,15 +23,6 @@ export const Sidebar: React.FC = () => {
     { label: "Payments", path: "/payments", icon: "payments" },
     { label: "Reports & Analytics", path: "/reports", icon: "analytics" },
   ];
-
-  const handleModeSwitch = (mode: "admin" | "staff" | "portal") => {
-    setWorkspaceMode(mode);
-    if (mode === "portal") {
-      router.push("/portal");
-    } else {
-      router.push("/");
-    }
-  };
 
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 xl:w-72 bg-[#FFF2DF] border-r-[3px] border-[#1D1E24] z-50 flex flex-col justify-between select-none shadow-[4px_0px_0px_#1D1E24]">
@@ -65,43 +58,46 @@ export const Sidebar: React.FC = () => {
           </div>
         </div>
 
-        {/* Workspace Mode Switcher */}
+        {/* Workspace Mode Switcher (Fully functional, prefetched & dynamic) */}
         <div className="p-2 border-b-[3px] border-[#1D1E24] bg-[#FCE9D0]">
           <div className="text-[9px] font-headline uppercase font-black text-[#1D1E24] tracking-wider mb-1 flex items-center gap-1">
             <span className="w-2 h-2 bg-[#FF6B00] inline-block border border-[#1D1E24]"></span>
-            Workspace Mode
+            Workspace Mode Switcher
           </div>
           <div className="grid grid-cols-3 gap-1 bg-[#FFF8EE] p-0.5 border-2 border-[#1D1E24]">
-            <button
-              onClick={() => handleModeSwitch("admin")}
-              className={`py-1 font-headline text-[10px] text-center uppercase font-black transition-all ${
-                workspaceMode === "admin"
+            <Link
+              href="/"
+              prefetch={true}
+              className={`py-1 font-headline text-[10px] text-center uppercase font-black transition-all block ${
+                isAdmin
                   ? "bg-[#25F4D2] text-[#003D32] border-2 border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24]"
                   : "text-[#1D1E24] hover:bg-[#FFD600]"
               }`}
             >
               Admin
-            </button>
-            <button
-              onClick={() => handleModeSwitch("staff")}
-              className={`py-1 font-headline text-[10px] text-center uppercase font-black transition-all ${
-                workspaceMode === "staff"
+            </Link>
+            <Link
+              href="/staff"
+              prefetch={true}
+              className={`py-1 font-headline text-[10px] text-center uppercase font-black transition-all block ${
+                isStaff
                   ? "bg-[#FFD600] text-[#1D1E24] border-2 border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24]"
                   : "text-[#1D1E24] hover:bg-[#FFD600]"
               }`}
             >
               Staff
-            </button>
-            <button
-              onClick={() => handleModeSwitch("portal")}
-              className={`py-1 font-headline text-[10px] text-center uppercase font-black transition-all ${
-                workspaceMode === "portal"
+            </Link>
+            <Link
+              href="/portal"
+              prefetch={true}
+              className={`py-1 font-headline text-[10px] text-center uppercase font-black transition-all block ${
+                isPortal
                   ? "bg-[#FF4D6D] text-white border-2 border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24]"
                   : "text-[#1D1E24] hover:bg-[#FFD600]"
               }`}
             >
               Portal
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -113,10 +109,11 @@ export const Sidebar: React.FC = () => {
               <Link
                 key={item.path}
                 href={item.path}
-                className={`flex items-center gap-2.5 px-3 py-1.5 transition-all font-headline text-[12px] uppercase ${
+                prefetch={true}
+                className={`flex items-center gap-2.5 px-3 py-1.5 font-headline text-[12px] uppercase transition-all duration-75 ${
                   isActive
                     ? "bg-[#25F4D2] text-[#003D32] font-black border-[2.5px] border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] translate-x-1"
-                    : "text-[#1D1E24] font-bold hover:bg-[#FFF8EE] hover:border-2 hover:border-[#1D1E24] border-2 border-transparent"
+                    : "text-[#1D1E24] font-bold hover:bg-[#FFF8EE] hover:border-2 hover:border-[#1D1E24] border-2 border-transparent active:translate-x-0.5 active:translate-y-0.5"
                 }`}
               >
                 <span className="material-symbols-outlined text-[18px]">
@@ -132,10 +129,11 @@ export const Sidebar: React.FC = () => {
           {/* Admin Protected Staff Management */}
           <Link
             href="/staff"
-            className={`flex items-center justify-between px-3 py-1.5 font-headline text-[12px] uppercase transition-all ${
+            prefetch={true}
+            className={`flex items-center justify-between px-3 py-1.5 font-headline text-[12px] uppercase transition-all duration-75 ${
               pathname === "/staff"
-                ? "bg-[#25F4D2] text-[#003D32] font-black border-[2.5px] border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] translate-x-1"
-                : "text-[#1D1E24] font-bold hover:bg-[#FFF8EE] hover:border-2 hover:border-[#1D1E24] border-2 border-transparent"
+                ? "bg-[#FFD600] text-[#1D1E24] font-black border-[2.5px] border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] translate-x-1"
+                : "text-[#1D1E24] font-bold hover:bg-[#FFF8EE] hover:border-2 hover:border-[#1D1E24] border-2 border-transparent active:translate-x-0.5 active:translate-y-0.5"
             }`}
           >
             <div className="flex items-center gap-2.5">
@@ -143,20 +141,40 @@ export const Sidebar: React.FC = () => {
               <span>Staff Mgmt</span>
             </div>
             <span className="px-1.5 py-0.2 bg-[#FFD600] text-[#1D1E24] border border-[#1D1E24] font-headline text-[9px] font-black shadow-[1px_1px_0px_#1D1E24]">
-              ADMIN
+              STAFF
+            </span>
+          </Link>
+
+          {/* Customer Self-Service Portal Navigation Link */}
+          <Link
+            href="/portal"
+            prefetch={true}
+            className={`flex items-center justify-between px-3 py-1.5 font-headline text-[12px] uppercase transition-all duration-75 ${
+              pathname === "/portal"
+                ? "bg-[#FF4D6D] text-white font-black border-[2.5px] border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] translate-x-1"
+                : "text-[#1D1E24] font-bold hover:bg-[#FFF8EE] hover:border-2 hover:border-[#1D1E24] border-2 border-transparent active:translate-x-0.5 active:translate-y-0.5"
+            }`}
+          >
+            <div className="flex items-center gap-2.5">
+              <span className="material-symbols-outlined text-[18px]">storefront</span>
+              <span>Customer Portal</span>
+            </div>
+            <span className="px-1.5 py-0.2 bg-[#FF4D6D] text-white border border-[#1D1E24] font-headline text-[9px] font-black shadow-[1px_1px_0px_#1D1E24]">
+              PORTAL
             </span>
           </Link>
 
           <Link
             href="/settings"
-            className={`flex items-center gap-2.5 px-3 py-1.5 font-headline text-[12px] uppercase transition-all ${
+            prefetch={true}
+            className={`flex items-center gap-2.5 px-3 py-1.5 font-headline text-[12px] uppercase transition-all duration-75 ${
               pathname === "/settings"
                 ? "bg-[#25F4D2] text-[#003D32] font-black border-[2.5px] border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] translate-x-1"
-                : "text-[#1D1E24] font-bold hover:bg-[#FFF8EE] hover:border-2 hover:border-[#1D1E24] border-2 border-transparent"
+                : "text-[#1D1E24] font-bold hover:bg-[#FFF8EE] hover:border-2 hover:border-[#1D1E24] border-2 border-transparent active:translate-x-0.5 active:translate-y-0.5"
             }`}
           >
             <span className="material-symbols-outlined text-[18px]">settings</span>
-            <span>Settings</span>
+            <span>Settings &amp; SLA</span>
           </Link>
         </nav>
 
@@ -169,7 +187,7 @@ export const Sidebar: React.FC = () => {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00BFA0] border border-[#1D1E24]"></span>
               </span>
               <span className="font-headline text-[10px] text-[#1D1E24] font-black uppercase">
-                v2.4 Online
+                v2.6 Online
               </span>
             </div>
             <span className="font-headline text-[9px] text-[#1D1E24] font-black bg-[#FFD600] px-1 border border-[#1D1E24]">
@@ -179,7 +197,7 @@ export const Sidebar: React.FC = () => {
 
           <Link
             href="/login"
-            className="flex items-center justify-center gap-1.5 px-3 py-1 font-headline text-[11px] uppercase bg-[#FFF8EE] hover:bg-[#FF4D6D] hover:text-white text-[#1D1E24] font-black border-2 border-[#1D1E24] shadow-[2.5px_2.5px_0px_#1D1E24] active:translate-x-0.5 active:translate-y-0.5 transition-all"
+            className="flex items-center justify-center gap-1.5 px-3 py-1 font-headline text-[11px] uppercase bg-[#FFF8EE] hover:bg-[#FF4D6D] hover:text-white text-[#1D1E24] font-black border-2 border-[#1D1E24] shadow-[2.5px_2.5px_0px_#1D1E24] active:translate-x-0.5 active:translate-y-0.5 transition-all duration-75"
           >
             <span className="material-symbols-outlined text-[15px]">logout</span>
             <span>Log Out</span>
@@ -189,4 +207,3 @@ export const Sidebar: React.FC = () => {
     </aside>
   );
 };
-

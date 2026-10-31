@@ -33,7 +33,7 @@ export const NeoButton: React.FC<NeoButtonProps> = ({
   return (
     <button
       disabled={disabled}
-      className={`inline-flex items-center justify-center gap-1.5 font-headline uppercase font-black border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_#1D1E24] transition-all select-none disabled:opacity-50 disabled:pointer-events-none ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      className={`inline-flex items-center justify-center gap-1.5 font-headline uppercase font-black border-2 border-[#1D1E24] shadow-[3px_3px_0px_#1D1E24] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-[transform,box-shadow,background-color] duration-75 ease-out select-none cursor-pointer disabled:opacity-50 disabled:pointer-events-none ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
       {...props}
     >
       {icon && (

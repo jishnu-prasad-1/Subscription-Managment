@@ -69,18 +69,19 @@
 .neo-btn {
   border: 2.5px solid #1D1E24;
   box-shadow: 3px 3px 0px #1D1E24;
-  transition: all 0.1s ease;
+  transition: transform 75ms ease-out, box-shadow 75ms ease-out, background-color 75ms ease-out;
   user-select: none;
+  cursor: pointer;
 }
 
 .neo-btn:hover {
-  transform: translate(-1.5px, -1.5px);
-  box-shadow: 4.5px 4.5px 0px #1D1E24;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #1D1E24;
 }
 
 .neo-btn:active {
   transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0px #1D1E24;
+  box-shadow: none;
 }
 
 /* Custom retro badge */
