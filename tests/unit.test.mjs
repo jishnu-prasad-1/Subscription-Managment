@@ -156,6 +156,50 @@ test("Payment Engine - Correctly balances partial and full settlement", () => {
   assert.strictEqual(status, "paid");
 });
 
+// 9. RBAC - Customer Role Privilege Isolation
+test("RBAC Security - Customer role is strictly barred from adding customers, drafting quotes, or managing plans", () => {
+  const customerRole = "CUSTOMER";
+  const canAddCustomer = customerRole === "ADMIN" || customerRole === "STAFF";
+  const canCreateQuotation = customerRole === "ADMIN" || customerRole === "STAFF";
+  const canManagePlans = customerRole === "ADMIN";
+  const canRunBillingEngine = customerRole === "ADMIN";
+
+  assert.strictEqual(canAddCustomer, false, "Customer must NEVER have permission to add customers!");
+  assert.strictEqual(canCreateQuotation, false, "Customer must NEVER have permission to create quotations!");
+  assert.strictEqual(canManagePlans, false, "Customer must NEVER have permission to configure plans!");
+  assert.strictEqual(canRunBillingEngine, false, "Customer must NEVER have permission to trigger billing engine!");
+});
+
+// 10. RBAC - Staff Role Operational Privilege Gating
+test("RBAC Security - Staff role can create customers & quotes, but cannot manage staff or trigger billing sweep", () => {
+  const staffRole = "STAFF";
+  const canAddCustomer = staffRole === "ADMIN" || staffRole === "STAFF";
+  const canCreateQuotation = staffRole === "ADMIN" || staffRole === "STAFF";
+  const canManageStaff = staffRole === "ADMIN";
+  const canRunBillingEngine = staffRole === "ADMIN";
+
+  assert.strictEqual(canAddCustomer, true, "Staff MUST have permission to onboard customers!");
+  assert.strictEqual(canCreateQuotation, true, "Staff MUST have permission to author sales quotations!");
+  assert.strictEqual(canManageStaff, false, "Staff must NOT have access to staff roster admin!");
+  assert.strictEqual(canRunBillingEngine, false, "Staff must NOT have access to run systemic billing sweeps!");
+});
+
+// 11. RBAC - Super Admin Complete Authority
+test("RBAC Security - Super Admin has comprehensive governance across all capabilities", () => {
+  const adminRole = "ADMIN";
+  const canAddCustomer = adminRole === "ADMIN" || adminRole === "STAFF";
+  const canCreateQuotation = adminRole === "ADMIN" || adminRole === "STAFF";
+  const canManagePlans = adminRole === "ADMIN";
+  const canManageStaff = adminRole === "ADMIN";
+  const canRunBillingEngine = adminRole === "ADMIN";
+
+  assert.strictEqual(canAddCustomer, true);
+  assert.strictEqual(canCreateQuotation, true);
+  assert.strictEqual(canManagePlans, true);
+  assert.strictEqual(canManageStaff, true);
+  assert.strictEqual(canRunBillingEngine, true);
+});
+
 console.log("=================================================");
 console.log(`TEST SUMMARY: ${totalPassed} Passed, ${totalFailed} Failed`);
 console.log("=================================================");

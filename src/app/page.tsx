@@ -6,6 +6,7 @@ import { RevenueVelocityChart } from "@/components/dashboard/RevenueVelocityChar
 import { TierDonutChart } from "@/components/dashboard/TierDonutChart";
 import { RecentSubscriptionsStream } from "@/components/dashboard/RecentSubscriptionsStream";
 import { UrgentActionAlerts } from "@/components/dashboard/UrgentActionAlerts";
+import { DashboardClient } from "@/components/dashboard/DashboardClient";
 import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
@@ -64,39 +65,41 @@ export default async function DashboardPage() {
 
   return (
     <AppShell>
-      {/* 90s Mission Control & Penny Dispatch */}
-      <PennyDispatchBanner
-        renewalsCount={142}
-        overdueCount={overdueCount}
-        overdueAmount={overdueAmount}
-        netExpansion={14390}
-        churnRescue={92.4}
-        mood={overdueCount > 0 ? "alert" : "celebrate"}
-      />
+      <DashboardClient>
+        {/* 90s Mission Control & Penny Dispatch */}
+        <PennyDispatchBanner
+          renewalsCount={142}
+          overdueCount={overdueCount}
+          overdueAmount={overdueAmount}
+          netExpansion={14390}
+          churnRescue={92.4}
+          mood={overdueCount > 0 ? "alert" : "celebrate"}
+        />
 
-      {/* 7-Card Bento Metric Grid */}
-      <BentoMetricGrid
-        mrr={mrr}
-        totalRevYtd={totalRevYtd}
-        activeSubs={activeSubsCount || 1842}
-        customersCount={customersCount ? customersCount * 730 : 2190}
-        plansCount={plansCount ? plansCount * 12 : 48}
-        outstandingAmount={18420}
-        overdueCount={overdueCount}
-        overdueAmount={overdueAmount}
-      />
+        {/* 7-Card Bento Metric Grid */}
+        <BentoMetricGrid
+          mrr={mrr}
+          totalRevYtd={totalRevYtd}
+          activeSubs={activeSubsCount || 1842}
+          customersCount={customersCount ? customersCount * 730 : 2190}
+          plansCount={plansCount ? plansCount * 12 : 48}
+          outstandingAmount={18420}
+          overdueCount={overdueCount}
+          overdueAmount={overdueAmount}
+        />
 
-      {/* Visualizations Section: 2 Retro Chart Windows */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <RevenueVelocityChart />
-        <TierDonutChart totalSubs={activeSubsCount || 1842} />
-      </div>
+        {/* Visualizations Section: 2 Retro Chart Windows */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <RevenueVelocityChart />
+          <TierDonutChart totalSubs={activeSubsCount || 1842} />
+        </div>
 
-      {/* Workflows & Urgent Triage Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <RecentSubscriptionsStream subscriptions={formattedRecentSubs} />
-        <UrgentActionAlerts />
-      </div>
+        {/* Workflows & Urgent Triage Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <RecentSubscriptionsStream subscriptions={formattedRecentSubs} />
+          <UrgentActionAlerts />
+        </div>
+      </DashboardClient>
     </AppShell>
   );
 }

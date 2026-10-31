@@ -9,6 +9,8 @@ import { PennyMascot } from "@/components/mascot/PennyMascot";
 import { useRouter } from "next/navigation";
 import { exportToCsv } from "@/lib/exportCsv";
 import { triggerCelebration } from "@/lib/celebrate";
+import { useRole } from "@/context/RoleContext";
+import Link from "next/link";
 
 interface QuotationItemRow {
   productName: string;
@@ -77,6 +79,7 @@ export const QuotationsClient: React.FC<QuotationsClientProps> = ({
   plans,
 }) => {
   const router = useRouter();
+  const { role, switchWorkspace, canCreateQuotation } = useRole();
   const [quotations, setQuotations] = useState<QuotationRow[]>(initialQuotations);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -182,6 +185,36 @@ export const QuotationsClient: React.FC<QuotationsClientProps> = ({
     exportToCsv("brightloop_quotations_proposals.csv", headers, rows);
     showToast(`📁 Exported ${rows.length} quotations to CSV!`);
   };
+
+  if (role === "CUSTOMER") {
+    return (
+      <div className="p-8 bg-white border-[3px] border-[#1D1E24] shadow-[6px_6px_0px_#1D1E24] text-center max-w-2xl mx-auto my-12 animate-in zoom-in-95">
+        <div className="w-16 h-16 bg-[#FF4D6D] text-white border-2 border-[#1D1E24] flex items-center justify-center mx-auto mb-4 shadow-[3px_3px_0px_#1D1E24]">
+          <span className="material-symbols-outlined text-[36px]">request_quote</span>
+        </div>
+        <h2 className="font-headline text-[22px] font-black uppercase text-[#1D1E24] mb-2">
+          Access Restricted: Customer Tenant Boundary
+        </h2>
+        <p className="text-[13px] text-[#606275] font-semibold mb-6 leading-relaxed">
+          You are currently signed in as <strong>Customer (David Vance - Acme Corp)</strong>. Sales quotation drafting, customer discounting, and proposal dispatch are managed by internal Sales Staff and Admins.
+        </p>
+        <div className="flex justify-center gap-3">
+          <Link href="/portal">
+            <NeoButton variant="primary" size="md" icon="storefront">
+              Return to My Customer Portal ➔
+            </NeoButton>
+          </Link>
+          <button
+            type="button"
+            onClick={() => switchWorkspace("STAFF")}
+            className="px-4 py-2 bg-[#FFD600] border-2 border-[#1D1E24] font-headline text-[12px] font-black uppercase shadow-[2px_2px_0px_#1D1E24] hover:bg-[#FFE04D]"
+          >
+            Switch to Staff View
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col gap-6">

@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { WindowCard } from "@/components/ui/WindowCard";
 import { NeoButton } from "@/components/ui/NeoButton";
 import { Modal } from "@/components/ui/Modal";
 import { PennyMascot } from "@/components/mascot/PennyMascot";
+import { useRole } from "@/context/RoleContext";
 
 interface SubBrief {
   id: string;
@@ -43,6 +45,7 @@ interface CustomersClientProps {
 }
 
 export const CustomersClient: React.FC<CustomersClientProps> = ({ initialCustomers }) => {
+  const { role, switchWorkspace, canAddCustomer } = useRole();
   const [customers, setCustomers] = useState<CustomerRow[]>(initialCustomers);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCustomer, setSelectedCustomer] = useState<CustomerRow | null>(null);
@@ -94,6 +97,36 @@ export const CustomersClient: React.FC<CustomersClientProps> = ({ initialCustome
     showToast(`Created customer '${companyName}'!`);
   };
 
+  if (role === "CUSTOMER") {
+    return (
+      <div className="p-8 bg-white border-[3px] border-[#1D1E24] shadow-[6px_6px_0px_#1D1E24] text-center max-w-2xl mx-auto my-12 animate-in zoom-in-95">
+        <div className="w-16 h-16 bg-[#FF4D6D] text-white border-2 border-[#1D1E24] flex items-center justify-center mx-auto mb-4 shadow-[3px_3px_0px_#1D1E24]">
+          <span className="material-symbols-outlined text-[36px]">lock</span>
+        </div>
+        <h2 className="font-headline text-[22px] font-black uppercase text-[#1D1E24] mb-2">
+          Access Restricted: Customer Tenant Boundary
+        </h2>
+        <p className="text-[13px] text-[#606275] font-semibold mb-6 leading-relaxed">
+          You are currently signed in as <strong>Customer (David Vance - Acme Corp)</strong>. Cross-company subscriber CRM access and <strong>&apos;+ Add Customer&apos;</strong> are restricted to internal Staff specialists and Super Admins.
+        </p>
+        <div className="flex justify-center gap-3">
+          <Link href="/portal">
+            <NeoButton variant="primary" size="md" icon="storefront">
+              Return to My Customer Portal ➔
+            </NeoButton>
+          </Link>
+          <button
+            type="button"
+            onClick={() => switchWorkspace("STAFF")}
+            className="px-4 py-2 bg-[#FFD600] border-2 border-[#1D1E24] font-headline text-[12px] font-black uppercase shadow-[2px_2px_0px_#1D1E24] hover:bg-[#FFE04D]"
+          >
+            Switch to Staff View
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-8">
       {/* Toast Alert */}
@@ -121,14 +154,20 @@ export const CustomersClient: React.FC<CustomersClientProps> = ({ initialCustome
           </div>
         </div>
 
-        <NeoButton
-          variant="secondary"
-          size="md"
-          icon="person_add"
-          onClick={() => setIsModalOpen(true)}
-        >
-          + Add New Customer
-        </NeoButton>
+        {canAddCustomer ? (
+          <NeoButton
+            variant="secondary"
+            size="md"
+            icon="person_add"
+            onClick={() => setIsModalOpen(true)}
+          >
+            + Add New Customer ({role})
+          </NeoButton>
+        ) : (
+          <span className="px-3 py-1 bg-[#FFF0DC] border border-[#1D1E24] text-[11px] font-headline font-black">
+            Read-Only CRM Access
+          </span>
+        )}
       </section>
 
       {/* Search Input */}

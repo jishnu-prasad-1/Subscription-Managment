@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { AppShell } from "@/components/layout/AppShell";
 import { WindowCard } from "@/components/ui/WindowCard";
 import { NeoButton } from "@/components/ui/NeoButton";
 import { PennyMascot } from "@/components/mascot/PennyMascot";
+import { useRole } from "@/context/RoleContext";
 
 interface BenchmarkMetrics {
   mrrAggregationMs: number;
@@ -24,6 +26,7 @@ interface BenchmarkCompliance {
 }
 
 export default function SettingsPage() {
+  const { role, switchWorkspace } = useRole();
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [benchmarking, setBenchmarking] = useState(false);
   const [metrics, setMetrics] = useState<BenchmarkMetrics | null>(null);
@@ -52,6 +55,38 @@ export default function SettingsPage() {
       setBenchmarking(false);
     }
   };
+
+  if (role === "CUSTOMER") {
+    return (
+      <AppShell>
+        <div className="p-8 bg-white border-[3px] border-[#1D1E24] shadow-[6px_6px_0px_#1D1E24] text-center max-w-2xl mx-auto my-12 animate-in zoom-in-95">
+          <div className="w-16 h-16 bg-[#FF4D6D] text-white border-2 border-[#1D1E24] flex items-center justify-center mx-auto mb-4 shadow-[3px_3px_0px_#1D1E24]">
+            <span className="material-symbols-outlined text-[36px]">tune</span>
+          </div>
+          <h2 className="font-headline text-[22px] font-black uppercase text-[#1D1E24] mb-2">
+            Access Restricted: Customer Tenant Boundary
+          </h2>
+          <p className="text-[13px] text-[#606275] font-semibold mb-6 leading-relaxed">
+            You are currently signed in as <strong>Customer (David Vance - Acme Corp)</strong>. System infrastructure diagnostics and sub-2.0s SLA telemetry benchmarks are managed by Administrators.
+          </p>
+          <div className="flex justify-center gap-3">
+            <Link href="/portal">
+              <NeoButton variant="primary" size="md" icon="storefront">
+                Return to My Customer Portal ➔
+              </NeoButton>
+            </Link>
+            <button
+              type="button"
+              onClick={() => switchWorkspace("ADMIN")}
+              className="px-4 py-2 bg-[#25F4D2] text-[#003D32] border-2 border-[#1D1E24] font-headline text-[12px] font-black uppercase shadow-[2px_2px_0px_#1D1E24] hover:bg-[#38EFD0]"
+            >
+              Switch to Admin View
+            </button>
+          </div>
+        </div>
+      </AppShell>
+    );
+  }
 
   return (
     <AppShell>

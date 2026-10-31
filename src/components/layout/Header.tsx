@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { NeoButton } from "../ui/NeoButton";
 import { PennyMascot } from "../mascot/PennyMascot";
 import { sounds } from "@/lib/soundEffects";
+import { useRole } from "@/context/RoleContext";
 
 interface HeaderProps {
   onOpenQuotationModal?: () => void;
@@ -14,6 +15,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = () => {
   const router = useRouter();
+  const { role, user } = useRole();
   const [showNotifications, setShowNotifications] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -43,6 +45,12 @@ export const Header: React.FC<HeaderProps> = () => {
       return;
     }
 
+    if (role === "CUSTOMER") {
+      router.push("/portal");
+      setSearchQuery("");
+      return;
+    }
+
     if (query.includes("sub") || query.includes("order")) {
       router.push("/subscriptions");
     } else if (query.includes("inv") || query.includes("bill") || query.includes("due")) {
@@ -58,7 +66,7 @@ export const Header: React.FC<HeaderProps> = () => {
     } else if (query.includes("quote") || query.includes("proposal")) {
       router.push("/quotations");
     } else if (query.includes("report") || query.includes("mrr") || query.includes("arr")) {
-      router.push("/reports");
+      router.push(role === "ADMIN" ? "/reports" : "/staff");
     } else if (query.includes("staff") || query.includes("user")) {
       router.push("/staff");
     } else {
@@ -76,8 +84,8 @@ export const Header: React.FC<HeaderProps> = () => {
           <span className="material-symbols-outlined text-[#1D1E24] text-[13px]">
             chevron_right
           </span>
-          <span className="px-1.5 py-0.2 bg-[#FFD600] border-2 border-[#1D1E24] uppercase font-black shadow-[1.5px_1.5px_0px_#1D1E24]">
-            Workspace
+          <span className={`px-1.5 py-0.2 border-2 border-[#1D1E24] uppercase font-black shadow-[1.5px_1.5px_0px_#1D1E24] ${user.badgeBg} ${user.badgeText}`}>
+            {role} WORKSPACE
           </span>
         </div>
 
@@ -90,7 +98,7 @@ export const Header: React.FC<HeaderProps> = () => {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search or hit ⌘K..."
+            placeholder={role === "CUSTOMER" ? "Search portal..." : "Search or hit ⌘K..."}
             className="w-full pl-8 pr-12 py-1 bg-[#FFF8EE] border-2 border-[#1D1E24] text-[#1D1E24] text-[12px] font-bold shadow-[2px_2px_0px_#1D1E24] focus:bg-white focus:outline-none placeholder:text-[#5B5D68]"
           />
           <button
@@ -116,19 +124,47 @@ export const Header: React.FC<HeaderProps> = () => {
 
       {/* Right: Quick Action Buttons & Profile Controls */}
       <div className="flex items-center gap-2 sm:gap-3">
-        {/* Quick Action CTAs */}
-        <div className="hidden md:flex items-center gap-2">
-          <Link href="/quotations">
-            <NeoButton variant="primary" size="sm" icon="add">
-              Quotation
-            </NeoButton>
-          </Link>
-          <Link href="/customers">
-            <NeoButton variant="secondary" size="sm" icon="person_add">
-              Customer
-            </NeoButton>
-          </Link>
-        </div>
+        {/* Role-Specific Quick Action CTAs */}
+        {role === "CUSTOMER" ? (
+          <div className="hidden md:flex items-center gap-2">
+            <Link href="/portal">
+              <NeoButton variant="primary" size="sm" icon="credit_card">
+                Pay Outstanding
+              </NeoButton>
+            </Link>
+            <Link href="/portal">
+              <NeoButton variant="secondary" size="sm" icon="receipt_long">
+                My Invoices
+              </NeoButton>
+            </Link>
+          </div>
+        ) : role === "STAFF" ? (
+          <div className="hidden md:flex items-center gap-2">
+            <Link href="/quotations">
+              <NeoButton variant="primary" size="sm" icon="add">
+                Quotation
+              </NeoButton>
+            </Link>
+            <Link href="/customers">
+              <NeoButton variant="secondary" size="sm" icon="person_add">
+                Customer
+              </NeoButton>
+            </Link>
+          </div>
+        ) : (
+          <div className="hidden md:flex items-center gap-2">
+            <Link href="/plans">
+              <NeoButton variant="primary" size="sm" icon="layers">
+                + Plan
+              </NeoButton>
+            </Link>
+            <Link href="/customers">
+              <NeoButton variant="secondary" size="sm" icon="person_add">
+                + Customer
+              </NeoButton>
+            </Link>
+          </div>
+        )}
 
         <div className="hidden md:block h-6 w-0.5 bg-[#1D1E24] opacity-30 mx-0.5"></div>
 
@@ -159,7 +195,7 @@ export const Header: React.FC<HeaderProps> = () => {
           >
             <span className="material-symbols-outlined text-[18px]">notifications</span>
             <span className="absolute -top-1.5 -right-1.5 px-1.5 py-0.2 bg-[#FF4D6D] text-white font-headline text-[9px] border border-[#1D1E24] font-black leading-tight shadow-[1px_1px_0px_#1D1E24]">
-              4
+              {role === "CUSTOMER" ? "1" : "4"}
             </span>
           </button>
 
@@ -167,7 +203,7 @@ export const Header: React.FC<HeaderProps> = () => {
           {showNotifications && (
             <div className="absolute right-0 top-10 w-72 sm:w-80 bg-[#FFF8EE] border-[2.5px] border-[#1D1E24] shadow-[5px_5px_0px_#1D1E24] p-3 z-50 animate-in zoom-in-95">
               <div className="font-headline text-[11px] uppercase font-black bg-[#FFD600] p-1 border border-[#1D1E24] mb-2 flex items-center justify-between">
-                <span>SYSTEM NOTIFICATIONS (4)</span>
+                <span>{role === "CUSTOMER" ? "ACCOUNT NOTICES (1)" : "SYSTEM NOTIFICATIONS (4)"}</span>
                 <div className="flex items-center gap-1.5">
                   <span className="text-[9px] bg-[#1D1E24] text-white px-1">LIVE</span>
                   <button
@@ -180,27 +216,39 @@ export const Header: React.FC<HeaderProps> = () => {
                 </div>
               </div>
               <div className="flex flex-col gap-1.5 text-[11px]">
-                <Link
-                  href="/invoices?status=overdue"
-                  onClick={() => setShowNotifications(false)}
-                  className="p-1.5 bg-[#FFF2DF] border border-[#1D1E24] hover:bg-[#FFE0DC] block"
-                >
-                  <strong className="text-[#FF4D6D]">14 Accounts Overdue:</strong> Totaling ₹9,350 at risk. Click to review.
-                </Link>
-                <Link
-                  href="/subscriptions"
-                  onClick={() => setShowNotifications(false)}
-                  className="p-1.5 bg-[#FFF2DF] border border-[#1D1E24] hover:bg-[#E0FBF5] block"
-                >
-                  <strong className="text-[#00BFA0]">142 Renewals Queued:</strong> Due for midnight billing sweep.
-                </Link>
-                <Link
-                  href="/discounts"
-                  onClick={() => setShowNotifications(false)}
-                  className="p-1.5 bg-[#FFF2DF] border border-[#1D1E24] hover:bg-[#FFF8EE] block"
-                >
-                  <strong>Discount &apos;EARLYBIRD15&apos;:</strong> Reached 24/100 claims.
-                </Link>
+                {role === "CUSTOMER" ? (
+                  <Link
+                    href="/portal"
+                    onClick={() => setShowNotifications(false)}
+                    className="p-1.5 bg-[#FFF2DF] border border-[#1D1E24] hover:bg-[#E0FBF5] block"
+                  >
+                    <strong className="text-[#00BFA0]">Next Renewal:</strong> Enterprise ERP Plan auto-renews at month end.
+                  </Link>
+                ) : (
+                  <>
+                    <Link
+                      href="/invoices?status=overdue"
+                      onClick={() => setShowNotifications(false)}
+                      className="p-1.5 bg-[#FFF2DF] border border-[#1D1E24] hover:bg-[#FFE0DC] block"
+                    >
+                      <strong className="text-[#FF4D6D]">14 Accounts Overdue:</strong> Totaling ₹9,350 at risk. Click to review.
+                    </Link>
+                    <Link
+                      href="/subscriptions"
+                      onClick={() => setShowNotifications(false)}
+                      className="p-1.5 bg-[#FFF2DF] border border-[#1D1E24] hover:bg-[#E0FBF5] block"
+                    >
+                      <strong className="text-[#00BFA0]">142 Renewals Queued:</strong> Due for midnight billing sweep.
+                    </Link>
+                    <Link
+                      href="/discounts"
+                      onClick={() => setShowNotifications(false)}
+                      className="p-1.5 bg-[#FFF2DF] border border-[#1D1E24] hover:bg-[#FFF8EE] block"
+                    >
+                      <strong>Discount &apos;EARLYBIRD15&apos;:</strong> Reached 24/100 claims.
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           )}
@@ -238,21 +286,21 @@ export const Header: React.FC<HeaderProps> = () => {
               <div className="flex flex-col gap-2 text-[11px] text-[#1D1E24]">
                 <div className="p-2 bg-[#FFF0DC] border border-[#1D1E24]">
                   <strong className="block font-headline text-[11px] uppercase text-[#006b5b]">
-                    1. Zero Double-Billing Protection
+                    1. Role-Based Feature Segregation
                   </strong>
-                  Every billing sweep computes a deterministic SHA-256 hash. Even if run 100 times, subscriptions are never charged twice!
+                  You are logged in as <strong>{user.title}</strong>. Options and action buttons adapt strictly to your permission tier.
                 </div>
                 <div className="p-2 bg-[#FFF0DC] border border-[#1D1E24]">
                   <strong className="block font-headline text-[11px] uppercase text-[#003D32]">
-                    2. Odoo Variant Surcharge
+                    2. Zero Double-Billing Protection
                   </strong>
-                  In <em>Products</em>, brand options automatically add the mandatory +₹560 surcharge.
+                  Every billing sweep computes a deterministic SHA-256 hash preventing duplicate invoices.
                 </div>
                 <div className="p-2 bg-[#FFF0DC] border border-[#1D1E24]">
                   <strong className="block font-headline text-[11px] uppercase text-[#FF5C00]">
                     3. Floating Assistant
                   </strong>
-                  Click the smiling coin in the bottom-right for instant actions, telemetry, and live SLA benchmarking.
+                  Click the coin mascot in the bottom-right corner for live advice, latency benchmarking, and instant actions.
                 </div>
               </div>
             </div>
@@ -261,7 +309,7 @@ export const Header: React.FC<HeaderProps> = () => {
 
         <div className="h-6 w-0.5 bg-[#1D1E24] opacity-30 mx-0.5"></div>
 
-        {/* User Profile Chip with Dropdown */}
+        {/* User Profile Chip with Dynamic Dropdown */}
         <div className="relative">
           <div
             onClick={() => {
@@ -271,51 +319,100 @@ export const Header: React.FC<HeaderProps> = () => {
             }}
             className="flex items-center gap-2 pl-1 py-1 pr-2 bg-[#FFF8EE] border-2 border-[#1D1E24] shadow-[2px_2px_0px_#1D1E24] cursor-pointer hover:bg-[#FFF2DF] active:translate-x-0.5 active:translate-y-0.5 transition-all select-none"
           >
-            <div className="w-7 h-7 border-2 border-[#1D1E24] bg-[#25F4D2] flex items-center justify-center font-headline font-black text-[12px] text-[#003D32]">
-              SJ
+            <div
+              className={`w-7 h-7 border-2 border-[#1D1E24] flex items-center justify-center font-headline font-black text-[12px] ${user.badgeBg} ${user.badgeText}`}
+            >
+              {user.initials}
             </div>
             <div className="flex flex-col text-left">
               <span className="font-headline text-[11px] text-[#1D1E24] font-black leading-tight">
-                Samira Jenkins
+                {user.name}
               </span>
-              <span className="font-headline text-[8px] uppercase px-1 py-0.2 bg-[#FFD600] border border-[#1D1E24] text-[#1D1E24] font-black leading-tight inline-block w-max">
-                Super Admin
+              <span className={`font-headline text-[8px] uppercase px-1 py-0.2 border border-[#1D1E24] font-black leading-tight inline-block w-max ${user.badgeBg} ${user.badgeText}`}>
+                {user.title}
               </span>
             </div>
           </div>
 
-          {/* Profile Menu Dropdown */}
+          {/* Dynamic Profile Menu Dropdown */}
           {showProfileMenu && (
             <div className="absolute right-0 top-12 w-64 bg-[#FFF8EE] border-[2.5px] border-[#1D1E24] shadow-[5px_5px_0px_#1D1E24] p-3 z-50 animate-in zoom-in-95">
               <div className="pb-2 border-b-2 border-[#1D1E24] mb-2">
                 <span className="font-headline text-[12px] font-black block text-[#1D1E24]">
-                  Samira Jenkins
+                  {user.name}
                 </span>
                 <span className="text-[11px] text-[#606275] block font-mono">
-                  admin@brightloop.com
+                  {user.email}
                 </span>
-                <span className="inline-block mt-1 px-1.5 py-0.2 bg-[#25F4D2] text-[#003D32] border border-[#1D1E24] font-headline text-[9px] font-black uppercase">
-                  RBAC Level: ALL_PERMISSIONS
+                <span className={`inline-block mt-1 px-1.5 py-0.2 border border-[#1D1E24] font-headline text-[9px] font-black uppercase ${user.badgeBg} ${user.badgeText}`}>
+                  {user.rbacLevel}
                 </span>
               </div>
 
               <div className="flex flex-col gap-1 text-[11px] font-headline font-black uppercase">
-                <Link
-                  href="/settings"
-                  onClick={() => setShowProfileMenu(false)}
-                  className="p-1.5 bg-white border border-[#1D1E24] hover:bg-[#FFD600] flex items-center justify-between"
-                >
-                  <span>System Diagnostics</span>
-                  <span className="material-symbols-outlined text-[14px]">tune</span>
-                </Link>
-                <Link
-                  href="/staff"
-                  onClick={() => setShowProfileMenu(false)}
-                  className="p-1.5 bg-white border border-[#1D1E24] hover:bg-[#FFD600] flex items-center justify-between"
-                >
-                  <span>Staff Roster</span>
-                  <span className="material-symbols-outlined text-[14px]">badge</span>
-                </Link>
+                {role === "ADMIN" && (
+                  <>
+                    <Link
+                      href="/settings"
+                      onClick={() => setShowProfileMenu(false)}
+                      className="p-1.5 bg-white border border-[#1D1E24] hover:bg-[#FFD600] flex items-center justify-between"
+                    >
+                      <span>System Diagnostics</span>
+                      <span className="material-symbols-outlined text-[14px]">tune</span>
+                    </Link>
+                    <Link
+                      href="/staff"
+                      onClick={() => setShowProfileMenu(false)}
+                      className="p-1.5 bg-white border border-[#1D1E24] hover:bg-[#FFD600] flex items-center justify-between"
+                    >
+                      <span>Staff Roster</span>
+                      <span className="material-symbols-outlined text-[14px]">badge</span>
+                    </Link>
+                  </>
+                )}
+
+                {role === "STAFF" && (
+                  <>
+                    <Link
+                      href="/staff"
+                      onClick={() => setShowProfileMenu(false)}
+                      className="p-1.5 bg-white border border-[#1D1E24] hover:bg-[#FFD600] flex items-center justify-between"
+                    >
+                      <span>Staff Operations Desk</span>
+                      <span className="material-symbols-outlined text-[14px]">badge</span>
+                    </Link>
+                    <Link
+                      href="/quotations"
+                      onClick={() => setShowProfileMenu(false)}
+                      className="p-1.5 bg-white border border-[#1D1E24] hover:bg-[#FFD600] flex items-center justify-between"
+                    >
+                      <span>Sales Proposals</span>
+                      <span className="material-symbols-outlined text-[14px]">request_quote</span>
+                    </Link>
+                  </>
+                )}
+
+                {role === "CUSTOMER" && (
+                  <>
+                    <Link
+                      href="/portal"
+                      onClick={() => setShowProfileMenu(false)}
+                      className="p-1.5 bg-white border border-[#1D1E24] hover:bg-[#FFD600] flex items-center justify-between"
+                    >
+                      <span>My Subscriptions</span>
+                      <span className="material-symbols-outlined text-[14px]">storefront</span>
+                    </Link>
+                    <Link
+                      href="/portal"
+                      onClick={() => setShowProfileMenu(false)}
+                      className="p-1.5 bg-white border border-[#1D1E24] hover:bg-[#FFD600] flex items-center justify-between"
+                    >
+                      <span>Invoices &amp; Receipts</span>
+                      <span className="material-symbols-outlined text-[14px]">receipt_long</span>
+                    </Link>
+                  </>
+                )}
+
                 <Link
                   href="/login"
                   onClick={() => setShowProfileMenu(false)}

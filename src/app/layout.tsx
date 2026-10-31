@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { RoleProvider } from "@/context/RoleContext";
 
 export const metadata: Metadata = {
   title: "Brightloop // Subscription Management System",
@@ -17,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-[#FFF8EE] text-[#1D1E24] antialiased min-h-screen selection:bg-[#25F4D2] selection:text-[#003D32]">
-        {children}
+        <RoleProvider>
+          {children}
+        </RoleProvider>
       </body>
     </html>
   );

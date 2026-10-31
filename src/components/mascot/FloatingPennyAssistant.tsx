@@ -6,6 +6,7 @@ import { NeoButton } from "@/components/ui/NeoButton";
 import Link from "next/link";
 import { triggerCelebration, playSuccessSound } from "@/lib/celebrate";
 import { sounds } from "@/lib/soundEffects";
+import { useRole } from "@/context/RoleContext";
 
 interface PennyData {
   activeCount: number;
@@ -20,6 +21,7 @@ interface PennyData {
 }
 
 export const FloatingPennyAssistant: React.FC = () => {
+  const { role } = useRole();
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"advice" | "telemetry" | "actions">("advice");
   const [data, setData] = useState<PennyData | null>(null);
@@ -223,32 +225,82 @@ export const FloatingPennyAssistant: React.FC = () => {
 
             {activeTab === "actions" && (
               <div className="flex flex-col gap-2">
-                <button
-                  disabled={loading}
-                  onClick={handleRunBilling}
-                  className="w-full text-left p-2 bg-[#FFD600] border-2 border-[#1D1E24] font-headline text-[11px] font-black uppercase text-[#1D1E24] shadow-[2px_2px_0px_#1D1E24] hover:bg-[#FFE04D] flex items-center justify-between"
-                >
-                  <span>⚡ Run Billing Engine</span>
-                  <span className="material-symbols-outlined text-[16px]">play_arrow</span>
-                </button>
+                {role === "CUSTOMER" ? (
+                  <>
+                    <Link
+                      href="/portal"
+                      onClick={() => setIsOpen(false)}
+                      className="w-full text-left p-2 bg-[#25F4D2] border-2 border-[#1D1E24] font-headline text-[11px] font-black uppercase text-[#003D32] shadow-[2px_2px_0px_#1D1E24] hover:bg-[#5CF7DE] flex items-center justify-between"
+                    >
+                      <span>💳 Pay Outstanding Invoices</span>
+                      <span className="material-symbols-outlined text-[16px]">credit_card</span>
+                    </Link>
+                    <Link
+                      href="/portal"
+                      onClick={() => setIsOpen(false)}
+                      className="w-full text-left p-2 bg-white border-2 border-[#1D1E24] font-headline text-[11px] font-black uppercase text-[#1D1E24] shadow-[2px_2px_0px_#1D1E24] hover:bg-[#FFF0DC] flex items-center justify-between"
+                    >
+                      <span>📑 View Active Subscriptions</span>
+                      <span className="material-symbols-outlined text-[16px]">storefront</span>
+                    </Link>
+                  </>
+                ) : role === "STAFF" ? (
+                  <>
+                    <Link
+                      href="/quotations"
+                      onClick={() => setIsOpen(false)}
+                      className="w-full text-left p-2 bg-[#FFD600] border-2 border-[#1D1E24] font-headline text-[11px] font-black uppercase text-[#1D1E24] shadow-[2px_2px_0px_#1D1E24] hover:bg-[#FFE04D] flex items-center justify-between"
+                    >
+                      <span>+ Create Sales Quotation</span>
+                      <span className="material-symbols-outlined text-[16px]">request_quote</span>
+                    </Link>
+                    <Link
+                      href="/customers"
+                      onClick={() => setIsOpen(false)}
+                      className="w-full text-left p-2 bg-[#25F4D2] border-2 border-[#1D1E24] font-headline text-[11px] font-black uppercase text-[#003D32] shadow-[2px_2px_0px_#1D1E24] hover:bg-[#5CF7DE] flex items-center justify-between"
+                    >
+                      <span>+ Register New Customer</span>
+                      <span className="material-symbols-outlined text-[16px]">person_add</span>
+                    </Link>
+                    <Link
+                      href="/invoices"
+                      onClick={() => setIsOpen(false)}
+                      className="w-full text-left p-2 bg-white border-2 border-[#1D1E24] font-headline text-[11px] font-black uppercase text-[#1D1E24] shadow-[2px_2px_0px_#1D1E24] hover:bg-[#FFF0DC] flex items-center justify-between"
+                    >
+                      <span>📑 Review Unpaid Invoices</span>
+                      <span className="material-symbols-outlined text-[16px]">receipt_long</span>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      disabled={loading}
+                      onClick={handleRunBilling}
+                      className="w-full text-left p-2 bg-[#FFD600] border-2 border-[#1D1E24] font-headline text-[11px] font-black uppercase text-[#1D1E24] shadow-[2px_2px_0px_#1D1E24] hover:bg-[#FFE04D] flex items-center justify-between"
+                    >
+                      <span>⚡ Run Billing Engine</span>
+                      <span className="material-symbols-outlined text-[16px]">play_arrow</span>
+                    </button>
 
-                <button
-                  disabled={loading}
-                  onClick={handleRunBenchmark}
-                  className="w-full text-left p-2 bg-[#25F4D2] border-2 border-[#1D1E24] font-headline text-[11px] font-black uppercase text-[#003D32] shadow-[2px_2px_0px_#1D1E24] hover:bg-[#5CF7DE] flex items-center justify-between"
-                >
-                  <span>🚀 Test Database SLA Latency</span>
-                  <span className="material-symbols-outlined text-[16px]">speed</span>
-                </button>
+                    <button
+                      disabled={loading}
+                      onClick={handleRunBenchmark}
+                      className="w-full text-left p-2 bg-[#25F4D2] border-2 border-[#1D1E24] font-headline text-[11px] font-black uppercase text-[#003D32] shadow-[2px_2px_0px_#1D1E24] hover:bg-[#5CF7DE] flex items-center justify-between"
+                    >
+                      <span>🚀 Test Database SLA Latency</span>
+                      <span className="material-symbols-outlined text-[16px]">speed</span>
+                    </button>
 
-                <Link
-                  href="/invoices"
-                  onClick={() => setIsOpen(false)}
-                  className="w-full text-left p-2 bg-white border-2 border-[#1D1E24] font-headline text-[11px] font-black uppercase text-[#1D1E24] shadow-[2px_2px_0px_#1D1E24] hover:bg-[#FFF0DC] flex items-center justify-between"
-                >
-                  <span>📑 Open Invoices &amp; Payments</span>
-                  <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-                </Link>
+                    <Link
+                      href="/invoices"
+                      onClick={() => setIsOpen(false)}
+                      className="w-full text-left p-2 bg-white border-2 border-[#1D1E24] font-headline text-[11px] font-black uppercase text-[#1D1E24] shadow-[2px_2px_0px_#1D1E24] hover:bg-[#FFF0DC] flex items-center justify-between"
+                    >
+                      <span>📑 Open Invoices &amp; Payments</span>
+                      <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                    </Link>
+                  </>
+                )}
 
                 {actionNotice && (
                   <div className="p-2 bg-[#1D1E24] text-[#FFD600] text-[10px] font-mono font-bold border border-[#FFD600]">

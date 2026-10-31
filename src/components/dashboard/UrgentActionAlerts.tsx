@@ -5,6 +5,7 @@ import { WindowCard } from "../ui/WindowCard";
 import Link from "next/link";
 import { NeoButton } from "../ui/NeoButton";
 import { triggerCelebration, playSuccessSound } from "@/lib/celebrate";
+import { useRole } from "@/context/RoleContext";
 
 interface UrgentActionAlertsProps {
   onRunBillingSweep?: () => void;
@@ -15,6 +16,7 @@ export const UrgentActionAlerts: React.FC<UrgentActionAlertsProps> = ({
   onRunBillingSweep,
   billingLoading = false,
 }) => {
+  const { canRunBillingEngine } = useRole();
   const [internalLoading, setInternalLoading] = useState(false);
   const [sweepResult, setSweepResult] = useState<string | null>(null);
 
@@ -102,14 +104,20 @@ export const UrgentActionAlerts: React.FC<UrgentActionAlertsProps> = ({
               </p>
             </div>
           </div>
-          <NeoButton
-            variant="cyan"
-            size="sm"
-            onClick={handleSweep}
-            disabled={isLoading}
-          >
-            {isLoading ? "Billing..." : "Run Sweep"}
-          </NeoButton>
+          {canRunBillingEngine ? (
+            <NeoButton
+              variant="cyan"
+              size="sm"
+              onClick={handleSweep}
+              disabled={isLoading}
+            >
+              {isLoading ? "Billing..." : "Run Sweep"}
+            </NeoButton>
+          ) : (
+            <span className="px-2 py-1 bg-[#FFF0DC] border border-[#1D1E24] text-[10px] font-headline font-bold text-[#606275]">
+              Admin Engine
+            </span>
+          )}
         </div>
 
         {/* Alert 3: Discount Rule Threshold */}

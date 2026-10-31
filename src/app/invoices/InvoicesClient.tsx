@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { NeoButton } from "@/components/ui/NeoButton";
 import { Modal } from "@/components/ui/Modal";
@@ -8,6 +9,7 @@ import { formatDate, getStatusBadgeStyle } from "@/lib/utils";
 import { PennyMascot } from "@/components/mascot/PennyMascot";
 import { exportToCsv } from "@/lib/exportCsv";
 import { triggerCelebration, playSuccessSound } from "@/lib/celebrate";
+import { useRole } from "@/context/RoleContext";
 
 interface InvoiceItemRow {
   description: string;
@@ -50,6 +52,7 @@ interface InvoicesClientProps {
 
 export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices }) => {
   const router = useRouter();
+  const { role, switchWorkspace, canRunBillingEngine } = useRole();
   const [invoices, setInvoices] = useState<InvoiceRow[]>(initialInvoices);
   const [filterStatus, setFilterStatus] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -213,6 +216,36 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
     }
   };
 
+  if (role === "CUSTOMER") {
+    return (
+      <div className="p-8 bg-white border-[3px] border-[#1D1E24] shadow-[6px_6px_0px_#1D1E24] text-center max-w-2xl mx-auto my-12 animate-in zoom-in-95">
+        <div className="w-16 h-16 bg-[#FF4D6D] text-white border-2 border-[#1D1E24] flex items-center justify-center mx-auto mb-4 shadow-[3px_3px_0px_#1D1E24]">
+          <span className="material-symbols-outlined text-[36px]">receipt_long</span>
+        </div>
+        <h2 className="font-headline text-[22px] font-black uppercase text-[#1D1E24] mb-2">
+          Access Restricted: Customer Tenant Boundary
+        </h2>
+        <p className="text-[13px] text-[#606275] font-semibold mb-6 leading-relaxed">
+          You are currently signed in as <strong>Customer (David Vance - Acme Corp)</strong>. Internal company billing ledgers and systemic billing sweeps are restricted. You can access and pay your Acme Corp invoices directly in your subscriber portal.
+        </p>
+        <div className="flex justify-center gap-3">
+          <Link href="/portal">
+            <NeoButton variant="primary" size="md" icon="storefront">
+              Return to My Customer Portal ➔
+            </NeoButton>
+          </Link>
+          <button
+            type="button"
+            onClick={() => switchWorkspace("STAFF")}
+            className="px-4 py-2 bg-[#FFD600] border-2 border-[#1D1E24] font-headline text-[12px] font-black uppercase shadow-[2px_2px_0px_#1D1E24] hover:bg-[#FFE04D]"
+          >
+            Switch to Staff View
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-6">
       {/* Toast Alert */}
@@ -275,15 +308,21 @@ export const InvoicesClient: React.FC<InvoicesClientProps> = ({ initialInvoices 
           >
             Export Invoices
           </NeoButton>
-          <NeoButton
-            variant="cyan"
-            size="md"
-            icon="autorenew"
-            onClick={handleRunBillingSweep}
-            disabled={billingLoading}
-          >
-            {billingLoading ? "Running Sweep..." : "Run Billing Sweep"}
-          </NeoButton>
+          {canRunBillingEngine ? (
+            <NeoButton
+              variant="cyan"
+              size="md"
+              icon="autorenew"
+              onClick={handleRunBillingSweep}
+              disabled={billingLoading}
+            >
+              {billingLoading ? "Running Sweep..." : "Run Billing Sweep"}
+            </NeoButton>
+          ) : (
+            <span className="px-3 py-1.5 bg-[#FFF0DC] border-2 border-[#1D1E24] font-headline text-[11px] font-black uppercase text-[#606275]">
+              Staff View (Collections Mode)
+            </span>
+          )}
         </div>
       </section>
 

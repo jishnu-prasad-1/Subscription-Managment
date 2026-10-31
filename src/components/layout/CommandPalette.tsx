@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { sounds } from "@/lib/soundEffects";
+import { useRole } from "@/context/RoleContext";
 
 interface CommandItem {
   id: string;
@@ -19,6 +20,7 @@ export const CommandPalette: React.FC<{
   onClose: () => void;
 }> = ({ isOpen, onClose }) => {
   const router = useRouter();
+  const { role } = useRole();
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -157,7 +159,25 @@ export const CommandPalette: React.FC<{
     },
   ];
 
-  const filtered = commands.filter(
+  const roleAllowedCommands = commands.filter((c) => {
+    if (role === "CUSTOMER") {
+      return c.id === "nav-portal" || c.id === "act-sfx";
+    }
+    if (role === "STAFF") {
+      return (
+        c.id === "nav-staff" ||
+        c.id === "nav-quotations" ||
+        c.id === "nav-subs" ||
+        c.id === "nav-customers" ||
+        c.id === "nav-invoices" ||
+        c.id === "nav-payments" ||
+        c.id === "act-sfx"
+      );
+    }
+    return true; // ADMIN gets all
+  });
+
+  const filtered = roleAllowedCommands.filter(
     (c) =>
       c.title.toLowerCase().includes(query.toLowerCase()) ||
       c.subtitle.toLowerCase().includes(query.toLowerCase()) ||

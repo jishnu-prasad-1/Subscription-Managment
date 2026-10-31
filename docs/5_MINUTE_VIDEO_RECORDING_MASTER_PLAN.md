@@ -244,3 +244,4 @@ flowchart TD
 - **If a toast disappears too fast**: All toasts stay on screen for 3.5 seconds. Re-click the action if you want to emphasize the text.
 - **Keep cursor movement smooth**: Avoid "circling" the mouse rapidly. Point deliberately, stop for half a second, then click.
 - **Sound Check**: When the confetti fires at 2:30, make sure your microphone isn't clipping. Keep your voice energetic and steady!
+

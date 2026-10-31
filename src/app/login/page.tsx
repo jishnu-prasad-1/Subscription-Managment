@@ -5,9 +5,12 @@ import { PennyMascot } from "@/components/mascot/PennyMascot";
 import { NeoButton } from "@/components/ui/NeoButton";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useRole, UserRole } from "@/context/RoleContext";
 
 export default function LoginPage() {
   const router = useRouter();
+  const { setRole } = useRole();
+  const [selectedRole, setSelectedRole] = useState<UserRole>("ADMIN");
   const [email, setEmail] = useState("admin@brightloop.com");
   const [password, setPassword] = useState("Brightloop@2026");
   const [loading, setLoading] = useState(false);
@@ -18,21 +21,34 @@ export default function LoginPage() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Instant demo login
+
+    let targetRole: UserRole = "ADMIN";
+    let targetPath = "/";
+
+    if (email.toLowerCase().includes("customer") || selectedRole === "CUSTOMER") {
+      targetRole = "CUSTOMER";
+      targetPath = "/portal";
+    } else if (email.toLowerCase().includes("staff") || selectedRole === "STAFF") {
+      targetRole = "STAFF";
+      targetPath = "/staff";
+    } else {
+      targetRole = "ADMIN";
+      targetPath = "/";
+    }
+
+    setRole(targetRole);
+
     setTimeout(() => {
-      if (email.includes("customer")) {
-        router.push("/portal");
-      } else {
-        router.push("/");
-      }
-    }, 600);
+      router.push(targetPath);
+    }, 450);
   };
 
-  const fillCredentials = (role: "admin" | "staff" | "customer") => {
-    if (role === "admin") {
+  const fillCredentials = (r: UserRole) => {
+    setSelectedRole(r);
+    if (r === "ADMIN") {
       setEmail("admin@brightloop.com");
       setPassword("Brightloop@2026");
-    } else if (role === "staff") {
+    } else if (r === "STAFF") {
       setEmail("staff@brightloop.com");
       setPassword("Brightloop@2026");
     } else {
@@ -58,11 +74,11 @@ export default function LoginPage() {
               lock
             </span>
             <span className="font-headline text-[13px] uppercase text-[#1D1E24] font-black tracking-wider">
-              BRIGHTLOOP // USER AUTHENTICATION
+              BRIGHTLOOP // ROLE-BASED AUTHENTICATION
             </span>
           </div>
           <span className="font-mono text-[10px] font-black bg-[#1D1E24] text-white px-2 py-0.5 border border-[#1D1E24]">
-            SECURE
+            RBAC 3.0
           </span>
         </div>
 
@@ -74,38 +90,55 @@ export default function LoginPage() {
               PENNY SAYS:
             </span>
             <p className="text-[12px] font-bold text-[#1D1E24] mt-0.5">
-              &ldquo;Welcome back! Pick a test role below for a 1-click login walkthrough!&rdquo;
+              &ldquo;Pick your role below to experience completely isolated features tailored for that sign-in!&rdquo;
             </p>
           </div>
         </div>
 
-        {/* Quick Credentials Buttons for Judges */}
+        {/* 1-Click Role Switcher Buttons */}
         <div className="p-3 bg-[#FCE9D0] border-b-2 border-[#1D1E24]">
           <span className="font-headline text-[10px] uppercase font-black text-[#5B5D68] block mb-1.5">
-            Quick Demo Logins (For Judges):
+            Select Role to Test Different Features:
           </span>
           <div className="grid grid-cols-3 gap-1.5 font-headline text-[10px] uppercase font-black">
             <button
               type="button"
-              onClick={() => fillCredentials("admin")}
-              className="py-1 bg-[#25F4D2] text-[#003D32] border border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24] hover:bg-[#38EFD0]"
+              onClick={() => fillCredentials("ADMIN")}
+              className={`py-1.5 transition-all border border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24] ${
+                selectedRole === "ADMIN"
+                  ? "bg-[#25F4D2] text-[#003D32] border-2 border-[#1D1E24] font-black"
+                  : "bg-white text-[#1D1E24] hover:bg-[#25F4D2]/40"
+              }`}
             >
               Super Admin
             </button>
             <button
               type="button"
-              onClick={() => fillCredentials("staff")}
-              className="py-1 bg-[#FFD600] text-[#1D1E24] border border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24] hover:bg-[#FFE170]"
+              onClick={() => fillCredentials("STAFF")}
+              className={`py-1.5 transition-all border border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24] ${
+                selectedRole === "STAFF"
+                  ? "bg-[#FFD600] text-[#1D1E24] border-2 border-[#1D1E24] font-black"
+                  : "bg-white text-[#1D1E24] hover:bg-[#FFE170]"
+              }`}
             >
               Staff Rep
             </button>
             <button
               type="button"
-              onClick={() => fillCredentials("customer")}
-              className="py-1 bg-[#FFCCD5] text-[#FF3355] border border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24] hover:bg-[#FFA2B4]"
+              onClick={() => fillCredentials("CUSTOMER")}
+              className={`py-1.5 transition-all border border-[#1D1E24] shadow-[1px_1px_0px_#1D1E24] ${
+                selectedRole === "CUSTOMER"
+                  ? "bg-[#FF4D6D] text-white border-2 border-[#1D1E24] font-black"
+                  : "bg-white text-[#FF3355] hover:bg-[#FFA2B4]"
+              }`}
             >
               Customer
             </button>
+          </div>
+          <div className="mt-2 text-[10.5px] font-mono text-[#1D1E24] bg-white p-1.5 border border-[#1D1E24]">
+            {selectedRole === "ADMIN" && "👑 Admin: Master control (Catalog, Plans, Taxes, Staff Roster, Billing Runs)."}
+            {selectedRole === "STAFF" && "💼 Staff: Sales & billing execution (+ Customer, + Quotation, Subscriptions)."}
+            {selectedRole === "CUSTOMER" && "👤 Customer: Tenant-isolated portal (My Subscriptions, Invoices, Pay Balance)."}
           </div>
         </div>
 
@@ -147,7 +180,7 @@ export default function LoginPage() {
           </div>
 
           <NeoButton variant="primary" size="lg" type="submit" disabled={loading}>
-            {loading ? "Authenticating..." : "Sign In to Mission Control ➔"}
+            {loading ? "Authenticating Session..." : `Sign In as ${selectedRole} ➔`}
           </NeoButton>
 
           <div className="pt-3 border-t-2 border-[#1D1E24] text-center text-[12px] font-bold text-[#606275]">
@@ -203,4 +236,3 @@ export default function LoginPage() {
     </div>
   );
 }
-
