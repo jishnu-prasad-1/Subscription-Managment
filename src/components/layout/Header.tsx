@@ -168,7 +168,16 @@ export const Header: React.FC<HeaderProps> = () => {
             <div className="absolute right-0 top-10 w-72 sm:w-80 bg-[#FFF8EE] border-[2.5px] border-[#1D1E24] shadow-[5px_5px_0px_#1D1E24] p-3 z-50 animate-in zoom-in-95">
               <div className="font-headline text-[11px] uppercase font-black bg-[#FFD600] p-1 border border-[#1D1E24] mb-2 flex items-center justify-between">
                 <span>SYSTEM NOTIFICATIONS (4)</span>
-                <span className="text-[9px] bg-[#1D1E24] text-white px-1">LIVE</span>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[9px] bg-[#1D1E24] text-white px-1">LIVE</span>
+                  <button
+                    onClick={() => setShowNotifications(false)}
+                    aria-label="Close notifications"
+                    className="w-4 h-4 bg-[#1D1E24] text-white flex items-center justify-center font-bold text-[9px] hover:bg-[#FF4D6D] cursor-pointer"
+                  >
+                    ✕
+                  </button>
+                </div>
               </div>
               <div className="flex flex-col gap-1.5 text-[11px]">
                 <Link

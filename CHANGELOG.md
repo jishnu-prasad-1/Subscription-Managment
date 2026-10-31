@@ -4,6 +4,28 @@ All notable changes to this project are documented in this file in accordance wi
 
 ---
 
+## [1.4.1-cleanup] - 2026-10-31
+### 🧹 MILESTONE 9: AUDIT & REMOVAL OF MISLEADING NON-WORKING WINDOW CONTROLS
+
+#### Removed & Fixed
+- **Purged Fake Non-Working Controls from `WindowCard.tsx`**:
+  - Removed decorative, non-functional `_` (minimize), `□` (maximize), and `×` (close) button elements that appeared statically on every card across the application without click handlers.
+  - Added optional `onClose?: () => void` prop to `WindowCard` that renders an explicit, accessible `✕` close button strictly when a dismissal handler is provided.
+- **Enhanced Modal Dismissal (`Modal.tsx`)**:
+  - Connected `Modal`'s `onClose` callback directly to `WindowCard`, providing both a working `ESC` key/button and a functional top-right `✕` close button.
+- **Removed Static Window Buttons from Shell Components**:
+  - `Sidebar.tsx`: Purged non-working `_`, `□`, and `×` blocks from the sidebar brand banner.
+  - `PennyDispatchBanner.tsx`: Purged non-working `_`, `□`, and `×` icons from the mission control title strip.
+  - `login/page.tsx`: Purged static non-working control squares, replacing with an authentic `SECURE` badge.
+  - `register/page.tsx`: Purged static non-working control squares, replacing with a `NEW_ACCOUNT` status badge.
+- **Preserved & Verified Active Dismissal Handlers**:
+  - Preserved Penny Dispatch Assistant close button (`FloatingPennyAssistant.tsx` - `setIsOpen(false)`).
+  - Preserved Command Palette dismissal button (`CommandPalette.tsx` - `onClose()`).
+  - Preserved Help & Tour Guide drawer close button (`Header.tsx` - `setShowHelp(false)`).
+  - Added active `✕` button to Notifications drawer (`Header.tsx` - `setShowNotifications(false)`).
+
+---
+
 ## [1.4.0-rupees] - 2026-10-31
 ### 🇮🇳 MILESTONE 8: SYSTEM-WIDE CURRENCY CONVERSION TO INDIAN RUPEES (₹)
 

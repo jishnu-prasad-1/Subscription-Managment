@@ -61,11 +61,9 @@ export default function LoginPage() {
               BRIGHTLOOP // USER AUTHENTICATION
             </span>
           </div>
-          <div className="flex items-center gap-1">
-            <span className="w-3.5 h-3.5 border-2 border-[#1D1E24] bg-white flex items-center justify-center text-[8px] font-bold">_</span>
-            <span className="w-3.5 h-3.5 border-2 border-[#1D1E24] bg-white flex items-center justify-center text-[8px] font-bold">□</span>
-            <span className="w-3.5 h-3.5 border-2 border-[#1D1E24] bg-[#FF4D6D] text-white flex items-center justify-center text-[8px] font-bold">×</span>
-          </div>
+          <span className="font-mono text-[10px] font-black bg-[#1D1E24] text-white px-2 py-0.5 border border-[#1D1E24]">
+            SECURE
+          </span>
         </div>
 
         {/* Mascot Greeting */}

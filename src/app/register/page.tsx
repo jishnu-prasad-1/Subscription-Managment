@@ -48,11 +48,9 @@ export default function RegisterPage() {
               SUBSCRIBER REGISTRATION
             </span>
           </div>
-          <div className="flex items-center gap-1">
-            <span className="w-3.5 h-3.5 border-2 border-[#1D1E24] bg-white flex items-center justify-center text-[8px] font-bold">_</span>
-            <span className="w-3.5 h-3.5 border-2 border-[#1D1E24] bg-white flex items-center justify-center text-[8px] font-bold">□</span>
-            <span className="w-3.5 h-3.5 border-2 border-[#1D1E24] bg-[#FF4D6D] text-white flex items-center justify-center text-[8px] font-bold">×</span>
-          </div>
+          <span className="font-mono text-[10px] font-black bg-[#003D32] text-[#25F4D2] px-2 py-0.5 border border-[#1D1E24]">
+            NEW_ACCOUNT
+          </span>
         </div>
 
         {/* Penny Mascot Guidance Box */}

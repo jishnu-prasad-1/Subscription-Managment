@@ -43,19 +43,6 @@ export const Sidebar: React.FC = () => {
               </span>
             </div>
           </Link>
-
-          {/* 90s OS Window Buttons */}
-          <div className="flex items-center gap-1">
-            <div className="w-3.5 h-3.5 border-2 border-[#1D1E24] bg-[#FFF8EE] flex items-center justify-center font-headline text-[8px] font-bold shadow-[1px_1px_0px_#1D1E24]">
-              _
-            </div>
-            <div className="w-3.5 h-3.5 border-2 border-[#1D1E24] bg-[#FFF8EE] flex items-center justify-center font-headline text-[8px] font-bold shadow-[1px_1px_0px_#1D1E24]">
-              □
-            </div>
-            <div className="w-3.5 h-3.5 border-2 border-[#1D1E24] bg-[#FF4D6D] text-white flex items-center justify-center font-headline text-[8px] font-bold shadow-[1px_1px_0px_#1D1E24]">
-              ×
-            </div>
-          </div>
         </div>
 
         {/* Workspace Mode Switcher (Fully functional, prefetched & dynamic) */}

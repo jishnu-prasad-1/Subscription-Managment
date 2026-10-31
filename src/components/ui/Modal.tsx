@@ -26,10 +26,12 @@ export const Modal: React.FC<ModalProps> = ({
         <WindowCard
           title={title}
           icon={icon}
+          onClose={onClose}
           actions={
             <button
+              type="button"
               onClick={onClose}
-              className="px-2 py-0.5 bg-[#FF4D6D] text-white border-2 border-[#1D1E24] font-headline text-[10px] uppercase font-black shadow-[1.5px_1.5px_0px_#1D1E24] hover:bg-[#FF6584]"
+              className="px-2 py-0.5 bg-[#FFF8EE] text-[#1D1E24] border-2 border-[#1D1E24] font-headline text-[10px] uppercase font-black shadow-[1.5px_1.5px_0px_#1D1E24] hover:bg-[#FFD600] active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
             >
               ESC
             </button>

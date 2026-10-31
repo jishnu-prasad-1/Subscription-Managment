@@ -39,13 +39,6 @@ export const PennyDispatchBanner: React.FC<PennyDispatchBannerProps> = ({
             STREAM_STABLE
           </span>
         </div>
-
-        {/* 90s Window Control Icons */}
-        <div className="flex items-center gap-1.5">
-          <div className="w-4 h-4 bg-[#FFF8EE] border-2 border-[#1D1E24] flex items-center justify-center font-headline text-[9px] font-black shadow-[1px_1px_0px_#1D1E24]">_</div>
-          <div className="w-4 h-4 bg-[#FFF8EE] border-2 border-[#1D1E24] flex items-center justify-center font-headline text-[9px] font-black shadow-[1px_1px_0px_#1D1E24]">□</div>
-          <div className="w-4 h-4 bg-[#FF4D6D] border-2 border-[#1D1E24] text-white flex items-center justify-center font-headline text-[9px] font-black shadow-[1px_1px_0px_#1D1E24]">×</div>
-        </div>
       </div>
 
       {/* Banner Body - Generous Spacing with Dot Pattern */}

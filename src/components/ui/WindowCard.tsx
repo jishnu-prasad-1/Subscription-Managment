@@ -1,12 +1,13 @@
 import React from "react";
 
-interface WindowCardProps {
+export interface WindowCardProps {
   title: string;
   icon?: string;
   badge?: string;
   badgeColor?: string;
   headerBg?: string;
   actions?: React.ReactNode;
+  onClose?: () => void;
   children: React.ReactNode;
   className?: string;
 }
@@ -18,12 +19,13 @@ export const WindowCard: React.FC<WindowCardProps> = ({
   badgeColor = "bg-[#FFD600]",
   headerBg = "bg-[#FCE9D0]",
   actions,
+  onClose,
   children,
   className = "",
 }) => {
   return (
     <div className={`bg-[#FFF8EE] border-[3px] border-[#1D1E24] shadow-[5px_5px_0px_#1D1E24] flex flex-col ${className}`}>
-      {/* 90s Window Header Bar */}
+      {/* Window Header Bar */}
       <div className={`${headerBg} px-5 py-2.5 border-b-[3px] border-[#1D1E24] flex items-center justify-between select-none`}>
         <div className="flex items-center gap-2.5">
           {icon && (
@@ -41,29 +43,19 @@ export const WindowCard: React.FC<WindowCardProps> = ({
           )}
         </div>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2">
           {actions}
-          {/* Retro 90s Window Buttons */}
-          <div className="flex items-center gap-1.5 ml-1">
+          {onClose && (
             <button
-              aria-label="Minimize"
-              className="w-4 h-4 bg-[#FFF8EE] border-2 border-[#1D1E24] flex items-center justify-center font-headline text-[9px] font-black hover:bg-[#FFD600] shadow-[1px_1px_0px_#1D1E24]"
-            >
-              _
-            </button>
-            <button
-              aria-label="Maximize"
-              className="w-4 h-4 bg-[#FFF8EE] border-2 border-[#1D1E24] flex items-center justify-center font-headline text-[9px] font-black hover:bg-[#FFD600] shadow-[1px_1px_0px_#1D1E24]"
-            >
-              □
-            </button>
-            <button
+              type="button"
+              onClick={onClose}
               aria-label="Close"
-              className="w-4 h-4 bg-[#FF4D6D] border-2 border-[#1D1E24] text-white flex items-center justify-center font-headline text-[9px] font-black hover:bg-[#FF6584] shadow-[1px_1px_0px_#1D1E24]"
+              title="Close"
+              className="w-5 h-5 bg-[#FF4D6D] border-2 border-[#1D1E24] text-white flex items-center justify-center font-headline text-[11px] font-black hover:bg-[#FF6584] shadow-[1px_1px_0px_#1D1E24] active:translate-x-0.5 active:translate-y-0.5 cursor-pointer ml-1 transition-all"
             >
-              ×
+              ✕
             </button>
-          </div>
+          )}
         </div>
       </div>
 
